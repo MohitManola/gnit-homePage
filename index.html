@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -38,8 +39,13 @@
                 <a href="#top-recruiters">Top Recruiters</a>
             </nav>
             <div class="contact-info">
-                <span>📞 9882827474</span>
-                <span>✉️</span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg> 
+                    
+                    <a href="tel:9882827474">9882827474</a>
+
+                </span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
             </div>
         </div>
     </header>
@@ -85,10 +91,10 @@
                 Admissions Open 2026
             </div>
             <form class="enquiry-form">
-                <input type="text" placeholder="Name*" required>
-                <input type="email" placeholder="Email*" required>
-                <input type="tel" placeholder="Mobile Number*" required>
-                <input type="text" placeholder="City*" required>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <input type="text" placeholder="City" required>
                 <button type="submit">APPLY NOW</button>
             </form>
         </div>
@@ -198,7 +204,7 @@
     
     <section class="section programme-details" id="programme-details">
         <h2 class="section-heading">Programme Details</h2>
-        <div class="slider-wrapper">
+        
             <div class="courses-grid">
             <div class="course-card">
                 <img src="images/mba_elite.jpg" alt="Course">
@@ -230,11 +236,10 @@
             </div>
             <div class="course-card">
                 <img src="images/pgbm.jpg" alt="Course">
-                <p>PGBM</p>
+                <p>PGDM</p>
             </div>
             </div>
-            <button class="slider-next-btn" onclick="scrollNext(this)">&#10095;</button>
-        </div>
+            <!-- <button class="slider-next-btn" onclick="scrollNext(this)">&#10095;</button> -->
     </section>
 
     
@@ -307,7 +312,7 @@
     </section>
 
     
-    <section class="section industry-learning" style="background-image: url('images/hero_bg.png');">
+    <section class="section industry-learning">
         <div class="overlay"></div>
         <div class="content">
             <h2 class="section-heading" style="color: white; margin-bottom: 30px; position: relative; z-index: 2;">
@@ -340,8 +345,8 @@
     <section class="section top-recruiters" id="top-recruiters">
         <div class="recruiters-header">
             <h2 class="section-heading">Top Recruiters</h2>
-            <div class="heading-underline"></div>
-            <p class="recruiters-subtitle">Our Top Recruiters- Companies that empower Sharda University students with strong career paths and growth.</p>
+            <!-- <div class="heading-underline"></div> -->
+            <p class="recruiters-subtitle">Our Top Recruiters- Companies that empower GN Group students with strong career paths and growth.</p>
         </div>
 
         <div class="stats-container">
@@ -368,7 +373,7 @@
         </div>
 
         <div class="recruiter-strip">
-            <div class="recruiter-strip-line"></div>
+            <!-- <div class="recruiter-strip-line"></div> -->
             <div class="recruiter-logos-overflow">
                 <div class="recruiter-logos-track" id="recruiterLogosTrack">
                     <div class="recruiter-logo-item">
@@ -393,15 +398,19 @@
             </div>
         </div>
 
-        <div class="recruiter-controls">
+        <!-- <div class="recruiter-controls">
             <button class="recruiter-nav-btn" onclick="moveRecruiterLogos(-1)">&#10094;</button>
             <button class="recruiter-nav-btn" onclick="moveRecruiterLogos(1)">&#10095;</button>
-        </div>
+        </div> -->
     </section>
 
     
     <section class="section testimonials">
-        <h2 class="section-heading">Testimonial</h2>
+        <div class="testimonial-heading">
+            <p class="section-kicker">Student stories</p>
+            <h2 class="section-heading">Testimonial</h2>
+            <p class="testimonial-intro">Real experiences from students building their future with GN Group.</p>
+        </div>
 
         <div class="testimonials-wrapper">
             <div class="test-slider-overflow">
@@ -427,8 +436,9 @@
                 </div>
             </div>
             <div class="testimonial-controls">
-                <button class="gallery-btn prev-btn" onclick="moveTestimonial(-1, true)">&#10094;</button>
-                <button class="gallery-btn next-btn" onclick="moveTestimonial(1, true)">&#10095;</button>
+                <button class="gallery-btn prev-btn" onclick="moveTestimonial(-1, true)" aria-label="Previous testimonial">&#10094;</button>
+                <span class="testimonial-progress" id="testimonialProgress" aria-live="polite">01 / 05</span>
+                <button class="gallery-btn next-btn" onclick="moveTestimonial(1, true)" aria-label="Next testimonial">&#10095;</button>
             </div>
         </div>
     </section>
@@ -467,290 +477,7 @@
         </div>
     </footer>
 
-    <script>
-        let currentHeroSlide = 1;
-        const totalHeroSlides = 3;
-
-        function nextHeroSlide() {
-            const slides = document.querySelectorAll('.hero-slider-bg');
-            slides.forEach(slide => {
-                slide.classList.add('manual-override');
-                slide.classList.remove('active');
-            });
-
-            currentHeroSlide++;
-            if (currentHeroSlide > totalHeroSlides) {
-                currentHeroSlide = 1;
-            }
-            
-            const activeSlide = document.querySelector('.hero-slider-bg.slide-' + currentHeroSlide);
-            if (activeSlide) {
-                activeSlide.classList.add('active');
-            }
-        }
-
-        function scrollNext(btn) {
-            const wrapper = btn.parentElement;
-            const grid = wrapper.querySelector('div[class$="-grid"]');
-            if (grid) {
-                // Scroll horizontally by 200px or the width of one card
-                grid.scrollBy({ left: 250, behavior: 'smooth' });
-            }
-        }
-
-        // ── Gallery Slider for Campus Life ──
-        let currentGallerySlide = 0;
-        function updateGallerySlides() {
-            const slides = document.querySelectorAll('.gallery-slide');
-            slides.forEach((slide, index) => {
-                if (index === currentGallerySlide) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
-        }
-
-        function nextGallerySlide() {
-            const slides = document.querySelectorAll('.gallery-slide');
-            currentGallerySlide = (currentGallerySlide + 1) % slides.length;
-            updateGallerySlides();
-        }
-
-        function prevGallerySlide() {
-            const slides = document.querySelectorAll('.gallery-slide');
-            currentGallerySlide = (currentGallerySlide - 1 + slides.length) % slides.length;
-            updateGallerySlides();
-        }
-
-        // ── Continuous Marquee Slider ──
-        (function () {
-            var SPEED = 0.3;          // px per frame (~18 px/s at 60 fps)
-            var RESUME_DELAY = 2000;  // ms before auto-scroll resumes
-
-            function setupMarquee(grid) {
-                var cards = Array.from(grid.children);
-                if (cards.length === 0) return;
-
-                // ── Clone every card for a seamless infinite loop ──
-                cards.forEach(function (card) {
-                    var clone = card.cloneNode(true);
-                    clone.setAttribute('aria-hidden', 'true');
-                    grid.appendChild(clone);
-                });
-
-                var isPaused = false;
-                var resumeTimer = null;
-                var gap = parseFloat(getComputedStyle(grid).gap) || 15;
-                var currentScrollFloat = grid.scrollLeft;
-
-                // Width of the original (un-cloned) content
-                function calcOriginalWidth() {
-                    var w = 0;
-                    for (var i = 0; i < cards.length; i++) {
-                        w += cards[i].offsetWidth + gap;
-                    }
-                    return w;
-                }
-                var originalWidth = calcOriginalWidth();
-
-                window.addEventListener('resize', function () {
-                    gap = parseFloat(getComputedStyle(grid).gap) || 15;
-                    originalWidth = calcOriginalWidth();
-                });
-
-                // ── RAF loop ──
-                function tick() {
-                    if (!isPaused) {
-                        currentScrollFloat += SPEED;
-                        if (currentScrollFloat >= originalWidth) {
-                            currentScrollFloat -= originalWidth;
-                        }
-                        grid.scrollLeft = currentScrollFloat;
-                    }
-                    requestAnimationFrame(tick);
-                }
-
-                function pause() {
-                    isPaused = true;
-                    if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; }
-                }
-
-                function scheduleResume() {
-                    if (resumeTimer) clearTimeout(resumeTimer);
-                    resumeTimer = setTimeout(function () {
-                        currentScrollFloat = grid.scrollLeft;
-                        isPaused = false;
-                    }, RESUME_DELAY);
-                }
-
-                // ── Mouse hover ──
-                grid.addEventListener('mouseenter', pause);
-                grid.addEventListener('mouseleave', scheduleResume);
-
-                // ── Touch gestures ──
-                grid.addEventListener('touchstart', pause, { passive: true });
-                grid.addEventListener('touchend', scheduleResume, { passive: true });
-                grid.addEventListener('touchcancel', scheduleResume, { passive: true });
-
-                // ── Horizontal wheel / trackpad only ──
-                grid.addEventListener('wheel', function (e) {
-                    var hasHorizontal = Math.abs(e.deltaX) > 0;
-                    var shiftWheel = e.shiftKey && Math.abs(e.deltaY) > 0;
-                    if (!hasHorizontal && !shiftWheel) return; 
-
-                    pause();
-                    var delta = hasHorizontal ? e.deltaX : e.deltaY;
-                    grid.scrollLeft += delta;
-                    if (grid.scrollLeft >= originalWidth) grid.scrollLeft -= originalWidth;
-                    if (grid.scrollLeft < 0)              grid.scrollLeft += originalWidth;
-                    e.preventDefault();
-                    scheduleResume();
-                }, { passive: false });
-
-                // ── Drag-to-scroll (pointer / mouse) ──
-                var isDragging = false;
-                var dragStartX = 0;
-                var scrollStart = 0;
-
-                grid.addEventListener('mousedown', function (e) {
-                    isDragging = true;
-                    dragStartX = e.pageX;
-                    scrollStart = grid.scrollLeft;
-                    grid.classList.add('is-dragging');
-                    pause();
-                    e.preventDefault();
-                });
-
-                document.addEventListener('mousemove', function (e) {
-                    if (!isDragging) return;
-                    var dx = e.pageX - dragStartX;
-                    grid.scrollLeft = scrollStart - dx;
-                    if (grid.scrollLeft >= originalWidth) grid.scrollLeft -= originalWidth;
-                    if (grid.scrollLeft < 0)              grid.scrollLeft += originalWidth;
-                });
-
-                document.addEventListener('mouseup', function () {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    grid.classList.remove('is-dragging');
-                    scheduleResume();
-                });
-
-                // ── Keyboard arrows ──
-                grid.setAttribute('tabindex', '0');
-                grid.addEventListener('focus', pause);
-                grid.addEventListener('blur', scheduleResume);
-                grid.addEventListener('keydown', function (e) {
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                        pause();
-                        grid.scrollLeft += (e.key === 'ArrowRight' ? 80 : -80);
-                        if (grid.scrollLeft >= originalWidth) grid.scrollLeft -= originalWidth;
-                        if (grid.scrollLeft < 0)              grid.scrollLeft += originalWidth;
-                        scheduleResume();
-                        e.preventDefault();
-                    }
-                });
-
-                grid.addEventListener('dragstart', function (e) { e.preventDefault(); });
-
-                // ── Start ──
-                requestAnimationFrame(tick);
-            }
-
-            function initMarquees() {
-                var grids = document.querySelectorAll('.marquee-container > div');
-                grids.forEach(setupMarquee);
-            }
-
-            // Run after DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initMarquees);
-            } else {
-                initMarquees();
-            }
-        })();
-
-        let currentTestimonialIndex = 0;
-        let testimonialAutoSlideTimer;
-
-        function moveTestimonial(direction, manual = false) {
-            const grid = document.getElementById('testimonialGrid');
-            if (!grid) return;
-            const cards = grid.querySelectorAll('.test-card');
-            const isMobile = window.innerWidth <= 768;
-            const visibleCards = isMobile ? 1 : 2;
-            const maxIndex = cards.length - visibleCards;
-            
-            if (manual && testimonialAutoSlideTimer) {
-                clearInterval(testimonialAutoSlideTimer);
-                startTestimonialAutoSlide();
-            }
-
-            currentTestimonialIndex += direction;
-            
-            if (currentTestimonialIndex < 0) {
-                currentTestimonialIndex = maxIndex;
-            } else if (currentTestimonialIndex > maxIndex) {
-                currentTestimonialIndex = 0;
-            }
-            
-            const cardWidth = cards[0].offsetWidth;
-            const gap = 40; // 40px gap from CSS
-            const offset = currentTestimonialIndex * (cardWidth + gap);
-            grid.style.transform = `translateX(-${offset}px)`;
-        }
-
-        function startTestimonialAutoSlide() {
-            testimonialAutoSlideTimer = setInterval(() => {
-                moveTestimonial(1);
-            }, 3000);
-        }
-
-        // Start auto-slide when page loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startTestimonialAutoSlide);
-        } else {
-            startTestimonialAutoSlide();
-        }
-
-        window.addEventListener('resize', () => {
-            currentTestimonialIndex = 0;
-            const grid = document.getElementById('testimonialGrid');
-            if(grid) grid.style.transform = `translateX(0px)`;
-        });
-
-        // ── Recruiter Logos Slider ──
-        let recruiterLogoIndex = 0;
-        function moveRecruiterLogos(direction) {
-            const track = document.getElementById('recruiterLogosTrack');
-            if (!track) return;
-            const items = track.querySelectorAll('.recruiter-logo-item');
-            const overflow = track.parentElement;
-            const overflowWidth = overflow.offsetWidth;
-            
-            // Calculate how many logos fit in visible area
-            let totalWidth = 0;
-            const itemWidths = [];
-            items.forEach((item, i) => {
-                const style = getComputedStyle(track);
-                const gap = parseFloat(style.gap) || 30;
-                itemWidths.push(item.offsetWidth + (i < items.length - 1 ? gap : 0));
-                totalWidth += itemWidths[i];
-            });
-            
-            const maxScroll = Math.max(0, totalWidth - overflowWidth);
-            const scrollStep = overflowWidth * 0.6;
-            
-            recruiterLogoIndex += direction * scrollStep;
-            
-            if (recruiterLogoIndex < 0) recruiterLogoIndex = 0;
-            if (recruiterLogoIndex > maxScroll) recruiterLogoIndex = 0;
-            
-            track.style.transform = `translateX(-${recruiterLogoIndex}px)`;
-        }
-
-    </script>
+    <script src="js/script.js" defer></script>
 </body>
 
 </html>
