@@ -1,3 +1,4 @@
+// Hero slider
 let currentHeroSlide = 1;
 const totalHeroSlides = 3;
 
@@ -19,14 +20,20 @@ function nextHeroSlide() {
     }
 }
 
-function scrollNext(btn) {
-    const wrapper = btn.parentElement;
-    const grid = wrapper.querySelector('div[class$="-grid"]');
-    if (grid) {
-        grid.scrollBy({ left: 250, behavior: 'smooth' });
-    }
+// Programme carousel
+function scrollProgramme(direction) {
+    const grid = document.querySelector('#programme-details .courses-grid');
+    const card = grid?.querySelector('.course-card');
+    if (!grid || !card) return;
+
+    const gap = parseFloat(getComputedStyle(grid).gap) || 15;
+    grid.scrollBy({
+        left: direction * (card.offsetWidth + gap),
+        behavior: 'smooth'
+    });
 }
 
+// Campus gallery
 let currentGallerySlide = 0;
 
 function updateGallerySlides() {
@@ -52,145 +59,7 @@ function prevGallerySlide() {
     updateGallerySlides();
 }
 
-(function () {
-    const SPEED = 0.4;
-    const RESUME_DELAY = 1000;
-
-    function setupMarquee(grid) {
-        const cards = Array.from(grid.children);
-        if (cards.length === 0) return;
-
-        cards.forEach((card) => {
-            const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            grid.appendChild(clone);
-        });
-
-        let isPaused = false;
-        let resumeTimer = null;
-        let gap = parseFloat(getComputedStyle(grid).gap) || 15;
-        let currentScrollFloat = grid.scrollLeft;
-
-        function calcOriginalWidth() {
-            let width = 0;
-            for (let i = 0; i < cards.length; i++) {
-                width += cards[i].offsetWidth + gap;
-            }
-            return width;
-        }
-
-        let originalWidth = calcOriginalWidth();
-
-        window.addEventListener('resize', () => {
-            gap = parseFloat(getComputedStyle(grid).gap) || 15;
-            originalWidth = calcOriginalWidth();
-        });
-
-        function tick() {
-            if (!isPaused) {
-                currentScrollFloat += SPEED;
-                if (currentScrollFloat >= originalWidth) {
-                    currentScrollFloat -= originalWidth;
-                }
-                grid.scrollLeft = currentScrollFloat;
-            }
-            requestAnimationFrame(tick);
-        }
-
-        function pause() {
-            isPaused = true;
-            if (resumeTimer) {
-                clearTimeout(resumeTimer);
-                resumeTimer = null;
-            }
-        }
-
-        function scheduleResume() {
-            if (resumeTimer) clearTimeout(resumeTimer);
-            resumeTimer = setTimeout(() => {
-                currentScrollFloat = grid.scrollLeft;
-                isPaused = false;
-            }, RESUME_DELAY);
-        }
-
-        grid.addEventListener('mouseenter', pause);
-        grid.addEventListener('mouseleave', scheduleResume);
-        grid.addEventListener('touchstart', pause, { passive: true });
-        grid.addEventListener('touchend', scheduleResume, { passive: true });
-        grid.addEventListener('touchcancel', scheduleResume, { passive: true });
-
-        grid.addEventListener('wheel', (event) => {
-            const hasHorizontal = Math.abs(event.deltaX) > 0;
-            const shiftWheel = event.shiftKey && Math.abs(event.deltaY) > 0;
-            if (!hasHorizontal && !shiftWheel) return;
-
-            pause();
-            const delta = hasHorizontal ? event.deltaX : event.deltaY;
-            grid.scrollLeft += delta;
-            if (grid.scrollLeft >= originalWidth) grid.scrollLeft -= originalWidth;
-            if (grid.scrollLeft < 0) grid.scrollLeft += originalWidth;
-            event.preventDefault();
-            scheduleResume();
-        }, { passive: false });
-
-        let isDragging = false;
-        let dragStartX = 0;
-        let scrollStart = 0;
-
-        grid.addEventListener('mousedown', (event) => {
-            isDragging = true;
-            dragStartX = event.pageX;
-            scrollStart = grid.scrollLeft;
-            grid.classList.add('is-dragging');
-            pause();
-            event.preventDefault();
-        });
-
-        document.addEventListener('mousemove', (event) => {
-            if (!isDragging) return;
-            const dx = event.pageX - dragStartX;
-            grid.scrollLeft = scrollStart - dx;
-            if (grid.scrollLeft >= originalWidth) grid.scrollLeft -= originalWidth;
-            if (grid.scrollLeft < 0) grid.scrollLeft += originalWidth;
-        });
-
-        document.addEventListener('mouseup', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            grid.classList.remove('is-dragging');
-            scheduleResume();
-        });
-
-        grid.setAttribute('tabindex', '0');
-        grid.addEventListener('focus', pause);
-        grid.addEventListener('blur', scheduleResume);
-        grid.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-                pause();
-                grid.scrollLeft += event.key === 'ArrowRight' ? 80 : -80;
-                if (grid.scrollLeft >= originalWidth) grid.scrollLeft -= originalWidth;
-                if (grid.scrollLeft < 0) grid.scrollLeft += originalWidth;
-                scheduleResume();
-                event.preventDefault();
-            }
-        });
-
-        grid.addEventListener('dragstart', (event) => event.preventDefault());
-        requestAnimationFrame(tick);
-    }
-
-    function initMarquees() {
-        const grids = document.querySelectorAll('.marquee-container > div');
-        grids.forEach(setupMarquee);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMarquees);
-    } else {
-        initMarquees();
-    }
-})();
-
+// Testimonial slider
 let currentTestimonialIndex = 0;
 let testimonialAutoSlideTimer;
 
@@ -246,32 +115,51 @@ window.addEventListener('resize', () => {
     if (grid) grid.style.transform = 'translateX(0px)';
 });
 
-let recruiterLogoIndex = 0;
+// Admission modal
+function initAdmissionModal() {
+    const modal = document.getElementById('admissionModal');
+    if (!modal) return;
 
-function moveRecruiterLogos(direction) {
-    const track = document.getElementById('recruiterLogosTrack');
-    if (!track) return;
+    const openButtons = document.querySelectorAll('[data-open-admission-modal]');
+    const closeButtons = modal.querySelectorAll('[data-close-admission-modal]');
+    const form = modal.querySelector('.admission-modal-form');
+    const success = modal.querySelector('.admission-success');
+    let lastFocusedElement = null;
 
-    const items = track.querySelectorAll('.recruiter-logo-item');
-    const overflow = track.parentElement;
-    const overflowWidth = overflow.offsetWidth;
+    function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove('modal-open');
+        if (lastFocusedElement) lastFocusedElement.focus();
+    }
 
-    let totalWidth = 0;
-    const itemWidths = [];
-    items.forEach((item, index) => {
-        const style = getComputedStyle(track);
-        const gap = parseFloat(style.gap) || 30;
-        itemWidths.push(item.offsetWidth + (index < items.length - 1 ? gap : 0));
-        totalWidth += itemWidths[index];
+    openButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            lastFocusedElement = button;
+            form.hidden = false;
+            success.hidden = true;
+            form.reset();
+            modal.hidden = false;
+            document.body.classList.add('modal-open');
+            modal.querySelector('input')?.focus();
+        });
     });
 
-    const maxScroll = Math.max(0, totalWidth - overflowWidth);
-    const scrollStep = overflowWidth * 0.6;
+    closeButtons.forEach((button) => button.addEventListener('click', closeModal));
 
-    recruiterLogoIndex += direction * scrollStep;
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
 
-    if (recruiterLogoIndex < 0) recruiterLogoIndex = 0;
-    if (recruiterLogoIndex > maxScroll) recruiterLogoIndex = 0;
-
-    track.style.transform = `translateX(-${recruiterLogoIndex}px)`;
+    form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        form.hidden = true;
+        success.hidden = false;
+    });
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAdmissionModal);
+} else {
+    initAdmissionModal();
+}
+

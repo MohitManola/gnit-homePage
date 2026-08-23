@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#101d3d">
+        <meta name="mobile-web-app-capable" content="yes">
     <title>GN Group of Institutes - Admissions 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,20 +19,27 @@
 
     
     <div class="topbar">
-        <p>🚨 Limited Seats Remaining | Apply Before 10th August 2026</p>
+        <p>🚨 Limited Seats Remaining / Apply Before 10th August 2026</p>
     </div>
 
     
     <header class="navbar">
 
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="hamburger">
+        <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation menu">
             <span></span>
             <span></span>
             <span></span>
         </label>
 
         <div class="nav-menu">
+
+            <!-- <div class="clg-logo">
+                <a href="#home" target="_blank" rel="noopener noreferrer">
+                    <img src="images/gnitcmLogo.jpg" alt="GN Group of Institutes Logo">
+                </a>
+            </div> -->
+
             <nav class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#placements">Placements</a>
@@ -48,6 +57,7 @@
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
             </div>
         </div>
+            <label for="menu-toggle" class="sidebar-overlay" aria-label="Close navigation menu"></label>
     </header>
 
     
@@ -77,11 +87,13 @@
 
             <div class="scholarship">
                 <p>Get Upto</p>
+                <br>
                 <h2>100<span>%</span></h2>
+                <br>
                 <p class="scholarship-text">SCHOLARSHIP<br><span>for Meritorious Students</span></p>
             </div>
         </div>
-        <button class="slider-next-btn" onclick="nextHeroSlide()" style="z-index: 10;">&#10095;</button>
+        <button class="slider-next-btn" onclick="nextHeroSlide()" aria-label="Next hero slide">&#10095;</button>
     </section>
 
     
@@ -90,11 +102,11 @@
             <div class="form-title">
                 Admissions Open 2026
             </div>
-            <form class="enquiry-form">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <input type="text" placeholder="City" required>
+            <form class="enquiry-form" autocomplete="on">
+                        <input type="text" name="name" autocomplete="name" placeholder="Name" required>
+                        <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email" required>
+                        <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Phone Number" required>
+                        <input type="text" name="city" autocomplete="address-level2" placeholder="City" required>
                 <button type="submit">APPLY NOW</button>
             </form>
         </div>
@@ -105,100 +117,83 @@
         <h2 class="section-heading">Placements</h2>
         <div class="placements-banner">
             <div class="banner-left">
-                <p>HISTORY CREATED IN PLACEMENT</p>
-                <h3>1.6 CRORE</h3>
-                <p>HIGHEST<br>PACKAGE</p>
+                <p>TOP</p>
+                <h3>ENGINEERING PLACEMENTS</h3>
             </div>
             <div class="banner-right">
-                <h4>Sarthak Singh</h4>
-                <p>B.Tech CSE (2025)<br>Silicon Valley Startup</p>
-                <div class="success-stories">
-                    <strong>34000+</strong> SUCCESS STORIES<br>OVER THE YEARS
+                <img src="images/placementBanner.png" alt="">
+            </div>
+        </div>
+
+        <div class="placement-student-details">
+
+            <div class="student-card">
+                <img src="images/student/1.jpeg" alt="Student">
+
+                <h4 class="student-name">Tushika</h4>
+                <p>B.Tech - Cse</p>
+
+                <h3>62 LPA</h3>
+                
+                <div class="company-logo">
+                    <img src="images/company/3840px-Amazon_logo.svg-3714133081.png" alt="">
+                </div>
+            </div>
+
+            <div class="student-card">
+                <img src="images/student/2.jpeg" alt="Student">
+
+                <h4 class="student-name">Faizal Gani Dar</h4>
+                <p>B.Tech - Cse</p>
+
+                <h3>45 LPA</h3>
+                
+                <div class="company-logo">
+                    <img src="images/company/wipro.webp" alt="">
+                </div>
+            </div>
+
+            <div class="student-card">
+                <img src="images/student/3.jpeg" alt="Student">
+
+                <h4 class="student-name">Krish soni</h4>
+                <p>B.Tech - Cse</p>
+
+                <h3>36 LPA</h3>
+                
+                <div class="company-logo">
+                    <img src="images/company/google.webp" alt="">
+                </div>
+            </div>
+
+            <div class="student-card">
+                <img src="images/student/4.jpeg" alt="Student">
+
+                <h4 class="student-name">Tushar Bajpai</h4>
+                <p>B.Tech - Cse</p>
+
+                <h3>32 LPA</h3>
+                
+                <div class="company-logo">
+                    <img src="images/company/3840px-Microsoft_logo.svg-2123481762.png" alt="">
+                </div>
+            </div>
+
+            <div class="student-card">
+                <img src="images/student/5.jpeg" alt="Student">
+
+                <h4 class="student-name">Aryan Rajput</h4>
+                <p>B.Tech - Cse</p>
+
+                <h3>30 LPA</h3>
+                
+                <div class="company-logo">
+                    <img src="images/company/f1e932c07acc782ed439e97c556104a0c1ce24dc629918e694e94f166b-3696460182.png" alt="">
                 </div>
             </div>
         </div>
 
-        <div class="slider-wrapper marquee-container">
-            <div class="students-grid">
-            
-            <div class="student-card">
-                <img src="images/student/1.jpeg" alt="Student">
-                <h4>Harsh Mishra</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/2.jpeg" alt="Student">
-                <h4>Harsh Kumar</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/3.jpeg" alt="Student">
-                <h4>Simran Khawariya</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/4.jpeg" alt="Student">
-                <h4>Naman Gupta</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/5.jpeg" alt="Student">
-                <h4>Shubham Vashishth</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/6.jpeg" alt="Student">
-                <h4>Mohit Bhat</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/1.jpeg" alt="Student">
-                <h4>Vishal Sehgal</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/2.jpeg" alt="Student">
-                <h4>Suraj Soni</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/3.jpeg" alt="Student">
-                <h4>Rahul Singh Parihar</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/4.jpeg" alt="Student">
-                <h4>Anushka</h4>
-                <p class="course">B.Tech (2023)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/5.jpeg" alt="Student">
-                <h4>Vansh Atresh</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/6.jpeg" alt="Student">
-                <h4>Nitesh Rohilaa</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/1.jpeg" alt="Student">
-                <h4>Harshit</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/2.jpeg" alt="Student">
-                <h4>Samarth Singh</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            <div class="student-card">
-                <img src="images/student/3.jpeg" alt="Student">
-                <h4>Amman Khan</h4>
-                <p class="course">B.Tech (2024)</p>
-            </div>
-            </div>
-            <button class="slider-next-btn" onclick="scrollNext(this)">&#10095;</button>
-        </div>
+        
     </section>
 
     
@@ -235,11 +230,14 @@
                 <p>BBA</p>
             </div>
             <div class="course-card">
-                <img src="images/pgbm.jpg" alt="Course">
+                <img src="images/pgdm.png" alt="Course">
                 <p>PGDM</p>
             </div>
             </div>
-            <!-- <button class="slider-next-btn" onclick="scrollNext(this)">&#10095;</button> -->
+            <div class="programme-carousel-controls" aria-label="Programme carousel controls">
+                <button type="button" onclick="scrollProgramme(-1)" aria-label="Previous programme">&#10094;</button>
+                <button type="button" onclick="scrollProgramme(1)" aria-label="Next programme">&#10095;</button>
+            </div>
     </section>
 
     
@@ -337,7 +335,6 @@
                     <img src="images/company/wipro.webp" alt="Wipro"> WIPRO
                 </div>
             </div>
-            <button class="view-more">View More Details</button>
         </div>
     </section>
 
@@ -345,7 +342,6 @@
     <section class="section top-recruiters" id="top-recruiters">
         <div class="recruiters-header">
             <h2 class="section-heading">Top Recruiters</h2>
-            <!-- <div class="heading-underline"></div> -->
             <p class="recruiters-subtitle">Our Top Recruiters- Companies that empower GN Group students with strong career paths and growth.</p>
         </div>
 
@@ -370,10 +366,13 @@
                 <p class="stat-label-navy">MNC TILL DATE</p>
                 <span>MNCs</span>
             </div>
+
+            <div class="recruiter-strip-line"></div>
+
         </div>
 
         <div class="recruiter-strip">
-            <!-- <div class="recruiter-strip-line"></div> -->
+        
             <div class="recruiter-logos-overflow">
                 <div class="recruiter-logos-track" id="recruiterLogosTrack">
                     <div class="recruiter-logo-item">
@@ -398,10 +397,6 @@
             </div>
         </div>
 
-        <!-- <div class="recruiter-controls">
-            <button class="recruiter-nav-btn" onclick="moveRecruiterLogos(-1)">&#10094;</button>
-            <button class="recruiter-nav-btn" onclick="moveRecruiterLogos(1)">&#10095;</button>
-        </div> -->
     </section>
 
     
@@ -447,7 +442,7 @@
     <section class="section footer-lead">
         <h2 class="section-heading" style="margin-bottom: 10px;">Know About <span>Tuition Fees, Hostel
                 Fees,</span><br>and many more...</h2>
-        <div class="fees-buttons">
+        <!-- <div class="fees-buttons">
             <button class="red-btn">Tuition Fee</button>
             <button class="red-btn">Transport Fee</button>
             <button class="red-btn">Download Brochure</button>
@@ -457,15 +452,42 @@
             <img src="images/campus_life.png" alt="Room">
             <img src="images/course_img.png" alt="Building">
             <img src="images/hero_bg.png" alt="Buses">
+        </div> -->
+
+        <div class="container">
+
+            <div class="part1">
+
+                <button class="red-btn">Tuition Fee</button>
+
+                <button class="red-btn">Download Brochure</button>
+
+                <img src="images/campus_life.png" alt="Room">
+            </div>
+
+            <div class="part2">
+
+                <button class="red-btn">Transport Fees</button>
+
+                <button class="red-btn">Hostel Fees</button>
+
+                <img src="images/course_img.png" alt="Building">
+
+            </div>
+
+            <div class="part3">
+
+                <img src="images/hero_bg.png" alt="Buses">
+            </div>
         </div>
-        <button class="unlock-btn">Unlock Fee Detail</button>
+        <button class="unlock-btn" type="button" data-open-admission-modal>Unlock Fee Detail</button>
     </section>
 
     
     <footer class="main-footer">
         <div class="footer-content">
             <h3>Schedule your selection/screening process</h3>
-            <button class="apply-now-btn">Apply Now</button>
+            <button class="apply-now-btn" type="button" data-open-admission-modal>Apply Now</button>
 
             <div class="footer-info">
                 <p>GN Group of Institutes<br>Plot No. 6B & 6C, Knowledge Park 2, Greater Noida (Delhi NCR), 201310, India</p>
@@ -476,6 +498,45 @@
             Copyright © 2026, GN Group of Institutes
         </div>
     </footer>
+
+    <div class="admission-modal" id="admissionModal" role="dialog" aria-modal="true"
+        aria-labelledby="admissionModalTitle" hidden>
+        <div class="admission-modal-backdrop" data-close-admission-modal></div>
+        <div class="admission-modal-card">
+            <button class="admission-modal-close" type="button" aria-label="Close admission form"
+                data-close-admission-modal>&times;</button>
+            <p class="modal-kicker">Admissions 2026</p>
+            <h2 id="admissionModalTitle">Start your application</h2>
+            <p class="modal-description">Share your details and our admissions team will contact you shortly.</p>
+            <form class="admission-modal-form" autocomplete="on">
+                <label>
+                    Full name
+                    <input type="text" name="modal-name" autocomplete="name" required>
+                </label>
+                <label>
+                    Email address
+                    <input type="email" name="modal-email" autocomplete="email" inputmode="email" required>
+                </label>
+                <label>
+                    Phone number
+                    <input type="tel" name="modal-phone" autocomplete="tel" inputmode="tel" required>
+                </label>
+                <label>
+                    Course of interest
+                    <select name="modal-course" required>
+                        <option value="" selected disabled>Select a course</option>
+                        <option>B.Tech</option>
+                        <option>MBA Elite</option>
+                        <option>BCA</option>
+                        <option>BBA</option>
+                        <option>Pharmacy</option>
+                    </select>
+                </label>
+                <button class="admission-submit" type="submit">Submit Enquiry</button>
+            </form>
+            <p class="admission-success" role="status" hidden>Thank you. Our admissions team will contact you soon.</p>
+        </div>
+    </div>
 
     <script src="js/script.js" defer></script>
 </body>

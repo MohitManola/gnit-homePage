@@ -1,3 +1,4 @@
+/* Tablet layout */
 @media (max-width: 992px) {
     .top-recruiters {
         padding: 45px 28px 30px;
@@ -32,17 +33,18 @@
     }
 }
 
+/* Mobile layout */
 @media (max-width: 768px) {
     .section {
         padding: 40px 20px;
     }
 
-    .section-heading {
-        font-size: 1.8rem;
+    .chips {
+        display: none;
     }
 
-    .sub-heading {
-        font-size: 1.2rem;
+    .section-heading {
+        font-size: 1.8rem;
     }
 
     .navbar {
@@ -78,6 +80,8 @@
         align-items: flex-start;
         margin-left: 0;
         margin-top: 20px;
+        height: 100vh;
+        height: 100dvh;
     }
 
     .menu-toggle:checked ~ .nav-menu {
@@ -153,8 +157,10 @@
     }
 
     .enquiry-form {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
         width: 100%;
+        
     }
 
     .enquiry-form input,
@@ -167,7 +173,29 @@
         flex-direction: column;
     }
 
+    .placement-student-details {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        padding: 4px 20px 18px;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .placement-student-details::-webkit-scrollbar {
+        display: none;
+    }
+
+    .placement-student-details .student-card {
+        flex: 0 0 min(72vw, 260px);
+        scroll-snap-align: start;
+    }
+
     .banner-left {
+        flex: 0 0 100%;
+        width: 100%;
         border-right: none;
         border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         text-align: center;
@@ -178,30 +206,13 @@
     }
 
     .banner-right {
+        flex: 0 0 100%;
+        width: 100%;
         background-position: bottom center;
         background-size: 250px;
         padding: 30px 20px 220px 20px;
         text-align: center;
         min-height: 400px;
-    }
-
-    .banner-right h4,
-    .banner-right p {
-        position: relative;
-        z-index: 2;
-        background: rgba(255, 255, 255, 0.85);
-        display: inline-block;
-        padding: 2px 10px;
-        border-radius: 4px;
-    }
-
-    .success-stories {
-        bottom: 20px;
-        right: 50%;
-        transform: translateX(50%);
-        width: 85%;
-        text-align: center;
-        z-index: 3;
     }
 
     .coe-content {
@@ -220,7 +231,6 @@
         padding: 40px 20px;
     }
 
-    .students-grid,
     .courses-grid {
         display: flex;
         flex-wrap: nowrap;
@@ -234,7 +244,6 @@
         scrollbar-width: none;
     }
 
-    .students-grid::-webkit-scrollbar,
     .courses-grid::-webkit-scrollbar {
         display: none;
     }
@@ -245,9 +254,70 @@
         scroll-snap-align: center;
     }
 
-    .student-card {
-        flex: 0 0 46%;
-        max-width: 46%;
+    .programme-details {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .programme-details > .section-heading {
+        padding: 0 20px;
+        margin-bottom: 22px;
+    }
+
+    .programme-details .courses-grid {
+        width: 100%;
+        padding: 4px 20px 20px;
+        gap: 14px;
+        scroll-padding-inline: 20px;
+    }
+
+    .programme-details .course-card {
+        flex: 0 0 min(78vw, 300px);
+        max-width: min(78vw, 300px);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .programme-details .course-card img {
+        height: auto;
+        aspect-ratio: 16 / 10;
+    }
+
+    .programme-details .course-card p {
+        padding: 14px 15px;
+        font-size: 15px;
+    }
+
+    .programme-carousel-controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 2px;
+    }
+
+    .programme-carousel-controls button {
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(16, 29, 61, 0.10);
+        border-radius: 50%;
+        background: var(--white);
+        color: var(--primary-blue);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba(16, 29, 61, 0.12);
+        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .programme-carousel-controls button:hover {
+        transform: translateY(-2px);
+        background: var(--primary-blue);
+        color: var(--white);
+    }
+
+    .programme-carousel-controls button:focus-visible {
+        outline: 3px solid rgba(245, 159, 26, 0.42);
+        outline-offset: 3px;
     }
 
     .gallery-slider {
@@ -321,13 +391,8 @@
 
     .recruiter-logo-item img {
         height: 42px;
-        max-width: 112px;
-    }
-
-    .recruiter-nav-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
+        width: auto;
+        max-width: 100%;
     }
 
     .test-card {
@@ -404,15 +469,6 @@
     }
 }
 
-@media (max-width: 768px) {
-    .slider-next-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
-        right: 2px;
-    }
-}
-
 /* Final phone layout refinements */
 @media (max-width: 768px) {
     body {
@@ -467,8 +523,7 @@
     }
 
     .section-heading,
-    .hero-title,
-    .sub-heading {
+    .hero-title {
         font-size: 2rem !important;
         line-height: 1.08 !important;
     }
@@ -531,9 +586,12 @@
 
     .enquiry-form-section {
         padding: 14px 16px;
+        width: 100%;
     }
 
     .form-container {
+        width: 100%;
+        min-width: 0;
         gap: 12px;
         padding: 16px 14px;
         border-radius: 14px;
@@ -544,11 +602,17 @@
     }
 
     .enquiry-form {
+        display: block;
+        width: 100%;
+        min-width: 0;
         gap: 9px;
     }
 
     .enquiry-form input,
     .enquiry-form button {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 100%;
         min-height: 48px;
         border-radius: 10px;
     }
@@ -567,6 +631,16 @@
         border-radius: 18px;
     }
 
+    .placement-student-details {
+        padding-left: 16px;
+        padding-right: 16px;
+        scroll-padding-inline: 16px;
+    }
+
+    .placement-student-details .student-card {
+        flex-basis: 78vw;
+    }
+
     .slider-next-btn {
         width: 44px;
         height: 44px;
@@ -574,14 +648,12 @@
         font-size: 18px;
     }
 
-    .gallery-btn,
-    .recruiter-nav-btn {
+    .gallery-btn {
         min-width: 44px;
         min-height: 44px;
     }
 
     .gallery-controls,
-    .recruiter-controls,
     .testimonial-controls {
         gap: 12px;
         margin-top: 22px;
@@ -604,6 +676,33 @@
         margin-bottom: 24px;
     }
 
+    .footer-lead > .container {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 0 16px;
+    }
+
+    .footer-lead > .container > div {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .footer-lead > .container img {
+        height: 180px;
+    }
+
+    .footer-lead > .container > .part3 {
+        min-height: 180px;
+        padding: 0;
+    }
+
+    .footer-lead > .container > .part3 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
     .red-btn,
     .unlock-btn,
     .apply-now-btn {
@@ -619,8 +718,7 @@
     }
 
     .section-heading,
-    .hero-title,
-    .sub-heading {
+    .hero-title {
         font-size: 1.8rem !important;
     }
 
@@ -642,13 +740,220 @@
         padding-right: 16px;
     }
 
-    .student-card {
-        flex-basis: 72%;
-        max-width: 72%;
-    }
-
     .course-card {
         flex-basis: 92%;
         max-width: 92%;
+    }
+
+    .programme-details .courses-grid {
+        padding-left: 16px;
+        padding-right: 16px;
+        scroll-padding-inline: 16px;
+    }
+
+    .programme-details .course-card {
+        flex-basis: 82vw;
+        max-width: 82vw;
+    }
+
+    .programme-carousel-controls {
+        margin-top: 0;
+    }
+
+    .admission-modal {
+        padding: 12px;
+        align-items: end;
+    }
+
+    .admission-modal-card {
+        max-height: 92dvh;
+        padding: 30px 18px 20px;
+        border-radius: 20px 20px 14px 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admission-modal {
+        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+        align-items: end;
+    }
+
+    .admission-modal-card {
+        width: 100%;
+        max-height: 92vh;
+        max-height: 92dvh;
+        padding: 32px 20px 22px;
+        border-radius: 20px 20px 14px 14px;
+    }
+
+    .admission-modal-card h2 {
+        max-width: calc(100% - 36px);
+        font-size: 1.75rem;
+    }
+
+    .modal-description {
+        margin-bottom: 20px;
+        font-size: 13px;
+    }
+
+    .admission-modal-form {
+        gap: 12px;
+    }
+
+    .admission-modal-form input,
+    .admission-modal-form select {
+        min-height: 50px;
+        font-size: 16px;
+    }
+
+    .admission-submit {
+        min-height: 52px;
+        margin-top: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        position: relative;
+        z-index: 1004;
+        gap: 5px;
+        justify-content: center;
+        transition: background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .hamburger:hover {
+        transform: translateY(-1px);
+    }
+
+    .hamburger span {
+        width: 100%;
+        transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.2s ease, background-color 0.25s ease;
+    }
+
+    .menu-toggle:checked + .hamburger {
+        background: var(--orange);
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1003;
+        width: min(86vw, 360px);
+        height: 100vh;
+        height: 100dvh;
+        max-height: none;
+        padding: 92px 24px 28px;
+        margin-top: 0;
+        overflow-y: auto;
+        background: linear-gradient(180deg, #101d3d 0%, #172b58 100%);
+        box-shadow: -18px 0 40px rgba(8, 17, 38, 0.30);
+        opacity: 0;
+        transform: translateX(105%);
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.4s ease;
+    }
+
+    .nav-menu .clg-logo {
+        width: 136px;
+        height: 40px;
+        margin: 0 auto 18px;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1002;
+        background: rgba(5, 12, 28, 0.58);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .menu-toggle:checked ~ .sidebar-overlay {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .nav-links {
+        align-items: stretch;
+    }
+
+    .nav-links a {
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-links a,
+    .contact-info {
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity 0.25s ease, transform 0.3s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu .nav-links a,
+    .menu-toggle:checked ~ .nav-menu .contact-info {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .menu-toggle:checked ~ .nav-menu .nav-links a:nth-child(1) {
+        transition-delay: 0.08s;
+    }
+
+    .menu-toggle:checked ~ .nav-menu .nav-links a:nth-child(2) {
+        transition-delay: 0.13s;
+    }
+
+    .menu-toggle:checked ~ .nav-menu .nav-links a:nth-child(3) {
+        transition-delay: 0.18s;
+    }
+
+    .menu-toggle:checked ~ .nav-menu .nav-links a:nth-child(4) {
+        transition-delay: 0.23s;
+    }
+
+    .menu-toggle:checked ~ .nav-menu .nav-links a:nth-child(5) {
+        transition-delay: 0.28s;
+    }
+
+    .menu-toggle:checked ~ .nav-menu .contact-info {
+        transition-delay: 0.33s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hamburger,
+    .hamburger span,
+    .nav-menu,
+    .sidebar-overlay,
+    .nav-links a,
+    .contact-info {
+        transition: none;
     }
 }
