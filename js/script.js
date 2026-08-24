@@ -69,7 +69,7 @@ function moveTestimonial(direction, manual = false) {
 
     const cards = grid.querySelectorAll('.test-card');
     const isMobile = window.innerWidth <= 768;
-    const visibleCards = isMobile ? 1 : 2;
+    const visibleCards = isMobile ? 1 : 3;
     const maxIndex = cards.length - visibleCards;
 
     if (manual && testimonialAutoSlideTimer) {

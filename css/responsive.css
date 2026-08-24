@@ -35,8 +35,16 @@
 
 /* Mobile layout */
 @media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+
     .section {
         padding: 40px 20px;
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 
     .chips {
@@ -320,6 +328,15 @@
         outline-offset: 3px;
     }
 
+    /* Hide mosaic on mobile, show gallery slider */
+    .campus-mosaic {
+        display: none !important;
+    }
+
+    .gallery-wrapper {
+        display: block !important;
+    }
+
     .gallery-slider {
         aspect-ratio: 4 / 10;
     }
@@ -330,26 +347,11 @@
         gap: 8px;
     }
 
-    .img-1 {
-        grid-area: 1 / 1 / 3 / 3;
-    }
-
-    .img-2 {
-        grid-area: 3 / 1 / 4 / 2;
-    }
-
-    .img-3 {
-        grid-area: 3 / 2 / 4 / 3;
-    }
-
-    .img-4 {
-        grid-area: 4 / 1 / 5 / 2;
-        display: block;
-    }
-
-    .img-5 {
-        grid-area: 4 / 2 / 5 / 3;
-    }
+    .img-1 { grid-area: 1 / 1 / 3 / 3; }
+    .img-2 { grid-area: 3 / 1 / 4 / 2; }
+    .img-3 { grid-area: 3 / 2 / 4 / 3; }
+    .img-4 { grid-area: 4 / 1 / 5 / 2; }
+    .img-5 { grid-area: 4 / 2 / 5 / 3; }
 
     .collage-layout img {
         border-radius: 8px;
@@ -473,12 +475,14 @@
 @media (max-width: 768px) {
     body {
         overflow-x: hidden;
+        width: 100%;
     }
 
     .topbar {
         padding: 9px 14px;
         font-size: 11px;
         line-height: 1.4;
+        word-break: break-word;
     }
 
     .navbar {
@@ -587,22 +591,28 @@
     .enquiry-form-section {
         padding: 14px 16px;
         width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .form-container {
         width: 100%;
         min-width: 0;
+        max-width: 100%;
         gap: 12px;
         padding: 16px 14px;
         border-radius: 14px;
+        box-sizing: border-box;
     }
 
     .form-title {
         font-size: 16px;
+        white-space: normal;
     }
 
     .enquiry-form {
-        display: block;
+        display: flex;
+        flex-direction: column;
         width: 100%;
         min-width: 0;
         gap: 9px;
@@ -610,25 +620,29 @@
 
     .enquiry-form input,
     .enquiry-form button {
-        flex: 1 1 auto;
+        width: 100%;
         min-width: 0;
         max-width: 100%;
         min-height: 48px;
         border-radius: 10px;
+        box-sizing: border-box;
     }
 
     .section {
         min-height: auto;
         padding: 56px 16px;
+        overflow-x: hidden;
     }
 
     .section-heading {
         margin-bottom: 26px;
+        word-break: break-word;
     }
 
     .placements-banner,
     .coe-banner {
         border-radius: 18px;
+        max-width: 100%;
     }
 
     .placement-student-details {
@@ -661,6 +675,7 @@
 
     .testimonials-wrapper {
         gap: 18px;
+        max-width: 100%;
     }
 
     .test-card {
@@ -679,12 +694,16 @@
     .footer-lead > .container {
         grid-template-columns: 1fr;
         gap: 14px;
-        padding: 0 16px;
+        padding: 0;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 100%;
     }
 
     .footer-lead > .container > div {
         width: 100%;
         padding: 14px;
+        box-sizing: border-box;
     }
 
     .footer-lead > .container img {
@@ -709,6 +728,153 @@
         min-height: 46px;
         padding: 11px 18px;
         border-radius: 10px;
+    }
+
+    /* Industry section mobile fixes */
+    .industry-learning {
+        padding: 50px 16px;
+        overflow: hidden;
+    }
+
+    .industry-learning .content {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .industry-logo-box {
+        padding: 14px 10px;
+        height: 64px;
+    }
+
+    .industry-logo-box .logo-text {
+        font-size: 14px;
+    }
+
+    .industry-features-row {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .industry-features-row::before,
+    .industry-features-row::after {
+        display: none;
+    }
+
+    .industry-feature:nth-child(2)::after {
+        display: none;
+    }
+
+    .industry-feature {
+        flex: 0 0 calc(50% - 10px);
+    }
+
+    .industry-feature p {
+        font-size: 11px;
+    }
+
+    .feature-icon {
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .industry-banner {
+        position: static;
+        left: auto;
+        transform: none;
+        display: block;
+        text-align: center;
+        padding: 12px 20px;
+        margin: 0 auto;
+        width: fit-content;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .industry-banner h3 {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Stats container mobile fix */
+    .stats-container {
+        gap: 14px;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .stat-item {
+        padding: 14px 8px;
+    }
+
+    .stat-item span {
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .stat-item h3 {
+        font-size: 2rem;
+    }
+
+    /* Recruiter strip mobile fix */
+    .recruiter-strip {
+        padding: 16px 12px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* COE section mobile fix */
+    .coe-banner {
+        max-width: 100%;
+    }
+
+    .coe-content {
+        padding: 24px 16px;
+    }
+
+    .highlight-box {
+        word-break: break-word;
+    }
+
+    /* Footer mobile fix */
+    .main-footer {
+        padding: 30px 16px 20px;
+    }
+
+    .footer-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .footer-info {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        align-items: center;
+    }
+
+    /* Hero full-width fix */
+    .hero {
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    /* Scholarship section mobile */
+    .scholarship {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    /* Footer lead section heading fix */
+    .footer-lead .section-heading {
+        font-size: 1.4rem !important;
+        padding: 0 8px;
     }
 }
 
