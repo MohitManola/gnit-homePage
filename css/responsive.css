@@ -732,7 +732,7 @@
 
     /* Industry section mobile fixes */
     .industry-learning {
-        padding: 50px 16px;
+        padding: 36px 0;
         overflow: hidden;
     }
 
@@ -741,64 +741,18 @@
         overflow: hidden;
     }
 
-    .industry-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    .industry-learning .section-heading {
+        padding: 0 16px;
     }
 
     .industry-logo-box {
-        padding: 14px 10px;
-        height: 64px;
+        flex: 0 0 140px;
+        padding: 12px 10px;
+        height: 56px;
     }
 
     .industry-logo-box .logo-text {
-        font-size: 14px;
-    }
-
-    .industry-features-row {
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
-
-    .industry-features-row::before,
-    .industry-features-row::after {
-        display: none;
-    }
-
-    .industry-feature:nth-child(2)::after {
-        display: none;
-    }
-
-    .industry-feature {
-        flex: 0 0 calc(50% - 10px);
-    }
-
-    .industry-feature p {
-        font-size: 11px;
-    }
-
-    .feature-icon {
-        font-size: 30px;
-        margin-bottom: 8px;
-    }
-
-    .industry-banner {
-        position: static;
-        left: auto;
-        transform: none;
-        display: block;
-        text-align: center;
-        padding: 12px 20px;
-        margin: 0 auto;
-        width: fit-content;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .industry-banner h3 {
-        font-size: 16px;
-        letter-spacing: 0.5px;
+        font-size: 13px;
     }
 
     /* Stats container mobile fix */
