@@ -272,6 +272,12 @@
         margin-bottom: 22px;
     }
 
+    .programme-intro {
+        padding: 0 20px;
+        margin: -8px auto 24px;
+        font-size: 13px;
+    }
+
     .programme-details .courses-grid {
         width: 100%;
         padding: 4px 20px 20px;
@@ -287,8 +293,7 @@
     }
 
     .programme-details .course-card img {
-        height: auto;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 4 / 3;
     }
 
     .programme-details .course-card p {
