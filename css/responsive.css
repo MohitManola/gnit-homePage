@@ -181,24 +181,39 @@
         flex-direction: column;
     }
 
+    .student-slider-overflow {
+        overflow: hidden;
+        width: 100%;
+    }
+
     .placement-student-details {
         display: flex;
         gap: 14px;
-        overflow-x: auto;
+        flex-wrap: nowrap;
         padding: 4px 20px 18px;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: 20px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-
-    .placement-student-details::-webkit-scrollbar {
-        display: none;
+        transition: transform 0.5s ease-in-out;
     }
 
     .placement-student-details .student-card {
-        flex: 0 0 min(72vw, 260px);
-        scroll-snap-align: start;
+        flex: 0 0 calc(100% - 40px);
+        max-width: calc(100% - 40px);
+    }
+
+    .student-slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    .student-slider-progress {
+        min-width: 68px;
+        color: var(--text-light);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-align: center;
     }
 
     .banner-left {
@@ -239,27 +254,22 @@
         padding: 40px 20px;
     }
 
+    .course-slider-overflow {
+        overflow: hidden;
+        width: 100%;
+    }
+
     .courses-grid {
         display: flex;
         flex-wrap: nowrap;
-        overflow-x: auto;
         gap: 15px;
         padding-bottom: 20px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
         justify-content: flex-start;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .courses-grid::-webkit-scrollbar {
-        display: none;
     }
 
     .course-card {
-        flex: 0 0 85%;
-        max-width: 85%;
-        scroll-snap-align: center;
+        flex: 0 0 calc(100% - 40px);
+        max-width: calc(100% - 40px);
     }
 
     .programme-details {
@@ -282,14 +292,12 @@
         width: 100%;
         padding: 4px 20px 20px;
         gap: 14px;
-        scroll-padding-inline: 20px;
+        transition: transform 0.5s ease-in-out;
     }
 
     .programme-details .course-card {
-        flex: 0 0 min(78vw, 300px);
-        max-width: min(78vw, 300px);
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
+        flex: 0 0 calc(100% - 40px);
+        max-width: calc(100% - 40px);
     }
 
     .programme-details .course-card img {
@@ -301,36 +309,21 @@
         font-size: 15px;
     }
 
-    .programme-carousel-controls {
+    .course-slider-controls {
         display: flex;
         justify-content: center;
-        gap: 12px;
+        align-items: center;
+        gap: 16px;
         margin-top: 2px;
     }
 
-    .programme-carousel-controls button {
-        width: 44px;
-        height: 44px;
-        border: 1px solid rgba(16, 29, 61, 0.10);
-        border-radius: 50%;
-        background: var(--white);
-        color: var(--primary-blue);
-        font-size: 18px;
-        line-height: 1;
-        cursor: pointer;
-        box-shadow: 0 8px 18px rgba(16, 29, 61, 0.12);
-        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .programme-carousel-controls button:hover {
-        transform: translateY(-2px);
-        background: var(--primary-blue);
-        color: var(--white);
-    }
-
-    .programme-carousel-controls button:focus-visible {
-        outline: 3px solid rgba(245, 159, 26, 0.42);
-        outline-offset: 3px;
+    .course-slider-progress {
+        min-width: 68px;
+        color: var(--text-light);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-align: center;
     }
 
     /* Hide mosaic on mobile, show gallery slider */
@@ -703,6 +696,7 @@
         margin: 20px auto;
         width: 100%;
         max-width: 100%;
+        height: auto;
     }
 
     .footer-lead > .container > div {
@@ -751,13 +745,14 @@
     }
 
     .industry-logo-box {
-        flex: 0 0 140px;
-        padding: 12px 10px;
-        height: 56px;
+        flex: 0 0 220px;
+        padding: 16px;
+        height: 140px;
+        border-radius: 16px;
     }
 
     .industry-logo-box .logo-text {
-        font-size: 13px;
+        font-size: 18px;
     }
 
     /* Stats container mobile fix */
