@@ -548,6 +548,10 @@ img {
 
 /* Placement highlight cards */
 .placement-highlights {
+    position: relative;
+    top: -130px;
+    z-index: 2;
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
@@ -1875,4 +1879,4 @@ img {
     height: auto;
     display: block;
     object-fit: contain;
-}
+}
