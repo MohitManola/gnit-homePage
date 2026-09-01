@@ -340,3 +340,44 @@ window.addEventListener('resize', () => {
     startStudentAutoSlide();
     startCourseAutoSlide();
 });
+
+// Affiliation Slider
+let currentAffiliationIndex = 0;
+let affiliationAutoSlideTimer;
+
+function moveAffiliationSlider() {
+    const track = document.getElementById('affiliationSliderTrack');
+    if (!track) return;
+    
+    const cards = track.querySelectorAll('.industry-logo-box');
+    if (cards.length === 0) return;
+
+    const isMobile = window.innerWidth <= 768;
+    const visibleCards = isMobile ? 1 : 4;
+    const maxIndex = cards.length - visibleCards;
+    
+    if (maxIndex <= 0) return;
+
+    currentAffiliationIndex++;
+    if (currentAffiliationIndex > maxIndex) {
+        currentAffiliationIndex = 0;
+    }
+    
+    const cardWidth = cards[0].offsetWidth;
+    const gap = parseFloat(window.getComputedStyle(track).gap) || 40;
+    const offset = currentAffiliationIndex * (cardWidth + gap);
+    
+    track.style.transform = `translateX(-${offset}px)`;
+}
+
+function startAffiliationAutoSlide() {
+    if (document.getElementById('affiliationSliderTrack')) {
+        affiliationAutoSlideTimer = setInterval(moveAffiliationSlider, 2000);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startAffiliationAutoSlide);
+} else {
+    startAffiliationAutoSlide();
+}

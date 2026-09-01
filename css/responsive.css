@@ -981,7 +981,7 @@
         padding: 92px 24px 28px;
         margin-top: 0;
         overflow-y: auto;
-        background: linear-gradient(180deg, #101d3d 0%, #172b58 100%);
+        background: linear-gradient(180deg, #1f4379 0%, #1f4379 100%);
         box-shadow: -18px 0 40px rgba(8, 17, 38, 0.30);
         opacity: 0;
         transform: translateX(105%);
@@ -1075,5 +1075,47 @@
     .nav-links a,
     .contact-info {
         transition: none;
+    }
+}
+
+/* Placement highlights responsive */
+@media (max-width: 768px) {
+    .placement-highlights {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .highlight-card {
+        padding: 20px 14px;
+    }
+
+    .highlight-card h3 {
+        font-size: 2.4rem;
+    }
+
+    .highlight-card h3 span {
+        font-size: 1.2rem;
+    }
+}
+
+/* Approvals Section Responsive */
+@media (max-width: 991px) {
+    .approval-image-box {
+        flex: 1 1 calc(33.333% - 20px);
+        max-width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .approval-image-box {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .approval-image-box {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 }
