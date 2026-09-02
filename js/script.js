@@ -86,7 +86,7 @@ function moveTestimonial(direction, manual = false) {
     }
 
     const cardWidth = cards[0].offsetWidth;
-    const gap = 40;
+    const gap = parseFloat(window.getComputedStyle(grid).gap) || 40;
     const offset = currentTestimonialIndex * (cardWidth + gap);
     grid.style.transform = `translateX(-${offset}px)`;
 
@@ -97,10 +97,7 @@ function moveTestimonial(direction, manual = false) {
 }
 
 function startTestimonialAutoSlide() {
-    moveTestimonial(0);
-    testimonialAutoSlideTimer = setInterval(() => {
-        moveTestimonial(1);
-    }, 3000);
+    // no auto-scroll
 }
 
 if (document.readyState === 'loading') {
@@ -109,11 +106,7 @@ if (document.readyState === 'loading') {
     startTestimonialAutoSlide();
 }
 
-window.addEventListener('resize', () => {
-    currentTestimonialIndex = 0;
-    const grid = document.getElementById('testimonialGrid');
-    if (grid) grid.style.transform = 'translateX(0px)';
-});
+
 
 // Admission modal
 window._modalCooldown = false; // shared cooldown flag for scroll triggers
@@ -187,7 +180,7 @@ if (document.readyState === 'loading') {
 let currentIndustryIndex = 0;
 let industryAutoSlideTimer;
 
-function moveIndustrySlider() {
+function moveIndustrySlider(direction) {
     const track = document.getElementById('industrySliderTrack');
     if (!track) return;
     
@@ -200,9 +193,16 @@ function moveIndustrySlider() {
     
     if (maxIndex <= 0) return;
 
-    currentIndustryIndex++;
+    if (direction !== undefined) {
+        currentIndustryIndex += direction;
+    } else {
+        currentIndustryIndex++;
+    }
     if (currentIndustryIndex > maxIndex) {
         currentIndustryIndex = 0;
+    }
+    if (currentIndustryIndex < 0) {
+        currentIndustryIndex = maxIndex;
     }
     
     const cardWidth = cards[0].offsetWidth;
@@ -213,6 +213,7 @@ function moveIndustrySlider() {
 }
 
 function startIndustryAutoSlide() {
+    if (window.innerWidth <= 768) return; // mobile uses swipe
     if (document.getElementById('industrySliderTrack')) {
         industryAutoSlideTimer = setInterval(moveIndustrySlider, 2000);
     }
@@ -274,11 +275,7 @@ function startStudentAutoSlide() {
     if (studentAutoSlideTimer) clearInterval(studentAutoSlideTimer);
     if (window.innerWidth <= 768) {
         currentStudentIndex = 0;
-        moveStudentSlider();
-        studentAutoSlideTimer = setInterval(() => {
-            currentStudentIndex++;
-            moveStudentSlider();
-        }, 3000);
+        track.style.transform = `translateX(0px)`;
     } else {
         track.style.transform = '';
     }
@@ -334,11 +331,7 @@ function startCourseAutoSlide() {
     if (courseAutoSlideTimer) clearInterval(courseAutoSlideTimer);
     if (window.innerWidth <= 768) {
         currentCourseIndex = 0;
-        moveCourseSlider();
-        courseAutoSlideTimer = setInterval(() => {
-            currentCourseIndex++;
-            moveCourseSlider();
-        }, 3000);
+        track.style.transform = `translateX(0px)`;
     } else {
         track.style.transform = '';
     }
@@ -357,6 +350,9 @@ if (document.readyState === 'loading') {
 }
 
 window.addEventListener('resize', () => {
+    currentTestimonialIndex = 0;
+    const grid = document.getElementById('testimonialGrid');
+    if (grid) grid.style.transform = 'translateX(0px)';
     startStudentAutoSlide();
     startCourseAutoSlide();
 });
@@ -391,9 +387,7 @@ function moveAffiliationSlider() {
 }
 
 function startAffiliationAutoSlide() {
-    if (document.getElementById('affiliationSliderTrack')) {
-        affiliationAutoSlideTimer = setInterval(moveAffiliationSlider, 2000);
-    }
+    // no auto-scroll
 }
 
 if (document.readyState === 'loading') {
@@ -402,65 +396,56 @@ if (document.readyState === 'loading') {
     startAffiliationAutoSlide();
 }
 
-// Approvals auto-scroll slider on mobile
-function initApprovalSlider() {
-    const container = document.querySelector('.approvals .approval-images-container');
-    if (!container) return;
+// ===== Mobile Slider: Approvals & Recognitions =====
+let currentApprovalIndex = 0;
 
-    let approvalIndex = 0;
-    let approvalTimer;
+function moveApprovalSlider(direction) {
+    if (window.innerWidth > 768) return;
 
-    function autoScrollApprovals() {
-        if (window.innerWidth > 768) return;
+    const track = document.getElementById('approvalSliderTrack');
+    if (!track) return;
 
-        const boxes = container.querySelectorAll('.approval-image-box');
-        if (boxes.length === 0) return;
+    const cards = track.querySelectorAll('.approval-image-box');
+    if (cards.length === 0) return;
 
-        approvalIndex++;
-        if (approvalIndex >= boxes.length) {
-            approvalIndex = 0;
-            container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            boxes[approvalIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        }
+    const totalCards = cards.length;
+    currentApprovalIndex += direction;
+
+    if (currentApprovalIndex < 0) {
+        currentApprovalIndex = totalCards - 1;
+    } else if (currentApprovalIndex >= totalCards) {
+        currentApprovalIndex = 0;
     }
 
-    function startTimer() {
-        if (approvalTimer) clearInterval(approvalTimer);
-        approvalTimer = setInterval(autoScrollApprovals, 2000);
+    const cardWidth = cards[0].offsetWidth;
+    const gap = parseFloat(window.getComputedStyle(track).gap) || 15;
+    const offset = currentApprovalIndex * (cardWidth + gap);
+    track.style.transform = `translateX(-${offset}px)`;
+
+    const progress = document.getElementById('approvalProgress');
+    if (progress) {
+        progress.textContent = `${String(currentApprovalIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
     }
-
-    startTimer();
-
-    // Pause on touch, resume after
-    container.addEventListener('touchstart', () => { clearInterval(approvalTimer); }, { passive: true });
-    container.addEventListener('touchend', () => { startTimer(); }, { passive: true });
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initApprovalSlider);
-} else {
-    initApprovalSlider();
-}
+
 
 // Auto-open admission modal when scrolling to Placements, Testimonial, or Microsoft Center of Excellence
 function initScrollAdmissionTrigger() {
     const modal = document.getElementById('admissionModal');
     if (!modal) return;
 
-    // Sections that trigger only once per page load
-    const onceSections = [
-        document.querySelector('.placements'),
-        document.querySelector('.testimonials'),
-        document.querySelector('.center-excellence')
-    ].filter(Boolean);
+    const target = document.querySelector('.top-recruiters');
+    if (!target) return;
 
-    const triggeredOnce = new Set();
+    let modalAutoOpened = false;
 
-    const onceObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
+        if (modalAutoOpened) return;
         entries.forEach((entry) => {
-            if (entry.isIntersecting && !triggeredOnce.has(entry.target)) {
-                triggeredOnce.add(entry.target);
+            if (entry.isIntersecting && !modalAutoOpened) {
+                modalAutoOpened = true;
+                observer.disconnect();
                 if (typeof window._admissionModalAutoOpen === 'function') {
                     window._admissionModalAutoOpen();
                 }
@@ -468,11 +453,91 @@ function initScrollAdmissionTrigger() {
         });
     }, { threshold: 0.3 });
 
-    onceSections.forEach((section) => onceObserver.observe(section));
+    observer.observe(target);
 }
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollAdmissionTrigger);
 } else {
     initScrollAdmissionTrigger();
+}
+
+// ===== Scroll Reveal: sections appear on scroll =====
+function initScrollReveal() {
+    const revealTargets = document.querySelectorAll(
+        '.section:not(.industry-learning), .placement-highlights, .coe-banner, .footer-lead'
+    );
+
+    revealTargets.forEach((el) => el.classList.add('reveal'));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    revealTargets.forEach((el) => observer.observe(el));
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
+} else {
+    initScrollReveal();
+}
+
+// ===== Touch Swipe for all mobile sliders =====
+function initSwipeSupport() {
+    if (window.innerWidth > 768) return;
+
+    const sliders = [
+        { trackId: 'studentSliderTrack', moveFn: moveStudentSlider },
+        { trackId: 'courseSliderTrack', moveFn: moveCourseSlider },
+        { trackId: 'approvalSliderTrack', moveFn: moveApprovalSlider },
+        { trackId: 'testimonialGrid', moveFn: (dir) => moveTestimonial(dir, true) },
+        { trackId: 'industrySliderTrack', moveFn: moveIndustrySlider },
+    ];
+
+    sliders.forEach(({ trackId, moveFn }) => {
+        const track = document.getElementById(trackId);
+        if (!track) return;
+
+        let startX = 0;
+        let startY = 0;
+        let swiping = false;
+
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            swiping = true;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', (e) => {
+            if (!swiping) return;
+            const dx = e.touches[0].clientX - startX;
+            const dy = e.touches[0].clientY - startY;
+            // If horizontal swipe is dominant, prevent vertical scroll
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        track.addEventListener('touchend', (e) => {
+            if (!swiping) return;
+            swiping = false;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            if (Math.abs(diff) > 50) {
+                moveFn(diff > 0 ? 1 : -1);
+            }
+        }, { passive: true });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwipeSupport);
+} else {
+    initSwipeSupport();
 }

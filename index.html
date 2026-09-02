@@ -337,12 +337,19 @@
 
     <section class="section approvals" id="approvals">
         <h2 class="section-heading" style="margin-bottom: 30px;">Approvals & Recognitions</h2>
-        <div class="approval-images-container">
-            <div class="approval-image-box"><img src="images/approval/AICTE.jpg" alt="AICTE"></div>
-            <div class="approval-image-box"><img src="images/approval/AKTU.jpg" alt="AKTU"></div>
-            <div class="approval-image-box"><img src="images/approval/BTE.jpg" alt="BTE"></div>
-            <div class="approval-image-box"><img src="images/approval/GGSIPU.jpg" alt="GGSIPU"></div>
-            <div class="approval-image-box"><img src="images/approval/PCI.jpg" alt="PCI"></div>
+        <div class="approval-slider-wrapper">
+            <div class="approval-images-container" id="approvalSliderTrack">
+                <div class="approval-image-box"><img src="images/approval/AICTE.jpg" alt="AICTE"></div>
+                <div class="approval-image-box"><img src="images/approval/AKTU.jpg" alt="AKTU"></div>
+                <div class="approval-image-box"><img src="images/approval/BTE.jpg" alt="BTE"></div>
+                <div class="approval-image-box"><img src="images/approval/GGSIPU.jpg" alt="GGSIPU"></div>
+                <div class="approval-image-box"><img src="images/approval/PCI.jpg" alt="PCI"></div>
+            </div>
+            <div class="approval-slider-controls">
+                <button class="gallery-btn prev-btn" onclick="moveApprovalSlider(-1)" aria-label="Previous approval">&#10094;</button>
+                <span class="approval-slider-progress" id="approvalProgress">01 / 05</span>
+                <button class="gallery-btn next-btn" onclick="moveApprovalSlider(1)" aria-label="Next approval">&#10095;</button>
+            </div>
         </div>
     </section>
 

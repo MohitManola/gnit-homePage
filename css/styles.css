@@ -84,6 +84,18 @@ img {
     max-width: 100%;
 }
 
+/* Scroll-reveal animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .topbar {
     background: linear-gradient(90deg, #f9c004, #f9c004);
     color: var(--primary-blue);
@@ -312,7 +324,7 @@ img {
     right: 0;
     bottom: 0;
     background: linear-gradient(90deg, rgba(28, 42, 79, 0.9) 0%, rgba(28, 42, 79, 0.4) 100%);
-    z-index: 1;
+    z-index: 0;
 }
 
 .hero-content {
@@ -533,6 +545,7 @@ img {
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 12px;
+    margin-top: 20px;
     position: relative;
     display: inline-block;
     align-self: center;
@@ -552,14 +565,14 @@ img {
 .placement-highlights {
     position: relative;
     top: -130px;
-    z-index: 2;
+    z-index: 10;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
     max-width: 1200px;
     width: 100%;
-    margin: 0 auto 24px auto;
+    margin: 0 auto 20px auto;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -1044,6 +1057,7 @@ img {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
+    pointer-events: none;
 }
 
 .industry-learning .content {
@@ -1865,4 +1879,14 @@ img {
     height: auto;
     display: block;
     object-fit: contain;
+}
+
+.approval-slider-controls {
+    display: none;
+}
+
+.approval-slider-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }

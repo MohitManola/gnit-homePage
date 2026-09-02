@@ -190,13 +190,15 @@
         display: flex;
         gap: 14px;
         flex-wrap: nowrap;
-        padding: 4px 20px 18px;
+        padding-top: 4px;
+        padding-bottom: 18px;
         transition: transform 0.5s ease-in-out;
     }
 
     .placement-student-details .student-card {
-        flex: 0 0 calc(100% - 40px);
-        max-width: calc(100% - 40px);
+        flex: 0 0 calc(100% - 30px);
+        max-width: calc(100% - 30px);
+        margin: 0 7px;
     }
 
     .student-slider-controls {
@@ -290,14 +292,16 @@
 
     .programme-details .courses-grid {
         width: 100%;
-        padding: 4px 20px 20px;
+        padding-top: 4px;
+        padding-bottom: 20px;
         gap: 14px;
         transition: transform 0.5s ease-in-out;
     }
 
     .programme-details .course-card {
-        flex: 0 0 calc(100% - 40px);
-        max-width: calc(100% - 40px);
+        flex: 0 0 calc(100% - 30px);
+        max-width: calc(100% - 30px);
+        margin: 0 7px;
     }
 
     .programme-details .course-card img {
@@ -643,14 +647,8 @@
         max-width: 100%;
     }
 
-    .placement-student-details {
-        padding-left: 16px;
-        padding-right: 16px;
-        scroll-padding-inline: 16px;
-    }
-
     .placement-student-details .student-card {
-        flex-basis: 78vw;
+        flex-basis: calc(100vw - 44px);
     }
 
     .slider-next-btn {
@@ -887,15 +885,9 @@
         max-width: 92%;
     }
 
-    .programme-details .courses-grid {
-        padding-left: 16px;
-        padding-right: 16px;
-        scroll-padding-inline: 16px;
-    }
-
     .programme-details .course-card {
-        flex-basis: 82vw;
-        max-width: 82vw;
+        flex-basis: calc(100vw - 44px);
+        max-width: calc(100vw - 44px);
     }
 
     .programme-carousel-controls {
@@ -1108,8 +1100,11 @@
 /* Placement highlights responsive */
 @media (max-width: 768px) {
     .placement-highlights {
+        position: relative;
+        top: 0;
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+        margin: 0 auto 20px auto;
     }
 
     .highlight-card {
@@ -1134,24 +1129,40 @@
 }
 
 @media (max-width: 768px) {
-    .approvals .approval-images-container {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        gap: 15px;
-        padding: 0 20px 15px;
-        justify-content: flex-start;
-        scrollbar-width: none;
+    .approval-slider-wrapper {
+        overflow: hidden;
+        width: 100%;
     }
 
-    .approvals .approval-images-container::-webkit-scrollbar {
-        display: none;
+    .approvals .approval-images-container {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 14px;
+        padding: 4px 20px 18px;
+        justify-content: flex-start;
+        transition: transform 0.5s ease-in-out;
     }
 
     .approval-image-box {
-        flex: 0 0 65%;
-        max-width: 65%;
+        flex: 0 0 calc(100% - 40px);
+        max-width: calc(100% - 40px);
         scroll-snap-align: center;
+    }
+
+    .approval-slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    .approval-slider-progress {
+        min-width: 68px;
+        color: var(--text-light);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-align: center;
     }
 }
