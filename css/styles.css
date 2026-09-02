@@ -46,6 +46,8 @@ label {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 body {
@@ -706,11 +708,6 @@ img {
     border-top: 1px solid rgba(16, 29, 61, 0.08);
 }
 
-.placement-student-details .student-card:nth-child(4n+1) .company-logo { background-color: var(--primary-blue); }
-.placement-student-details .student-card:nth-child(4n+2) .company-logo { background-color: var(--red); }
-.placement-student-details .student-card:nth-child(4n+3) .company-logo { background-color: var(--orange); }
-.placement-student-details .student-card:nth-child(4n+4) .company-logo { background-color: var(--secondary-blue); }
-
 .placement-student-details .company-logo img {
     width: auto;
     max-width: 100%;
@@ -718,17 +715,6 @@ img {
     min-height: 36px;
     object-fit: contain;
     transform: scale(1.4);
-    filter: brightness(0) invert(1); /* Turns white bg into black, and colored logos into white */
-    mix-blend-mode: screen; /* Makes the new black background transparent, leaving only the white logo on the colored background */
-}
-
-.placement-student-details .company-logo.no-bg {
-    background-color: transparent !important;
-}
-
-.placement-student-details .company-logo.no-bg img {
-    filter: none !important;
-    mix-blend-mode: normal !important;
 }
 
 .programme-details {
@@ -782,7 +768,7 @@ img {
 
 .course-card img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 2;
     height: auto;
     object-fit: cover;
     object-position: center;
@@ -1428,7 +1414,7 @@ img {
 }
 
 .testimonial-controls {
-    display: flex;
+    display: none;
     gap: 16px;
     justify-content: center;
     align-items: center;

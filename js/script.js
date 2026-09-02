@@ -92,7 +92,7 @@ function moveTestimonial(direction, manual = false) {
 
     const progress = document.getElementById('testimonialProgress');
     if (progress) {
-        progress.textContent = `${String(currentTestimonialIndex + 1).padStart(2, '0')} / ${String(maxIndex + 1).padStart(2, '0')}`;
+        // progress.textContent = `${String(currentTestimonialIndex + 1).padStart(2, '0')} / ${String(maxIndex + 1).padStart(2, '0')}`;
     }
 }
 
@@ -116,6 +116,8 @@ window.addEventListener('resize', () => {
 });
 
 // Admission modal
+window._modalCooldown = false; // shared cooldown flag for scroll triggers
+
 function initAdmissionModal() {
     const modal = document.getElementById('admissionModal');
     if (!modal) return;
@@ -125,15 +127,33 @@ function initAdmissionModal() {
     const form = modal.querySelector('.admission-modal-form');
     const success = modal.querySelector('.admission-success');
     let lastFocusedElement = null;
+    let isAutoOpened = false;
 
     function closeModal() {
         modal.hidden = true;
         document.body.classList.remove('modal-open');
-        if (lastFocusedElement) lastFocusedElement.focus();
+        // Only restore focus if manually opened (prevents scroll jump on auto-open)
+        if (!isAutoOpened && lastFocusedElement) lastFocusedElement.focus();
+        isAutoOpened = false;
+        // Set cooldown to prevent scroll triggers from immediately reopening
+        window._modalCooldown = true;
+        setTimeout(() => { window._modalCooldown = false; }, 1500);
     }
+
+    // Expose for auto-open use
+    window._admissionModalAutoOpen = function () {
+        if (!modal.hidden || window._modalCooldown) return;
+        isAutoOpened = true;
+        lastFocusedElement = null;
+        if (form) { form.hidden = false; form.reset(); }
+        if (success) success.hidden = true;
+        modal.hidden = false;
+        document.body.classList.add('modal-open');
+    };
 
     openButtons.forEach((button) => {
         button.addEventListener('click', () => {
+            isAutoOpened = false;
             lastFocusedElement = button;
             form.hidden = false;
             success.hidden = true;
@@ -380,4 +400,79 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startAffiliationAutoSlide);
 } else {
     startAffiliationAutoSlide();
+}
+
+// Approvals auto-scroll slider on mobile
+function initApprovalSlider() {
+    const container = document.querySelector('.approvals .approval-images-container');
+    if (!container) return;
+
+    let approvalIndex = 0;
+    let approvalTimer;
+
+    function autoScrollApprovals() {
+        if (window.innerWidth > 768) return;
+
+        const boxes = container.querySelectorAll('.approval-image-box');
+        if (boxes.length === 0) return;
+
+        approvalIndex++;
+        if (approvalIndex >= boxes.length) {
+            approvalIndex = 0;
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            boxes[approvalIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+    }
+
+    function startTimer() {
+        if (approvalTimer) clearInterval(approvalTimer);
+        approvalTimer = setInterval(autoScrollApprovals, 2000);
+    }
+
+    startTimer();
+
+    // Pause on touch, resume after
+    container.addEventListener('touchstart', () => { clearInterval(approvalTimer); }, { passive: true });
+    container.addEventListener('touchend', () => { startTimer(); }, { passive: true });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApprovalSlider);
+} else {
+    initApprovalSlider();
+}
+
+// Auto-open admission modal when scrolling to Placements, Testimonial, or Microsoft Center of Excellence
+function initScrollAdmissionTrigger() {
+    const modal = document.getElementById('admissionModal');
+    if (!modal) return;
+
+    // Sections that trigger only once per page load
+    const onceSections = [
+        document.querySelector('.placements'),
+        document.querySelector('.testimonials'),
+        document.querySelector('.center-excellence')
+    ].filter(Boolean);
+
+    const triggeredOnce = new Set();
+
+    const onceObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting && !triggeredOnce.has(entry.target)) {
+                triggeredOnce.add(entry.target);
+                if (typeof window._admissionModalAutoOpen === 'function') {
+                    window._admissionModalAutoOpen();
+                }
+            }
+        });
+    }, { threshold: 0.3 });
+
+    onceSections.forEach((section) => onceObserver.observe(section));
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollAdmissionTrigger);
+} else {
+    initScrollAdmissionTrigger();
 }

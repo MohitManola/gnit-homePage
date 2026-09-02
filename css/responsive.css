@@ -667,6 +667,7 @@
 
     .gallery-controls,
     .testimonial-controls {
+        display: flex;
         gap: 12px;
         margin-top: 22px;
     }
@@ -783,12 +784,33 @@
     }
 
     /* COE section mobile fix */
+    .center-excellence {
+        overflow: hidden;
+    }
+
     .coe-banner {
+        flex-direction: column;
         max-width: 100%;
+        overflow: hidden;
     }
 
     .coe-content {
         padding: 24px 16px;
+    }
+
+    .coe-image {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 16px;
+        overflow: hidden;
+    }
+
+    .coe-image img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
     }
 
     .highlight-box {
@@ -882,28 +904,33 @@
 
     .admission-modal {
         padding: 12px;
-        align-items: end;
+        align-items: center;
+        justify-content: center;
     }
 
     .admission-modal-card {
         max-height: 92dvh;
         padding: 30px 18px 20px;
-        border-radius: 20px 20px 14px 14px;
+        border-radius: 20px;
+        width: calc(100% - 24px);
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 768px) {
     .admission-modal {
         padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
-        align-items: end;
+        align-items: center;
+        justify-content: center;
     }
 
     .admission-modal-card {
-        width: 100%;
+        width: calc(100% - 24px);
         max-height: 92vh;
         max-height: 92dvh;
         padding: 32px 20px 22px;
-        border-radius: 20px 20px 14px 14px;
+        border-radius: 20px;
+        margin: 0 auto;
     }
 
     .admission-modal-card h2 {
@@ -1107,15 +1134,24 @@
 }
 
 @media (max-width: 768px) {
-    .approval-image-box {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
+    .approvals .approval-images-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 15px;
+        padding: 0 20px 15px;
+        justify-content: flex-start;
+        scrollbar-width: none;
     }
-}
 
-@media (max-width: 480px) {
+    .approvals .approval-images-container::-webkit-scrollbar {
+        display: none;
+    }
+
     .approval-image-box {
-        flex: 1 1 100%;
-        max-width: 100%;
+        flex: 0 0 65%;
+        max-width: 65%;
+        scroll-snap-align: center;
     }
 }
