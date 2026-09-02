@@ -58,6 +58,7 @@
     .navbar {
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: flex-end;
         padding: 15px 20px;
     }
 
@@ -119,8 +120,12 @@
     }
 
     .hero {
-        padding: 40px 20px;
+        padding: 100px 20px 40px;
         text-align: center;
+    }
+
+    .hero .slider-next-btn {
+        display: none;
     }
 
     .hero-slider-bg.slide-1 {
@@ -253,7 +258,7 @@
     }
 
     .campus-container {
-        padding: 40px 20px;
+        padding: 28px 16px;
     }
 
     .course-slider-overflow {
@@ -379,22 +384,22 @@
     }
 
     .recruiter-strip {
-        padding: 18px 14px;
-        border-radius: 12px;
+        padding: 32px 22px;
+        border-radius: 14px;
     }
 
     .recruiter-logos-track {
-        gap: 8px;
+        gap: 14px;
         justify-content: flex-start;
     }
 
     .recruiter-logo-item {
-        flex-basis: 118px;
-        padding: 4px;
+        flex-basis: 155px;
+        padding: 8px;
     }
 
     .recruiter-logo-item img {
-        height: 42px;
+        height: 58px;
         width: auto;
         max-width: 100%;
     }
@@ -469,7 +474,7 @@
     }
 
     .recruiter-logo-item {
-        flex-basis: 108px;
+        flex-basis: 140px;
     }
 }
 
@@ -521,7 +526,7 @@
 
     .hero {
         min-height: auto;
-        padding: 58px 18px 52px;
+        padding: 100px 18px 36px;
     }
 
     .hero-content {
@@ -632,12 +637,12 @@
 
     .section {
         min-height: auto;
-        padding: 56px 16px;
+        padding: 36px 14px;
         overflow-x: hidden;
     }
 
     .section-heading {
-        margin-bottom: 26px;
+        margin-bottom: 16px;
         word-break: break-word;
     }
 
@@ -667,7 +672,7 @@
     .testimonial-controls {
         display: flex;
         gap: 12px;
-        margin-top: 22px;
+        margin-top: 14px;
     }
 
     .testimonials-wrapper {
@@ -689,10 +694,11 @@
     }
 
     .footer-lead > .container {
-        grid-template-columns: 1fr;
-        gap: 14px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
         padding: 0;
-        margin: 20px auto;
+        margin: 12px auto 0;
         width: 100%;
         max-width: 100%;
         height: auto;
@@ -700,24 +706,43 @@
 
     .footer-lead > .container > div {
         width: 100%;
-        padding: 14px;
+        padding: 10px;
         box-sizing: border-box;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(16, 29, 61, 0.06);
+        gap: 8px;
     }
 
-    .footer-lead > .container img {
-        height: 180px;
+    .footer-lead > .container > .part1,
+    .footer-lead > .container > .part2 {
+        grid-column: span 1;
     }
 
     .footer-lead > .container > .part3 {
-        min-height: 180px;
+        grid-column: 1 / -1;
         padding: 0;
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .footer-lead > .container > div .red-btn {
+        width: 100%;
+        font-size: 12px;
+        padding: 9px 12px;
+        min-height: 38px;
+    }
+
+    .footer-lead > .container img {
+        height: 130px;
+        border-radius: 10px;
     }
 
     .footer-lead > .container > .part3 img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 16px;
+        height: 180px;
+        border-radius: 12px;
     }
 
     .red-btn,
@@ -730,7 +755,7 @@
 
     /* Industry section mobile fixes */
     .industry-learning {
-        padding: 36px 0;
+        padding: 24px 0;
         overflow: hidden;
     }
 
@@ -776,7 +801,7 @@
 
     /* Recruiter strip mobile fix */
     .recruiter-strip {
-        padding: 16px 12px;
+        padding: 30px 20px;
         max-width: 100%;
         box-sizing: border-box;
     }
@@ -817,7 +842,7 @@
 
     /* Footer mobile fix */
     .main-footer {
-        padding: 30px 16px 20px;
+        padding: 20px 16px 16px;
     }
 
     .footer-content h3 {
@@ -847,14 +872,15 @@
 
     /* Footer lead section heading fix */
     .footer-lead .section-heading {
-        font-size: 1.4rem !important;
+        font-size: 1.3rem !important;
         padding: 0 8px;
+        margin-bottom: 6px;
     }
 }
 
 @media (max-width: 420px) {
     .hero {
-        padding-top: 44px;
+        padding-top: 100px;
     }
 
     .section-heading,
@@ -920,7 +946,7 @@
         width: calc(100% - 24px);
         max-height: 92vh;
         max-height: 92dvh;
-        padding: 32px 20px 22px;
+        padding: 24px 18px 18px;
         border-radius: 20px;
         margin: 0 auto;
     }
@@ -1102,21 +1128,32 @@
     .placement-highlights {
         position: relative;
         top: 0;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin: 0 auto 20px auto;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin: 0 auto 12px auto;
+        border-radius: 20px;
+        overflow: hidden;
     }
 
     .highlight-card {
-        padding: 20px 14px;
+        padding: 14px 6px;
     }
 
     .highlight-card h3 {
-        font-size: 2.4rem;
+        font-size: 1.6rem;
     }
 
     .highlight-card h3 span {
-        font-size: 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .highlight-card p {
+        font-size: 10px;
+    }
+
+    .highlight-card .fortune-label {
+        font-size: 8px;
+        letter-spacing: 0.08em;
     }
 }
 
