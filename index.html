@@ -77,43 +77,6 @@
         <div class="hero-slider-bg slide-2"></div>
         <div class="hero-slider-bg slide-3"></div>
         <div class="hero-content">
-            <!-- Left empty as before, acts as spacer if needed -->
-        </div>
-        <div class="hero-form-container">
-            <div class="hero-form-card">
-                <p class="modal-kicker">Admissions 2026</p>
-                <h2 id="heroFormTitle">Start your application</h2>
-                <form class="hero-admission-form" autocomplete="on" onsubmit="event.preventDefault(); this.hidden = true; this.nextElementSibling.hidden = false;">
-                    <label>
-                        Full name
-                        <input type="text" name="hero-name" autocomplete="name" required>
-                    </label>
-                    <label>
-                        Email address
-                        <input type="email" name="hero-email" autocomplete="email" inputmode="email" required>
-                    </label>
-                    <label>
-                        Phone number
-                        <input type="tel" name="hero-phone" autocomplete="tel" inputmode="tel" required>
-                    </label>
-                    <label>
-                        Course of interest
-                        <select name="hero-course" required>
-                            <option value="" selected disabled>Select a course</option>
-                            <option>B.Tech CSE</option>
-                            <option>B.Tech CSE - AI</option>
-                            <option>MBA Elite</option>
-                            <option>BCA</option>
-                            <option>BBA</option>
-                            <option>B.Pharma</option>
-                            <option>D.Pharma</option>
-                            <option>PGDM</option>
-                        </select>
-                    </label>
-                    <button class="admission-submit" type="submit">Submit Enquiry</button>
-                </form>
-                <p class="admission-success" role="status" hidden>Thank you. Our admissions team will contact you soon.</p>
-            </div>
         </div>
         <button class="slider-next-btn" onclick="nextHeroSlide()" aria-label="Next hero slide">&#10095;</button>
     </section>
@@ -220,7 +183,15 @@
             <div class="recruiter-logos-overflow">
                 <div class="recruiter-logos-track" id="recruiterLogosTrack">
                     <!-- Original logos -->
-
+                    <div class="recruiter-logo-item">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcompanieslogo.com%2Fimg%2Forig%2FWIT-1453b096.png%3Ft%3D1648406781%26download%3Dtrue&f=1&nofb=1&ipt=0febbee188b307d2ccdd6b2a87a6968de28ed3f3ba4685ab68e23bc4474f3a80" alt="Wipro">
+                    </div>
+                    <div class="recruiter-logo-item">
+                        <img src="images/company/kpgm.webp" alt="KPMG">
+                    </div>
+                    <div class="recruiter-logo-item">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-world.net%2Fwp-content%2Fuploads%2F2022%2F02%2FSAP-Logo.png&f=1&nofb=1&ipt=f61719dcdcccf301f7f617a180d2bd9f9d6059a19491ab667f0d510790b57227" alt="SAP">
+                    </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/3840px-Amazon_logo.svg-3714133081.png" alt="Amazon">
                     </div>
@@ -228,19 +199,19 @@
                         <img src="images/company/Airtel.png" alt="Airtel" style="transform: scale(1.4);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv" id="appinventiv-logo" style="transform: scale(1.1);">
+                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv" id="appinventiv-logo">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(2);">
+                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(1.8);">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/Godrej.png" alt="Godrej">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/HCL.png" alt="HCL" style="transform: scale(1.1);">
+                        <img src="images/company/HCL.png" alt="HCL">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Tata.png" alt="Tata" style="transform: scale(1.1);">
+                        <img src="images/company/Tata.png" alt="Tata">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/capitalvia.png" alt="Capitalvia">
@@ -261,7 +232,15 @@
                         <img src="images/company/quess.webp" alt="Quess">
                     </div>
                     <!-- Duplicated logos for infinite scroll -->
-
+                    <div class="recruiter-logo-item">
+                        <img src="images/company/wipro.webp" alt="Wipro">
+                    </div>
+                    <div class="recruiter-logo-item">
+                        <img src="images/company/kpgm.webp" alt="KPMG">
+                    </div>
+                    <div class="recruiter-logo-item">
+                        <img src="images/company/sap.webp" alt="SAP">
+                    </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/3840px-Amazon_logo.svg-3714133081.png" alt="Amazon">
                     </div>
@@ -269,19 +248,19 @@
                         <img src="images/company/Airtel.png" alt="Airtel" style="transform: scale(1.4);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv" style="transform: scale(1.1);">
+                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(2);">
+                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(1.4);">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/Godrej.png" alt="Godrej">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/HCL.png" alt="HCL" style="transform: scale(1.1);">
+                        <img src="images/company/HCL.png" alt="HCL">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Tata.png" alt="Tata" style="transform: scale(1.1);">
+                        <img src="images/company/Tata.png" alt="Tata">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/capitalvia.png" alt="Capitalvia">
@@ -367,11 +346,9 @@
                 <div class="approval-image-box"><img src="images/approval/PCI.jpg" alt="PCI"></div>
             </div>
             <div class="approval-slider-controls">
-                <button class="gallery-btn prev-btn" onclick="moveApprovalSlider(-1)"
-                    aria-label="Previous approval">&#10094;</button>
+                <button class="gallery-btn prev-btn" onclick="moveApprovalSlider(-1)" aria-label="Previous approval">&#10094;</button>
                 <span class="approval-slider-progress" id="approvalProgress">01 / 05</span>
-                <button class="gallery-btn next-btn" onclick="moveApprovalSlider(1)"
-                    aria-label="Next approval">&#10095;</button>
+                <button class="gallery-btn next-btn" onclick="moveApprovalSlider(1)" aria-label="Next approval">&#10095;</button>
             </div>
         </div>
     </section>
@@ -392,18 +369,15 @@
                             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcgu-odisha.ac.in%2Fwp-content%2Fuploads%2F2023%2F06%2FQ-Spider.jpg&f=1&nofb=1&ipt=e4ace7a450f20cedc2abbf6952c69957facb00656b4eecba0733e11dd35c0aa5"
                             alt="QSpiders"></div>
                     <div class="industry-logo-box"><img
-                            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcityandguildsfoundation.org%2Fwp-content%2Fuploads%2F2022%2F08%2FSkillsbuild-logo.jpg&f=1&nofb=1&ipt=6c3314d350573879097cf8f6e88c09702456f378fcb6a7c9ded6404849548466"
+                            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsiic.iscte-iul.pt%2Fwp-content%2Fuploads%2F2024%2F06%2Flogo_IBM-SkillsBuild.jpg&f=1&nofb=1&ipt=80e07530e2adb3a73560c7616cef2a76e7fcad8eaf3e407984f3b2da930fa562"
                             alt="IBM SkillsBuild"></div>
-                    <div class="industry-logo-box"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdpu.edu.ua%2Fimages%2F2026%2520plus%2F2026%2F2_Postijni%2520photo%2520dla%2520storinok%25202026%2FOsvitnij%2520IT-HAB%2FOracle.jpg&f=1&nofb=1&ipt=b44f4746314fe88abd8ad4212599644746d2a87c83ee384ac3b0d7a29e9f92fe" style="transform: scale(1);" alt="Oracle Academy">
+                    <div class="industry-logo-box"><img src="images/company/oracleAcademy.png" alt="Oracle Academy">
                     </div>
-                    <div class="industry-logo-box"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fddf912383141a8d7bbe4-e053e711fc85de3290f121ef0f0e3a1f.r87.cf1.rackcdn.com%2FmongoDB-logo.png&f=1&nofb=1&ipt=27a04f4fab994880a0d2b75bbe5d959d67b1e362f47fa71ea5fe2a7b6d16f07c" alt="MongoDB"
-                            style="transform: scale(0.9);"></div>
-                    <div class="industry-logo-box"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.freebiesupply.com%2Flogos%2Flarge%2F2x%2Famazon-web-services-logo-png-transparent.png&f=1&nofb=1&ipt=04669639f0d000cdd469f4673cb48017dd9f7b8a2de0f48ddd7aea752344927a" alt="AWS"
-                            style="transform: scale(0.7);"></div>
-                    <div class="industry-logo-box"><img src="images/company/coursera.png" alt="coursera"></div>
-                    <div class="industry-logo-box"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbrandlogos.net%2Fwp-content%2Fuploads%2F2017%2F09%2Fgoogle-cloud.png&f=1&nofb=1&ipt=fa776cd4108e8ca68ae80a04aa963c738112aaf484b1e61a4b43ddf1ffc5c702" alt="Google Cloud"></div>
-                    <div class="industry-logo-box"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1000logos.net%2Fwp-content%2Fuploads%2F2016%2F11%2FFont-Cisco-Logo.png&f=1&nofb=1&ipt=e58a6d6dd7679c5aa1db001786bab7045ca9a8242e715f335984c797efd71e5b" alt="CISCO"
-                            style="transform: scale(0.7);"></div>
+                    <div class="industry-logo-box"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F2090013.jpg&f=1&nofb=1&ipt=7af50fa07098c8cc73edba3b1e101e2fa565a89f6f67b6238b0856dc5ff733c5" alt="MongoDB" style="transform: scale(1.2);"></div>
+                    <div class="industry-logo-box"><img src="images/company/AWS_Logo.png" alt="AWS" style="transform: scale(0.4);"></div>
+                    <div class="industry-logo-box"><img src="images/company/coursera.png" alt="coursera" style="transform: scale(0.8);"></div>
+                    <div class="industry-logo-box"><img src="images/company/google_cloud.png" alt="Google Cloud" style="transform: scale(0.8);"></div>
+                    <div class="industry-logo-box"><img src="images/company/cisco.png" alt="CISCO" style = "transform: scale(0.6);"></div>
 
                 </div>
             </div>
