@@ -227,6 +227,7 @@ img {
     min-height: calc(100vh - 72px);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 80px 60px 60px;
     color: var(--white);
     overflow: hidden;
@@ -332,6 +333,101 @@ img {
     z-index: 2;
     max-width: 660px;
     animation: slideUp 0.8s ease-out;
+}
+
+.hero-form-container {
+    position: relative;
+    z-index: 2;
+    margin-left: auto;
+    margin-top: -90px;
+    width: 100%;
+    max-width: 380px;
+    animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.hero-form-card {
+    background: linear-gradient(145deg, #ffffff 0%, #edf4fc 100%);
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    color: var(--text-dark);
+}
+
+.hero-form-card .modal-kicker {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+}
+
+.hero-form-card h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--primary-blue);
+}
+
+.hero-form-card .modal-description {
+    font-size: 13px;
+    color: rgba(31, 67, 121, 0.8);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.hero-admission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hero-admission-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.hero-admission-form input,
+.hero-admission-form select {
+    padding: 10px 14px;
+    border: 1px solid rgba(31, 67, 121, 0.15);
+    border-radius: 12px;
+    font-size: 14px;
+    background: var(--white);
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-admission-form input:focus,
+.hero-admission-form select:focus {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(249, 192, 4, 0.15);
+}
+
+.hero-form-card .admission-submit {
+    background: linear-gradient(135deg, #f9c004, #f9c004);
+    color: var(--primary-blue);
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-top: 4px;
+}
+
+.hero-form-card .admission-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(249, 192, 4, 0.25);
 }
 
 .hero-title {

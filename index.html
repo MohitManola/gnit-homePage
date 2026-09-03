@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -77,6 +77,43 @@
         <div class="hero-slider-bg slide-2"></div>
         <div class="hero-slider-bg slide-3"></div>
         <div class="hero-content">
+            <!-- Left empty as before, acts as spacer if needed -->
+        </div>
+        <div class="hero-form-container">
+            <div class="hero-form-card">
+                <p class="modal-kicker">Admissions 2026</p>
+                <h2 id="heroFormTitle">Start your application</h2>
+                <form class="hero-admission-form" autocomplete="on" onsubmit="event.preventDefault(); this.hidden = true; this.nextElementSibling.hidden = false;">
+                    <label>
+                        Full name
+                        <input type="text" name="hero-name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        Email address
+                        <input type="email" name="hero-email" autocomplete="email" inputmode="email" required>
+                    </label>
+                    <label>
+                        Phone number
+                        <input type="tel" name="hero-phone" autocomplete="tel" inputmode="tel" required>
+                    </label>
+                    <label>
+                        Course of interest
+                        <select name="hero-course" required>
+                            <option value="" selected disabled>Select a course</option>
+                            <option>B.Tech CSE</option>
+                            <option>B.Tech CSE - AI</option>
+                            <option>MBA Elite</option>
+                            <option>BCA</option>
+                            <option>BBA</option>
+                            <option>B.Pharma</option>
+                            <option>D.Pharma</option>
+                            <option>PGDM</option>
+                        </select>
+                    </label>
+                    <button class="admission-submit" type="submit">Submit Enquiry</button>
+                </form>
+                <p class="admission-success" role="status" hidden>Thank you. Our admissions team will contact you soon.</p>
+            </div>
         </div>
         <button class="slider-next-btn" onclick="nextHeroSlide()" aria-label="Next hero slide">&#10095;</button>
     </section>
@@ -183,15 +220,7 @@
             <div class="recruiter-logos-overflow">
                 <div class="recruiter-logos-track" id="recruiterLogosTrack">
                     <!-- Original logos -->
-                    <div class="recruiter-logo-item">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcompanieslogo.com%2Fimg%2Forig%2FWIT-1453b096.png%3Ft%3D1648406781%26download%3Dtrue&f=1&nofb=1&ipt=0febbee188b307d2ccdd6b2a87a6968de28ed3f3ba4685ab68e23bc4474f3a80" alt="Wipro">
-                    </div>
-                    <div class="recruiter-logo-item">
-                        <img src="images/company/kpgm.webp" alt="KPMG">
-                    </div>
-                    <div class="recruiter-logo-item">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-world.net%2Fwp-content%2Fuploads%2F2022%2F02%2FSAP-Logo.png&f=1&nofb=1&ipt=f61719dcdcccf301f7f617a180d2bd9f9d6059a19491ab667f0d510790b57227" alt="SAP">
-                    </div>
+
                     <div class="recruiter-logo-item">
                         <img src="images/company/3840px-Amazon_logo.svg-3714133081.png" alt="Amazon">
                     </div>
@@ -199,19 +228,19 @@
                         <img src="images/company/Airtel.png" alt="Airtel" style="transform: scale(1.4);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv" id="appinventiv-logo">
+                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv" id="appinventiv-logo" style="transform: scale(1.1);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(1.8);">
+                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(2);">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/Godrej.png" alt="Godrej">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/HCL.png" alt="HCL">
+                        <img src="images/company/HCL.png" alt="HCL" style="transform: scale(1.1);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Tata.png" alt="Tata">
+                        <img src="images/company/Tata.png" alt="Tata" style="transform: scale(1.1);">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/capitalvia.png" alt="Capitalvia">
@@ -232,15 +261,7 @@
                         <img src="images/company/quess.webp" alt="Quess">
                     </div>
                     <!-- Duplicated logos for infinite scroll -->
-                    <div class="recruiter-logo-item">
-                        <img src="images/company/wipro.webp" alt="Wipro">
-                    </div>
-                    <div class="recruiter-logo-item">
-                        <img src="images/company/kpgm.webp" alt="KPMG">
-                    </div>
-                    <div class="recruiter-logo-item">
-                        <img src="images/company/sap.webp" alt="SAP">
-                    </div>
+
                     <div class="recruiter-logo-item">
                         <img src="images/company/3840px-Amazon_logo.svg-3714133081.png" alt="Amazon">
                     </div>
@@ -248,19 +269,19 @@
                         <img src="images/company/Airtel.png" alt="Airtel" style="transform: scale(1.4);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv">
+                        <img src="images/company/Appinventiv-logo.png" alt="Appinventiv" style="transform: scale(1.1);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(1.4);">
+                        <img src="images/company/Axis_Bank.png" alt="Axis Bank" style="transform: scale(2);">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/Godrej.png" alt="Godrej">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/HCL.png" alt="HCL">
+                        <img src="images/company/HCL.png" alt="HCL" style="transform: scale(1.1);">
                     </div>
                     <div class="recruiter-logo-item">
-                        <img src="images/company/Tata.png" alt="Tata">
+                        <img src="images/company/Tata.png" alt="Tata" style="transform: scale(1.1);">
                     </div>
                     <div class="recruiter-logo-item">
                         <img src="images/company/capitalvia.png" alt="Capitalvia">
@@ -346,9 +367,11 @@
                 <div class="approval-image-box"><img src="images/approval/PCI.jpg" alt="PCI"></div>
             </div>
             <div class="approval-slider-controls">
-                <button class="gallery-btn prev-btn" onclick="moveApprovalSlider(-1)" aria-label="Previous approval">&#10094;</button>
+                <button class="gallery-btn prev-btn" onclick="moveApprovalSlider(-1)"
+                    aria-label="Previous approval">&#10094;</button>
                 <span class="approval-slider-progress" id="approvalProgress">01 / 05</span>
-                <button class="gallery-btn next-btn" onclick="moveApprovalSlider(1)" aria-label="Next approval">&#10095;</button>
+                <button class="gallery-btn next-btn" onclick="moveApprovalSlider(1)"
+                    aria-label="Next approval">&#10095;</button>
             </div>
         </div>
     </section>
@@ -373,11 +396,14 @@
                             alt="IBM SkillsBuild"></div>
                     <div class="industry-logo-box"><img src="images/company/oracleAcademy.png" alt="Oracle Academy">
                     </div>
-                    <div class="industry-logo-box"><img src="images/company/mongo_db.jpg" alt="MongoDB"></div>
-                    <div class="industry-logo-box"><img src="images/company/AWS_Logo.png" alt="AWS"></div>
+                    <div class="industry-logo-box"><img src="images/company/mongo_db.jpg" alt="MongoDB"
+                            style="transform: scale(0.9);"></div>
+                    <div class="industry-logo-box"><img src="images/company/AWS_Logo.png" alt="AWS"
+                            style="transform: scale(0.7);"></div>
                     <div class="industry-logo-box"><img src="images/company/coursera.png" alt="coursera"></div>
                     <div class="industry-logo-box"><img src="images/company/google_cloud.png" alt="Google Cloud"></div>
-                    <div class="industry-logo-box"><img src="images/company/cisco.png" alt="CISCO"></div>
+                    <div class="industry-logo-box"><img src="images/company/cisco.png" alt="CISCO"
+                            style="transform: scale(0.7);"></div>
 
                 </div>
             </div>
