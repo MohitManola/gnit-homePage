@@ -541,6 +541,14 @@ img {
     flex-direction: column;
 }
 
+.placements {
+    padding-top: 0;
+}
+
+.placements .section-heading {
+    margin-top: 0;
+}
+
 .section-heading {
     font-size: 2.2rem;
     font-weight: 800;
@@ -564,12 +572,13 @@ img {
 /* Placement highlight cards */
 .placement-highlights {
     position: relative;
-    top: -130px;
+    top: -80px;
     z-index: 10;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
+    height: 90%;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto 20px auto;
@@ -579,7 +588,7 @@ img {
 
 .highlight-card {
     border-radius: 0;
-    padding: 28px 20px;
+    padding: 20px 16px;
     text-align: center;
     color: var(--white);
     position: relative;
@@ -1889,4 +1898,10 @@ img {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+}
+
+#appinventiv-logo {
+    
+    transform: scale(1.2);
+    margin-left: 30px;
 }
