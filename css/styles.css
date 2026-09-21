@@ -109,38 +109,38 @@ img {
 
 /* Navigation */
 .navbar {
-    background: rgba(16, 29, 61, 0.88);
+    background: var(--white);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 52px;
-    color: var(--white);
+    padding: 10px 52px;
+    color: var(--text-dark);
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 30px rgba(16, 29, 61, 0.20);
+    border-bottom: 1px solid rgba(31, 67, 121, 0.08);
+    box-shadow: 0 4px 20px rgba(16, 29, 61, 0.08);
 }
 
 .clg-logo {
     flex: 0 0 auto;
-    width: 148px;
-    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 7px;
-    background: var(--white);
 }
 
 .clg-logo img {
     display: block;
-    width: 100%;
-    height: 100%;
+    height: 40px;
+    width: auto;
     object-fit: contain;
+}
+
+.clg-logo .logo-mark {
+    display: none;
 }
 
 .menu-toggle,
@@ -168,7 +168,7 @@ img {
 }
 
 .nav-links a {
-    color: var(--white);
+    color: var(--text-dark);
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
@@ -205,6 +205,7 @@ img {
     gap: 18px;
     font-size: 14px;
     font-weight: 700;
+    color: var(--text-dark);
 }
 
 .contact-info span {
@@ -216,7 +217,7 @@ img {
 }
 
 .contact-info a {
-    color: var(--white);
+    color: var(--text-dark);
     text-decoration: none;
     transition: color 0.25s ease, transform 0.25s ease;
 }
@@ -235,86 +236,16 @@ img {
     background: #1f4379;
 }
 
-.hero-slider-bg {
+.hero-bg {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background-image: url('../images/hero_bg.png');
     background-size: cover;
     background-position: center;
     z-index: 0;
-    opacity: 0;
-    transform: scale(1.08);
-    will-change: opacity, transform;
-}
-
-.hero-slider-bg.slide-1 {
-    background-image: url('../images/hero_bg.png');
-    animation: fade1 15s infinite;
-}
-
-.hero-slider-bg.slide-2 {
-    background-image: url('../images/course_img.png');
-    animation: fade2 15s infinite;
-}
-
-.hero-slider-bg.slide-3 {
-    background-image: url('../images/campus_life.png');
-    animation: fade3 15s infinite;
-}
-
-@keyframes fade1 {
-
-    0%,
-    25%,
-    100% {
-        opacity: 1;
-    }
-
-    33%,
-    92% {
-        opacity: 0;
-    }
-}
-
-@keyframes fade2 {
-
-    0%,
-    25%,
-    66%,
-    100% {
-        opacity: 0;
-    }
-
-    33%,
-    58% {
-        opacity: 1;
-    }
-}
-
-@keyframes fade3 {
-
-    0%,
-    58%,
-    100% {
-        opacity: 0;
-    }
-
-    66%,
-    92% {
-        opacity: 1;
-    }
-}
-
-.hero-slider-bg.manual-override {
-    animation: none !important;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-}
-
-.hero-slider-bg.manual-override.active {
-    opacity: 1;
 }
 
 .hero::before {
@@ -1148,7 +1079,7 @@ img {
 
 .industry-learning {
     position: relative;
-    background-image: url('../images/hero_bg.png');
+    background-image: url('../images/industry-integrated-bg.png');
     background-size: cover;
     background-position: center;
     padding: 50px 20px;
@@ -1917,35 +1848,6 @@ img {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
-}
-
-/* Slider controls */
-
-.slider-next-btn {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--white);
-    color: var(--primary-blue);
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    z-index: 10;
-    transition: background 0.3s, color 0.3s, transform 0.3s;
-}
-
-.slider-next-btn:hover {
-    background: var(--primary-blue);
-    color: var(--white);
-    transform: translateY(-50%) scale(1.1);
 }
 
 /* Approvals Section */

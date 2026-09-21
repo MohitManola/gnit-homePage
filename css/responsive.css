@@ -56,29 +56,43 @@
     }
 
     .navbar {
-        flex-direction: row;
-        flex-wrap: wrap;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        background: transparent;
+        box-shadow: none;
+        border-bottom: none;
+        padding: 0;
         justify-content: flex-end;
-        padding: 15px 20px;
     }
 
     .hamburger {
+        position: absolute;
+        top: 14px;
+        right: 16px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 30px;
-        height: 22px;
+        width: 38px;
+        height: 28px;
         cursor: pointer;
-        background: var(--white);
-        padding: 6px;
-        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 7px;
+        border-radius: 8px;
         box-sizing: content-box;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        z-index: 1004;
     }
 
     .hamburger span {
         display: block;
-        height: 2px;
-        background: var(--text-dark);
+        height: 2.5px;
+        background: var(--primary-blue);
         border-radius: 2px;
     }
 
@@ -108,6 +122,16 @@
         width: 100%;
         padding: 12px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--white);
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-links a:hover {
+        color: var(--orange);
+        transform: none;
     }
 
     .contact-info {
@@ -117,37 +141,59 @@
         width: 100%;
         gap: 15px;
         margin-top: 15px;
+        color: var(--white);
+    }
+
+    .contact-info a {
+        color: var(--white);
     }
 
     .hero {
-        padding: 100px 20px 40px;
+        padding: 100px 16px 32px;
         text-align: center;
         flex-direction: column;
+        gap: 0;
     }
 
-    .hero .slider-next-btn {
-        display: none;
+    .hero-bg {
+        background-position: left center;
     }
 
-    .hero-slider-bg.slide-1 {
-        background-image: url('../images/ai_robot.png');
-    }
-
-    .hero-slider-bg.slide-2 {
-        background-image: url('../images/15%20percent.jpeg');
-    }
-
-    .hero-slider-bg.slide-3 {
-        background-image: url('../images/newh1.jpeg');
+    .hero::before {
+        background: linear-gradient(
+            180deg,
+            rgba(28, 42, 79, 0.5) 0%,
+            rgba(28, 42, 79, 0.4) 100%
+        );
     }
 
     .hero-content {
         margin: 0 auto;
+        width: 100%;
     }
 
     .hero-form-container {
-        margin-left: 0;
-        margin-top: 40px;
+        display: none;
+    }
+
+    .hero-form-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    .hero-form-card h2 {
+        font-size: 1.35rem;
+    }
+
+    .hero-admission-form input,
+    .hero-admission-form select {
+        min-height: 46px;
+        font-size: 15px;
+    }
+
+    .hero-form-card .admission-submit {
+        width: 100%;
+        min-height: 48px;
     }
 
     .hero-title {
@@ -499,14 +545,16 @@
     }
 
     .navbar {
-        min-height: 64px;
-        padding: 12px 16px;
+        min-height: 0;
+        padding: 0;
     }
 
     .hamburger {
-        width: 26px;
-        height: 20px;
-        padding: 5px;
+        width: 34px;
+        height: 24px;
+        padding: 6px;
+        top: 10px;
+        right: 12px;
     }
 
     .nav-menu {
@@ -531,8 +579,9 @@
     }
 
     .hero {
-        min-height: auto;
-        padding: 100px 18px 36px;
+        min-height: 42vh;
+        min-height: 42dvh;
+        padding: 60px 16px 28px;
     }
 
     .hero-content {
@@ -660,13 +709,6 @@
 
     .placement-student-details .student-card {
         flex-basis: calc(100vw - 44px);
-    }
-
-    .slider-next-btn {
-        width: 44px;
-        height: 44px;
-        right: 12px;
-        font-size: 18px;
     }
 
     .gallery-btn {
@@ -985,7 +1027,7 @@
 
 @media (max-width: 768px) {
     .hamburger {
-        position: relative;
+        position: absolute;
         z-index: 1004;
         gap: 5px;
         justify-content: center;
@@ -998,12 +1040,17 @@
 
     .hamburger span {
         width: 100%;
+        background: var(--primary-blue);
         transform-origin: center;
         transition: transform 0.3s ease, opacity 0.2s ease, background-color 0.25s ease;
     }
 
     .menu-toggle:checked + .hamburger {
         background: var(--orange);
+    }
+
+    .menu-toggle:checked + .hamburger span {
+        background: var(--primary-blue);
     }
 
     .menu-toggle:checked + .hamburger span:nth-child(1) {
@@ -1042,9 +1089,19 @@
     }
 
     .nav-menu .clg-logo {
-        width: 136px;
-        height: 40px;
+        width: 100%;
         margin: 0 auto 18px;
+        justify-content: center;
+    }
+
+    .nav-menu .clg-logo .logo-full {
+        display: none;
+    }
+
+    .nav-menu .clg-logo .logo-mark {
+        display: block;
+        height: 80px;
+        width: auto;
     }
 
     .menu-toggle:checked ~ .nav-menu {
@@ -1134,23 +1191,23 @@
     .placement-highlights {
         position: relative;
         top: 0;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
         margin: 0 auto 12px auto;
-        border-radius: 20px;
+        border-radius: 16px;
         overflow: hidden;
     }
 
     .highlight-card {
-        padding: 14px 6px;
+        padding: 14px 8px;
     }
 
     .highlight-card h3 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .highlight-card h3 span {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .highlight-card p {
@@ -1207,5 +1264,409 @@
         font-weight: 800;
         letter-spacing: 0.12em;
         text-align: center;
+    }
+}
+
+/* ========================================= */
+/* PHONE POLISH — 480px and below            */
+/* ========================================= */
+@media (max-width: 480px) {
+    /* ---- Hero ---- */
+    .hero {
+        padding: 90px 16px 28px;
+        min-height: 38vh;
+        min-height: 38dvh;
+        gap: 0;
+    }
+
+    .hero-bg {
+        background-position: left center;
+        background-size: cover;
+    }
+
+    .hero::before {
+        background: linear-gradient(
+            180deg,
+            rgba(28, 42, 79, 0.55) 0%,
+            rgba(28, 42, 79, 0.45) 100%
+        );
+    }
+
+    .hero-content {
+        display: none;
+    }
+
+    .hero-form-container {
+        margin-top: 0;
+        margin-left: 0;
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+    }
+
+    .hero-form-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-form-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 6px;
+    }
+
+    .hero-form-card .modal-kicker {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+
+    .hero-form-card .modal-description {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    .hero-admission-form {
+        gap: 8px;
+    }
+
+    .hero-admission-form label {
+        font-size: 11px;
+        gap: 4px;
+    }
+
+    .hero-admission-form input,
+    .hero-admission-form select {
+        padding: 11px 12px;
+        font-size: 15px;
+        border-radius: 10px;
+        min-height: 44px;
+    }
+
+    .hero-form-card .admission-submit {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+        border-radius: 10px;
+        margin-top: 2px;
+    }
+
+    /* ---- Placement highlights ---- */
+    .placement-highlights {
+        top: 0;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        border-radius: 14px;
+        margin-bottom: 10px;
+    }
+
+    .highlight-card {
+        padding: 12px 8px;
+    }
+
+    .highlight-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .highlight-card h3 span {
+        font-size: 0.7rem;
+    }
+
+    .highlight-card p {
+        font-size: 9px;
+        line-height: 1.3;
+    }
+
+    /* ---- Student cards ---- */
+    .placement-student-details .student-card {
+        flex: 0 0 calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+        padding: 10px 8px;
+        border-radius: 14px;
+    }
+
+    .placement-student-details .student-card > img {
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+
+    .placement-student-details .student-name {
+        font-size: 14px;
+    }
+
+    .placement-student-details .student-card > p {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+
+    .placement-student-details .company-logo {
+        height: 40px;
+        padding: 4px 6px;
+    }
+
+    .placement-student-details .company-logo img {
+        height: 28px;
+        min-height: 28px;
+    }
+
+    /* ---- Section headings ---- */
+    .section-heading {
+        font-size: 1.4rem !important;
+        margin-top: 10px;
+        margin-bottom: 12px;
+    }
+
+    .section-heading::after {
+        width: 50px;
+        height: 3px;
+        margin: 8px auto 0;
+    }
+
+    /* ---- Programme courses ---- */
+    .programme-details .course-card {
+        flex: 0 0 calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+        border-radius: 14px;
+    }
+
+    .programme-details .course-card img {
+        aspect-ratio: 16 / 9;
+    }
+
+    .programme-details .course-card p {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    /* ---- COE banner ---- */
+    .coe-content {
+        padding: 20px 16px;
+    }
+
+    .coe-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 14px;
+    }
+
+    .coe-features {
+        gap: 10px;
+    }
+
+    .coe-features li {
+        font-size: 12px;
+    }
+
+    .coe-image img {
+        max-width: 220px;
+    }
+
+    /* ---- Campus ---- */
+    .campus-container {
+        padding: 24px 12px;
+    }
+
+    .campus-container h3 {
+        font-size: 1.6rem;
+        margin-bottom: 18px;
+    }
+
+    .gallery-slider {
+        aspect-ratio: 3 / 10;
+        border-radius: 10px;
+    }
+
+    .gallery-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .gallery-controls {
+        margin-top: 16px;
+        gap: 14px;
+    }
+
+    /* ---- Testimonials ---- */
+    .testimonials-wrapper {
+        padding: 0 4px;
+    }
+
+    .test-card {
+        border-radius: 12px;
+    }
+
+    .test-card img {
+        border-radius: 12px;
+    }
+
+    .testimonial-controls .gallery-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    /* ---- Footer lead ---- */
+    .footer-lead {
+        padding: 28px 12px;
+    }
+
+    .footer-lead .section-heading {
+        font-size: 1.15rem !important;
+        padding: 0 4px;
+        margin-bottom: 4px;
+    }
+
+    .footer-lead > .container {
+        gap: 8px;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .footer-lead > .container > div {
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    .footer-lead > .container > div .red-btn {
+        font-size: 11px;
+        padding: 8px 10px;
+        min-height: 36px;
+    }
+
+    .footer-lead > .container img {
+        height: 110px;
+        border-radius: 8px;
+    }
+
+    .footer-lead > .container > .part3 img {
+        height: 150px;
+    }
+
+    /* ---- Footer ---- */
+    .main-footer {
+        padding: 18px 12px 12px;
+    }
+
+    .footer-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .apply-now-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 13px;
+        border-radius: 10px;
+    }
+
+    /* ---- Industry logos ---- */
+    .industry-logo-box {
+        flex: 0 0 160px;
+        height: 110px;
+        border-radius: 12px;
+    }
+
+    /* ---- Recruiter strip ---- */
+    .recruiter-strip {
+        padding: 20px 12px;
+    }
+
+    .recruiter-logo-item {
+        flex-basis: 130px;
+    }
+
+    .recruiter-logo-item img {
+        height: 48px;
+    }
+
+    /* ---- Floating hamburger ---- */
+    .navbar .clg-logo {
+        display: none;
+    }
+
+    .navbar {
+        background: transparent;
+        box-shadow: none;
+        border-bottom: none;
+    }
+
+    .hamburger {
+        width: 38px;
+        height: 28px;
+        padding: 7px;
+        top: 12px;
+        right: 14px;
+    }
+
+    .hero {
+        scroll-margin-top: 0;
+    }
+
+    /* ---- Topbar ---- */
+    .topbar {
+        display: none;
+    }
+
+    /* ---- Section spacing ---- */
+    .section {
+        padding: 28px 12px;
+    }
+
+    .placements {
+        padding-top: 0;
+        margin-top: 16px;
+    }
+
+    /* ---- Admission modal ---- */
+    .admission-modal-card {
+        padding: 20px 14px 16px;
+        border-radius: 16px;
+    }
+
+    .admission-modal-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .admission-modal-form input,
+    .admission-modal-form select {
+        min-height: 46px;
+        font-size: 15px;
+    }
+
+    .admission-submit {
+        min-height: 48px;
+    }
+}
+
+/* Even smaller screens — 360px and below */
+@media (max-width: 360px) {
+    .hero {
+        padding: 50px 12px 20px;
+        min-height: 35vh;
+        min-height: 35dvh;
+    }
+
+    .hero-form-card {
+        padding: 16px 12px;
+    }
+
+    .hero-form-card h2 {
+        font-size: 1.15rem;
+    }
+
+    .hero-admission-form input,
+    .hero-admission-form select {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .highlight-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .section-heading {
+        font-size: 1.25rem !important;
+    }
+
+    .footer-lead .section-heading {
+        font-size: 1.05rem !important;
     }
 }

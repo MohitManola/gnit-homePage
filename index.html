@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1f4379">
     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="images/final-logo-mark.png">
     <title>GN Group of Institutes - Admissions 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,11 +36,12 @@
 
         <div class="nav-menu">
 
-            <!-- <div class="clg-logo">
-                <a href="#home" target="_blank" rel="noopener noreferrer">
-                    <img src="images/gnitcmLogo.jpg" alt="GN Group of Institutes Logo">
+            <div class="clg-logo">
+                <a href="#home">
+                    <img src="images/Final-logo.png" alt="BLK GNIT Group of Institutions" class="logo-full">
+                    <img src="images/final-logo-mark.png" alt="BLK GNIT Group of Institutions" class="logo-mark">
                 </a>
-            </div> -->
+            </div>
 
             <nav class="nav-links">
                 <a href="#home">Home</a>
@@ -73,12 +75,46 @@
 
 
     <section class="hero" id="home">
-        <div class="hero-slider-bg slide-1"></div>
-        <div class="hero-slider-bg slide-2"></div>
-        <div class="hero-slider-bg slide-3"></div>
+        <div class="hero-bg"></div>
         <div class="hero-content">
         </div>
-        <button class="slider-next-btn" onclick="nextHeroSlide()" aria-label="Next hero slide">&#10095;</button>
+        <div class="hero-form-container">
+            <div class="hero-form-card">
+                <p class="modal-kicker">Admissions 2026</p>
+                <h2>Start your application</h2>
+                <p class="modal-description">Share your details and our admissions team will contact you shortly.</p>
+                <form class="hero-admission-form" autocomplete="on">
+                    <label>
+                        Full name
+                        <input type="text" name="hero-name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        Email address
+                        <input type="email" name="hero-email" autocomplete="email" inputmode="email" required>
+                    </label>
+                    <label>
+                        Phone number
+                        <input type="tel" name="hero-phone" autocomplete="tel" inputmode="tel" required>
+                    </label>
+                    <label>
+                        Course of interest
+                        <select name="hero-course" required>
+                            <option value="" selected disabled>Select a course</option>
+                            <option>B.Tech (CSE)</option>
+                            <option>B.Tech (AI & ML)</option>
+                            <option>MBA Elite</option>
+                            <option>BCA</option>
+                            <option>BBA</option>
+                            <option>B.Pharma</option>
+                            <option>D.Pharma</option>
+                            <option>PGDM</option>
+                        </select>
+                    </label>
+                    <button class="admission-submit" type="submit">Submit Enquiry</button>
+                </form>
+                <p class="admission-success" role="status" hidden>Thank you. Our admissions team will contact you soon.</p>
+            </div>
+        </div>
     </section>
 
 
@@ -87,21 +123,20 @@
     <section class="section placements" id="placements">
         <div class="placement-highlights">
             <div class="highlight-card highlight-orange">
-                <h3>1000<span>+</span></h3>
-                <p>Students<br>Placed</p>
+                <h3>6K+<span></span></h3>
+                <p>On Campus<br>Students</p>
             </div>
             <div class="highlight-card highlight-navy">
-                <h3>16<span> LPA</span></h3>
-                <p>Average<br>Package</p>
+                <h3>23K+<span> </span></h3>
+                <p>Alumni<br>Network</p>
             </div>
             <div class="highlight-card highlight-red">
-                <p class="fortune-label">FORTUNE</p>
-                <h3>500<span>+</span></h3>
-                <p>Fortune 500<br>Companies</p>
+                <h3>700+<span></span></h3>
+                <p>Recruiters<br>Top Companies</p>
             </div>
             <div class="highlight-card highlight-teal">
-                <h3>150<span>+</span></h3>
-                <p>MNC<br>Till Date</p>
+                <h3>350+<span></span></h3>
+                <p>Dream Offers<br>Of 9+ lakhs</p>
             </div>
         </div>
 

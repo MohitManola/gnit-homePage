@@ -1,25 +1,3 @@
-// Hero slider
-let currentHeroSlide = 1;
-const totalHeroSlides = 3;
-
-function nextHeroSlide() {
-    const slides = document.querySelectorAll('.hero-slider-bg');
-    slides.forEach((slide) => {
-        slide.classList.add('manual-override');
-        slide.classList.remove('active');
-    });
-
-    currentHeroSlide += 1;
-    if (currentHeroSlide > totalHeroSlides) {
-        currentHeroSlide = 1;
-    }
-
-    const activeSlide = document.querySelector('.hero-slider-bg.slide-' + currentHeroSlide);
-    if (activeSlide) {
-        activeSlide.classList.add('active');
-    }
-}
-
 // Programme carousel (desktop scroll fallback)
 function scrollProgramme(direction) {
     const grid = document.querySelector('#programme-details .courses-grid');
