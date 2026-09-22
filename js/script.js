@@ -1,16 +1,3 @@
-// Programme carousel (desktop scroll fallback)
-function scrollProgramme(direction) {
-    const grid = document.querySelector('#programme-details .courses-grid');
-    const card = grid?.querySelector('.course-card');
-    if (!grid || !card) return;
-
-    const gap = parseFloat(getComputedStyle(grid).gap) || 15;
-    grid.scrollBy({
-        left: direction * (card.offsetWidth + gap),
-        behavior: 'smooth'
-    });
-}
-
 // Campus gallery
 let currentGallerySlide = 0;
 
@@ -39,9 +26,8 @@ function prevGallerySlide() {
 
 // Testimonial slider
 let currentTestimonialIndex = 0;
-let testimonialAutoSlideTimer;
 
-function moveTestimonial(direction, manual = false) {
+function moveTestimonial(direction) {
     const grid = document.getElementById('testimonialGrid');
     if (!grid) return;
 
@@ -49,11 +35,6 @@ function moveTestimonial(direction, manual = false) {
     const isMobile = window.innerWidth <= 768;
     const visibleCards = isMobile ? 1 : 3;
     const maxIndex = cards.length - visibleCards;
-
-    if (manual && testimonialAutoSlideTimer) {
-        clearInterval(testimonialAutoSlideTimer);
-        startTestimonialAutoSlide();
-    }
 
     currentTestimonialIndex += direction;
 
@@ -68,20 +49,26 @@ function moveTestimonial(direction, manual = false) {
     const offset = currentTestimonialIndex * (cardWidth + gap);
     grid.style.transform = `translateX(-${offset}px)`;
 
-    const progress = document.getElementById('testimonialProgress');
-    if (progress) {
-        // progress.textContent = `${String(currentTestimonialIndex + 1).padStart(2, '0')} / ${String(maxIndex + 1).padStart(2, '0')}`;
-    }
+    renderTestimonialProgress();
 }
 
-function startTestimonialAutoSlide() {
-    // no auto-scroll
+function renderTestimonialProgress() {
+    const progress = document.getElementById('testimonialProgress');
+    const grid = document.getElementById('testimonialGrid');
+    if (!progress || !grid) return;
+
+    const cards = grid.querySelectorAll('.test-card');
+    const isMobile = window.innerWidth <= 768;
+    const visibleCards = isMobile ? 1 : 3;
+    const maxIndex = Math.max(cards.length - visibleCards, 0);
+
+    progress.textContent = `${String(currentTestimonialIndex + 1).padStart(2, '0')} / ${String(maxIndex + 1).padStart(2, '0')}`;
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startTestimonialAutoSlide);
+    document.addEventListener('DOMContentLoaded', renderTestimonialProgress);
 } else {
-    startTestimonialAutoSlide();
+    renderTestimonialProgress();
 }
 
 
@@ -191,6 +178,12 @@ function moveIndustrySlider(direction) {
 }
 
 function startIndustryAutoSlide() {
+    // Always clear any existing timer so this is safe to call again on resize
+    if (industryAutoSlideTimer) {
+        clearInterval(industryAutoSlideTimer);
+        industryAutoSlideTimer = undefined;
+    }
+
     if (window.innerWidth <= 768) return; // mobile uses swipe
     if (document.getElementById('industrySliderTrack')) {
         industryAutoSlideTimer = setInterval(moveIndustrySlider, 2000);
@@ -205,7 +198,6 @@ if (document.readyState === 'loading') {
 
 // ===== Mobile Slider: Placement Student Details =====
 let currentStudentIndex = 0;
-let studentAutoSlideTimer;
 
 function moveStudentSlider(direction) {
     if (window.innerWidth > 768) return;
@@ -218,12 +210,6 @@ function moveStudentSlider(direction) {
 
     const totalCards = cards.length;
 
-    // If called from button, reset auto-slide
-    if (direction !== undefined && studentAutoSlideTimer) {
-        clearInterval(studentAutoSlideTimer);
-        startStudentAutoSlide();
-    }
-
     if (direction !== undefined) {
         currentStudentIndex += direction;
     }
@@ -235,8 +221,12 @@ function moveStudentSlider(direction) {
     }
 
     const cardWidth = cards[0].offsetWidth;
+    const cardStyle = window.getComputedStyle(cards[0]);
+    const leftMargin = parseFloat(cardStyle.marginLeft) || 0;
+    const rightMargin = parseFloat(cardStyle.marginRight) || 0;
     const gap = parseFloat(window.getComputedStyle(track).gap) || 14;
-    const offset = currentStudentIndex * (cardWidth + gap);
+    const step = cardWidth + leftMargin + rightMargin + gap;
+    const offset = currentStudentIndex * step;
     track.style.transform = `translateX(-${offset}px)`;
 
     // Update progress counter
@@ -250,10 +240,15 @@ function startStudentAutoSlide() {
     const track = document.getElementById('studentSliderTrack');
     if (!track) return;
 
-    if (studentAutoSlideTimer) clearInterval(studentAutoSlideTimer);
     if (window.innerWidth <= 768) {
         currentStudentIndex = 0;
         track.style.transform = `translateX(0px)`;
+
+        const progress = document.getElementById('studentProgress');
+        if (progress) {
+            const total = track.querySelectorAll('.student-card').length;
+            progress.textContent = `01 / ${String(total).padStart(2, '0')}`;
+        }
     } else {
         track.style.transform = '';
     }
@@ -261,7 +256,6 @@ function startStudentAutoSlide() {
 
 // ===== Mobile Slider: Programme Details (Courses Grid) =====
 let currentCourseIndex = 0;
-let courseAutoSlideTimer;
 
 function moveCourseSlider(direction) {
     if (window.innerWidth > 768) return;
@@ -274,12 +268,6 @@ function moveCourseSlider(direction) {
 
     const totalCards = cards.length;
 
-    // If called from button, reset auto-slide
-    if (direction !== undefined && courseAutoSlideTimer) {
-        clearInterval(courseAutoSlideTimer);
-        startCourseAutoSlide();
-    }
-
     if (direction !== undefined) {
         currentCourseIndex += direction;
     }
@@ -291,8 +279,12 @@ function moveCourseSlider(direction) {
     }
 
     const cardWidth = cards[0].offsetWidth;
+    const cardStyle = window.getComputedStyle(cards[0]);
+    const leftMargin = parseFloat(cardStyle.marginLeft) || 0;
+    const rightMargin = parseFloat(cardStyle.marginRight) || 0;
     const gap = parseFloat(window.getComputedStyle(track).gap) || 14;
-    const offset = currentCourseIndex * (cardWidth + gap);
+    const step = cardWidth + leftMargin + rightMargin + gap;
+    const offset = currentCourseIndex * step;
     track.style.transform = `translateX(-${offset}px)`;
 
     // Update progress counter
@@ -306,10 +298,15 @@ function startCourseAutoSlide() {
     const track = document.getElementById('courseSliderTrack');
     if (!track) return;
 
-    if (courseAutoSlideTimer) clearInterval(courseAutoSlideTimer);
     if (window.innerWidth <= 768) {
         currentCourseIndex = 0;
         track.style.transform = `translateX(0px)`;
+
+        const progress = document.getElementById('courseProgress');
+        if (progress) {
+            const total = track.querySelectorAll('.course-card').length;
+            progress.textContent = `01 / ${String(total).padStart(2, '0')}`;
+        }
     } else {
         track.style.transform = '';
     }
@@ -331,6 +328,17 @@ window.addEventListener('resize', () => {
     currentTestimonialIndex = 0;
     const grid = document.getElementById('testimonialGrid');
     if (grid) grid.style.transform = 'translateX(0px)';
+    renderTestimonialProgress();
+
+    // Approval slider: clear the mobile translate so the wrapped desktop row isn't left shifted
+    resetApprovalSlider();
+
+    // Industry slider: restart auto-slide when crossing the mobile/desktop breakpoint
+    currentIndustryIndex = 0;
+    const industryTrack = document.getElementById('industrySliderTrack');
+    if (industryTrack) industryTrack.style.transform = '';
+    startIndustryAutoSlide();
+
     startStudentAutoSlide();
     startCourseAutoSlide();
 });
@@ -376,6 +384,18 @@ if (document.readyState === 'loading') {
 
 // ===== Mobile Slider: Approvals & Recognitions =====
 let currentApprovalIndex = 0;
+
+function resetApprovalSlider() {
+    currentApprovalIndex = 0;
+    const track = document.getElementById('approvalSliderTrack');
+    if (track) track.style.transform = '';
+
+    const progress = document.getElementById('approvalProgress');
+    const cards = track ? track.querySelectorAll('.approval-image-box') : [];
+    if (progress && cards.length) {
+        progress.textContent = `01 / ${String(cards.length).padStart(2, '0')}`;
+    }
+}
 
 function moveApprovalSlider(direction) {
     if (window.innerWidth > 768) return;
@@ -518,6 +538,37 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSwipeSupport);
 } else {
     initSwipeSupport();
+}
+
+// ===== Mobile Topbar: same logic as desktop =====
+// The navbar is position: fixed on mobile, which would cover the in-flow topbar.
+// At the top of the page the navbar sits directly below the topbar; as the user
+// scrolls it releases to top: 0 — exactly mirroring desktop sticky behaviour.
+function initMobileTopbar() {
+    const topbar = document.querySelector('.topbar');
+    const navbar = document.querySelector('.navbar');
+    if (!topbar || !navbar) return;
+
+    function updateTopbarOffset() {
+        if (window.innerWidth > 768) {
+            // Desktop: navbar is position: sticky — remove any mobile override
+            if (navbar.style.top) navbar.style.top = '';
+            return;
+        }
+
+        const topbarHeight = topbar.offsetHeight;
+        navbar.style.top = `${Math.max(0, topbarHeight - window.scrollY)}px`;
+    }
+
+    window.addEventListener('scroll', updateTopbarOffset, { passive: true });
+    window.addEventListener('resize', updateTopbarOffset);
+    updateTopbarOffset();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileTopbar);
+} else {
+    initMobileTopbar();
 }
 
 // ===== Mobile Nav: Close sidebar when a nav link is clicked =====

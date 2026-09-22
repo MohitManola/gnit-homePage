@@ -148,6 +148,12 @@ img {
     display: none;
 }
 
+.mobile-header-left,
+.mobile-brand,
+.mobile-brand-collage {
+    display: none;
+}
+
 .sidebar-overlay {
     display: none;
 }
@@ -1904,8 +1910,7 @@ img {
     margin: 0 auto;
 }
 
-#appinventiv-logo {
-    
+.appinventiv-logo {
     transform: scale(1.2);
     margin-left: 30px;
 }
