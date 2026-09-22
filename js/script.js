@@ -519,3 +519,24 @@ if (document.readyState === 'loading') {
 } else {
     initSwipeSupport();
 }
+
+// ===== Mobile Nav: Close sidebar when a nav link is clicked =====
+function initMobileNavClose() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (!menuToggle) return;
+
+    const navLinks = document.querySelectorAll('.nav-close-link');
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            if (menuToggle.checked) {
+                menuToggle.checked = false;
+            }
+        });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileNavClose);
+} else {
+    initMobileNavClose();
+}

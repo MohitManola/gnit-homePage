@@ -1090,18 +1090,36 @@
 
     .nav-menu .clg-logo {
         width: 100%;
-        margin: 0 auto 18px;
+        margin: 0 auto 12px;
         justify-content: center;
     }
 
+    .mobile-topbar-strip {
+        width: 100%;
+        background: #f9c004;
+        border-radius: 8px;
+        padding: 8px 12px;
+        margin-bottom: 18px;
+        text-align: center;
+    }
+
+    .mobile-topbar-strip p {
+        font-size: 11px;
+        font-weight: 700;
+        color: #1f4379;
+        margin: 0;
+        letter-spacing: 0.02em;
+    }
+
     .nav-menu .clg-logo .logo-full {
-        display: none;
+        display: block;
+        height: 56px;
+        width: auto;
+        filter: brightness(0) invert(1);
     }
 
     .nav-menu .clg-logo .logo-mark {
-        display: block;
-        height: 80px;
-        width: auto;
+        display: none;
     }
 
     .menu-toggle:checked ~ .nav-menu {

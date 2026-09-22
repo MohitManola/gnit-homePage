@@ -134,9 +134,20 @@ img {
 
 .clg-logo img {
     display: block;
-    height: 40px;
+    height: 52px;
     width: auto;
     object-fit: contain;
+}
+
+.nav-menu .clg-logo .logo-full {
+    display: block;
+    height: 56px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.nav-menu .clg-logo .logo-mark {
+    display: none;
 }
 
 .clg-logo .logo-mark {
@@ -149,6 +160,11 @@ img {
 }
 
 .sidebar-overlay {
+    display: none;
+}
+
+/* Hidden on desktop, only visible inside mobile sidebar */
+.mobile-topbar-strip {
     display: none;
 }
 
