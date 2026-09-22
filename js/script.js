@@ -113,9 +113,13 @@ function initAdmissionModal() {
         button.addEventListener('click', () => {
             isAutoOpened = false;
             lastFocusedElement = button;
-            form.hidden = false;
-            success.hidden = true;
-            form.reset();
+            if (form) {
+                form.hidden = false;
+                form.reset();
+            }
+            if (success) {
+                success.hidden = true;
+            }
             modal.hidden = false;
             document.body.classList.add('modal-open');
             modal.querySelector('input')?.focus();
@@ -128,11 +132,13 @@ function initAdmissionModal() {
         if (event.key === 'Escape' && !modal.hidden) closeModal();
     });
 
-    form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        form.hidden = true;
-        success.hidden = false;
-    });
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form.hidden = true;
+            if (success) success.hidden = false;
+        });
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -312,10 +318,50 @@ function startCourseAutoSlide() {
     }
 }
 
+// ===== Auto-slide timers (3 seconds) for all mobile sliders =====
+let studentAutoTimer, courseAutoTimer, approvalAutoTimer, testimonialAutoTimer, galleryAutoTimer;
+const AUTO_SLIDE_INTERVAL = 3000;
+
+function clearAllAutoTimers() {
+    clearInterval(studentAutoTimer);
+    clearInterval(courseAutoTimer);
+    clearInterval(approvalAutoTimer);
+    clearInterval(testimonialAutoTimer);
+    clearInterval(galleryAutoTimer);
+    studentAutoTimer = courseAutoTimer = approvalAutoTimer = testimonialAutoTimer = galleryAutoTimer = undefined;
+}
+
+function startAllAutoSliders() {
+    clearAllAutoTimers();
+
+    if (window.innerWidth > 768) return; // only auto-slide on mobile
+
+    studentAutoTimer = setInterval(function () {
+        moveStudentSlider(1);
+    }, AUTO_SLIDE_INTERVAL);
+
+    courseAutoTimer = setInterval(function () {
+        moveCourseSlider(1);
+    }, AUTO_SLIDE_INTERVAL);
+
+    approvalAutoTimer = setInterval(function () {
+        moveApprovalSlider(1);
+    }, AUTO_SLIDE_INTERVAL);
+
+    testimonialAutoTimer = setInterval(function () {
+        moveTestimonial(1);
+    }, AUTO_SLIDE_INTERVAL);
+
+    galleryAutoTimer = setInterval(function () {
+        nextGallerySlide();
+    }, AUTO_SLIDE_INTERVAL);
+}
+
 // Init mobile sliders
 function initMobileSliders() {
     startStudentAutoSlide();
     startCourseAutoSlide();
+    startAllAutoSliders();
 }
 
 if (document.readyState === 'loading') {
@@ -341,6 +387,9 @@ window.addEventListener('resize', () => {
 
     startStudentAutoSlide();
     startCourseAutoSlide();
+
+    // Restart auto-slide timers based on new viewport
+    startAllAutoSliders();
 });
 
 // Affiliation Slider

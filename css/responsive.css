@@ -93,10 +93,15 @@
 
     .mobile-brand img {
         display: block;
-        height: 32px;
+        height: 36px;
         width: auto;
-        max-width: 145px;
+        max-width: 160px;
         object-fit: contain;
+    }
+
+    /* Logo inside sidebar — increased size */
+    .nav-menu .clg-logo .logo-full {
+        height: 64px;
     }
 
     .hamburger {
@@ -1188,7 +1193,7 @@
 
     .nav-menu .clg-logo .logo-full {
         display: block;
-        height: 56px;
+        height: 64px;
         width: auto;
         filter: brightness(0) invert(1);
     }

@@ -643,13 +643,13 @@ img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     pointer-events: none;
 }
 
 .highlight-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
 }
 
 .highlight-card h3 {
@@ -1725,13 +1725,13 @@ img {
 .admission-modal-card {
     position: relative;
     z-index: 1;
-    width: min(100%, 500px);
+    width: min(100%, 400px);
     max-height: min(92dvh, 720px);
     overflow: hidden;
     padding: 0;
     border: none;
     border-radius: 24px;
-    background: transparent;
+    background: var(--primary-blue);
     color: var(--text-dark);
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
     animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -1881,7 +1881,7 @@ img {
     border-radius: 8px;
     padding: 10px;
     background: #ffffff;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
     align-items: center;
