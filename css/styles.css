@@ -129,7 +129,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
+    margin-left: 10px;
 }
 
 .clg-logo img {

@@ -334,6 +334,10 @@ function clearAllAutoTimers() {
 function startAllAutoSliders() {
     clearAllAutoTimers();
 
+    testimonialAutoTimer = setInterval(function () {
+        moveTestimonial(1);
+    }, AUTO_SLIDE_INTERVAL);
+
     if (window.innerWidth > 768) return; // only auto-slide on mobile
 
     studentAutoTimer = setInterval(function () {
@@ -346,10 +350,6 @@ function startAllAutoSliders() {
 
     approvalAutoTimer = setInterval(function () {
         moveApprovalSlider(1);
-    }, AUTO_SLIDE_INTERVAL);
-
-    testimonialAutoTimer = setInterval(function () {
-        moveTestimonial(1);
     }, AUTO_SLIDE_INTERVAL);
 
     galleryAutoTimer = setInterval(function () {
