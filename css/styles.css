@@ -137,6 +137,8 @@ img {
     height: 52px;
     width: auto;
     object-fit: contain;
+    transform: scale(1.5);
+    transform-origin: left center;
 }
 
 .clg-logo .logo-mark {
@@ -159,7 +161,8 @@ img {
 }
 
 /* Hidden on desktop, only visible inside mobile sidebar */
-.mobile-topbar-strip {
+.mobile-topbar-strip,
+.close-sidebar-btn {
     display: none;
 }
 
