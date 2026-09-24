@@ -231,6 +231,13 @@ img {
 
 }
 
+/* Whole call row is one tappable link (icon + number side by side) */
+.contact-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .contact-info a {
     color: var(--text-dark);
     text-decoration: none;

@@ -321,6 +321,11 @@ function startCourseAutoSlide() {
 // ===== Auto-slide timers (3 seconds) for all mobile sliders =====
 let studentAutoTimer, courseAutoTimer, approvalAutoTimer, testimonialAutoTimer, galleryAutoTimer;
 const AUTO_SLIDE_INTERVAL = 3000;
+// Pause while the user touches a slider (or holds the page hidden) so
+// auto-advance never fights the swipe gesture.
+let slidersPaused = false;
+
+const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function clearAllAutoTimers() {
     clearInterval(studentAutoTimer);
@@ -333,6 +338,9 @@ function clearAllAutoTimers() {
 
 function startAllAutoSliders() {
     clearAllAutoTimers();
+
+    if (slidersPaused) return; // paused by touch or hidden tab
+    if (prefersReducedMotion && prefersReducedMotion.matches) return; // a11y
 
     testimonialAutoTimer = setInterval(function () {
         moveTestimonial(1);
@@ -355,6 +363,61 @@ function startAllAutoSliders() {
     galleryAutoTimer = setInterval(function () {
         nextGallerySlide();
     }, AUTO_SLIDE_INTERVAL);
+}
+
+// Pause auto-advance while the user is actively touching any slider track
+function initSliderPauseOnTouch() {
+    const tracks = [
+        'studentSliderTrack', 'courseSliderTrack', 'approvalSliderTrack',
+        'testimonialGrid', 'industrySliderTrack',
+    ];
+
+    tracks.forEach((trackId) => {
+        const track = document.getElementById(trackId);
+        if (!track) return;
+
+        track.addEventListener('touchstart', () => {
+            slidersPaused = true;
+            clearAllAutoTimers();
+        }, { passive: true });
+
+        track.addEventListener('touchend', () => {
+            slidersPaused = false;
+            startAllAutoSliders();
+        }, { passive: true });
+
+        track.addEventListener('touchcancel', () => {
+            slidersPaused = false;
+            startAllAutoSliders();
+        }, { passive: true });
+    });
+
+    // Battery/tab-visibility: don't advance sliders the user can't see
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            slidersPaused = true;
+            clearAllAutoTimers();
+        } else {
+            slidersPaused = false;
+            startAllAutoSliders();
+        }
+    });
+
+    // React live if the user toggles reduced motion
+    if (prefersReducedMotion) {
+        const onMotionPrefChange = () => startAllAutoSliders();
+        if (prefersReducedMotion.addEventListener) {
+            prefersReducedMotion.addEventListener('change', onMotionPrefChange);
+        } else if (prefersReducedMotion.addListener) {
+            prefersReducedMotion.addListener(onMotionPrefChange);
+        }
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSliderPauseOnTouch);
+} else {
+    initSliderPauseOnTouch();
 }
 
 // Init mobile sliders
@@ -620,7 +683,7 @@ if (document.readyState === 'loading') {
     initMobileTopbar();
 }
 
-// ===== Mobile Nav: Close sidebar when a nav link is clicked =====
+// ===== Mobile Nav: close on link tap, lock page scroll, support Escape =====
 function initMobileNavClose() {
     const menuToggle = document.getElementById('menu-toggle');
     if (!menuToggle) return;
@@ -633,6 +696,23 @@ function initMobileNavClose() {
             }
         });
     });
+
+    // Lock the page behind the drawer so the background cannot scroll under it.
+    function syncNavState() {
+        document.body.classList.toggle('nav-open', menuToggle.checked && window.innerWidth <= 768);
+    }
+
+    menuToggle.addEventListener('change', syncNavState);
+    window.addEventListener('resize', syncNavState);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && menuToggle.checked) {
+            menuToggle.checked = false;
+            syncNavState();
+        }
+    });
+
+    syncNavState();
 }
 
 if (document.readyState === 'loading') {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#1f4379">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" href="images/final-logo-mark.png">
@@ -13,8 +13,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/styles.css?v=11">
+    <link rel="stylesheet" href="css/responsive.css?v=11">
 </head>
 
 <body>
@@ -22,6 +22,20 @@
 
     <div class="topbar">
         <p>Admissions Open</p>
+    </div>
+
+    <!-- Sticky mobile apply bar: fixed above the footer, hidden on desktop -->
+    <div class="mobile-cta-bar">
+        <a href="tel:9882827474" class="cta-call" aria-label="Call admissions office">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-phone-icon lucide-phone">
+                <path
+                    d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+            </svg>
+            <span>Call</span>
+        </a>
+        <button class="cta-apply" type="button" data-open-admission-modal>Apply Now</button>
     </div>
 
 
@@ -65,23 +79,16 @@
                 <a href="#top-recruiters" class="nav-close-link">Top Recruiters</a>
             </nav>
             <div class="contact-info">
-                <span>
+                <!-- Whole row is tappable; the empty mail icon that led nowhere was removed. -->
+                <a class="contact-call" href="tel:9882827474" aria-label="Call admissions office at 9882827474">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-phone-icon lucide-phone">
+                        class="lucide lucide-phone-icon lucide-phone" aria-hidden="true">
                         <path
                             d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
                     </svg>
-
-                    <a href="tel:9882827474">9882827474</a>
-
-                </span>
-                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-mail-icon lucide-mail">
-                        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-                        <rect x="2" y="4" width="20" height="16" rx="2" />
-                    </svg></span>
+                    <span>9882827474</span>
+                </a>
             </div>
         </div>
         <label for="menu-toggle" class="sidebar-overlay" aria-label="Close navigation menu"></label>
@@ -314,35 +321,35 @@
         <div class="course-slider-overflow">
             <div class="courses-grid" id="courseSliderTrack">
                 <div class="course-card">
-                    <img src="images/cource/M.png" alt="Course">
+                    <img src="images/cource/M.png" alt="MBA Elite course" loading="lazy">
                     <p>MBA Elite</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/btech_CSE.png" alt="Course">
+                    <img src="images/cource/btech_CSE.png" alt="B.Tech CSE course" loading="lazy">
                     <p>B.Tech CSE</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/AIML.png" alt="Course">
+                    <img src="images/cource/AIML.png" alt="B.Tech AI &amp; ML course" loading="lazy">
                     <p>B.Tech AI &amp; ML</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/bpharma.png" alt="Course">
+                    <img src="images/cource/bpharma.png" alt="B.Pharma course" loading="lazy">
                     <p>B.Pharma</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/dPharma.png" alt="Course">
+                    <img src="images/cource/dPharma.png" alt="D.Pharma course" loading="lazy">
                     <p>D.Pharma</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/bca.png" alt="Course">
+                    <img src="images/cource/bca.png" alt="BCA course" loading="lazy">
                     <p>BCA</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/bba.png" alt="Course">
+                    <img src="images/cource/bba.png" alt="BBA course" loading="lazy">
                     <p>BBA</p>
                 </div>
                 <div class="course-card">
-                    <img src="images/cource/PGDM.png" alt="Course">
+                    <img src="images/cource/PGDM.png" alt="PGDM course" loading="lazy">
                     <p>PGDM</p>
                 </div>
             </div>
@@ -423,7 +430,7 @@
                 <!-- Loads mobile banner on screens smaller than 768px -->
                 <source media="(max-width: 768px)" srcset="images/microsoftBanner.jpg">
                 <!-- Loads desktop banner on larger screens -->
-                <img src="images/microsoftBanner.jpg" alt="Microsoft Center of Excellence AI@GNGROUP"
+                <img src="images/microsoftBanner.jpg" alt="Microsoft Center of Excellence AI@GNGROUP" loading="lazy"
                     style="width: 100%; height: auto; display: block;">
             </picture>
         </div>
@@ -464,30 +471,30 @@
                     <div class="gallery-slide active">
                         <div class="collage-layout">
                             <img src="images/life of GN/60.jpeg" alt="Life at GN 1" class="img-1">
-                            <img src="images/life of GN/12.jpg" alt="Life at GN 2" class="img-2">
-                            <img src="images/life of GN/15.jpg" alt="Life at GN 3" class="img-3">
-                            <img src="images/life of GN/16.jpg" alt="Life at GN 4" class="img-4">
-                            <img src="images/life of GN/133.jpg" alt="Life at GN 5" class="img-5">
+                            <img src="images/life of GN/12.jpg" alt="Life at GN 2" loading="lazy" class="img-2">
+                            <img src="images/life of GN/15.jpg" alt="Life at GN 3" loading="lazy" class="img-3">
+                            <img src="images/life of GN/16.jpg" alt="Life at GN 4" loading="lazy" class="img-4">
+                            <img src="images/life of GN/133.jpg" alt="Life at GN 5" loading="lazy" class="img-5">
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="gallery-slide">
                         <div class="collage-layout">
-                            <img src="images/life of GN/IMG_7418.JPG" alt="Life at GN 6" class="img-1">
-                            <img src="images/life of GN/IMG_7934.JPG" alt="Life at GN 7" class="img-2">
-                            <img src="images/life of GN/IMG_8446.JPG" alt="Life at GN 8" class="img-3">
-                            <img src="images/life of GN/IMG_8026.JPG" alt="Life at GN 9" class="img-4">
-                            <img src="images/life of GN/IMG_7717.JPG" alt="Life at GN 10" class="img-5">
+                            <img src="images/life of GN/IMG_7418.JPG" alt="Life at GN 6" loading="lazy" class="img-1">
+                            <img src="images/life of GN/IMG_7934.JPG" alt="Life at GN 7" loading="lazy" class="img-2">
+                            <img src="images/life of GN/IMG_8446.JPG" alt="Life at GN 8" loading="lazy" class="img-3">
+                            <img src="images/life of GN/IMG_8026.JPG" alt="Life at GN 9" loading="lazy" class="img-4">
+                            <img src="images/life of GN/IMG_7717.JPG" alt="Life at GN 10" loading="lazy" class="img-5">
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="gallery-slide">
                         <div class="collage-layout">
-                            <img src="images/life of GN/2.jpg" alt="Life at GN 11" class="img-1">
-                            <img src="images/life of GN/3.jpeg" alt="Life at GN 12" class="img-2">
-                            <img src="images/life of GN/4.jpeg" alt="Life at GN 13" class="img-3">
-                            <img src="images/life of GN/5.jpeg" alt="Life at GN 14" class="img-4">
-                            <img src="images/life of GN/59.jpg" alt="Life at GN 15" class="img-5">
+                            <img src="images/life of GN/2.jpg" alt="Life at GN 11" loading="lazy" class="img-1">
+                            <img src="images/life of GN/3.jpeg" alt="Life at GN 12" loading="lazy" class="img-2">
+                            <img src="images/life of GN/4.jpeg" alt="Life at GN 13" loading="lazy" class="img-3">
+                            <img src="images/life of GN/5.jpeg" alt="Life at GN 14" loading="lazy" class="img-4">
+                            <img src="images/life of GN/59.jpg" alt="Life at GN 15" loading="lazy" class="img-5">
                         </div>
                     </div>
                 </div>
@@ -517,22 +524,22 @@
             <div class="test-slider-overflow">
                 <div class="test-grid" id="testimonialGrid">
                     <div class="test-card">
-                        <img src="images/test/77.jpg" alt="Testimonial">
+                        <img src="images/test/77.jpg" alt="Testimonial" loading="lazy">
                     </div>
                     <div class="test-card">
-                        <img src="images/test/78.jpg" alt="Testimonial">
+                        <img src="images/test/78.jpg" alt="Testimonial" loading="lazy">
                     </div>
                     <div class="test-card">
-                        <img src="images/test/79.jpg" alt="Testimonial">
+                        <img src="images/test/79.jpg" alt="Testimonial" loading="lazy">
                     </div>
                     <div class="test-card">
-                        <img src="images/test/80.jpg" alt="Testimonial">
+                        <img src="images/test/80.jpg" alt="Testimonial" loading="lazy">
                     </div>
                     <div class="test-card">
-                        <img src="images/test/81.jpg" alt="Testimonial">
+                        <img src="images/test/81.jpg" alt="Testimonial" loading="lazy">
                     </div>
                     <div class="test-card">
-                        <img src="images/test/82.jpg" alt="Testimonial">
+                        <img src="images/test/82.jpg" alt="Testimonial" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -567,17 +574,17 @@
             <div class="part1">
                 <button class="red-btn" type="button" data-open-admission-modal>Tuition Fee</button>
                 <button class="red-btn" type="button" data-open-admission-modal>Download Brochure</button>
-                <img src="images/bus.jpg" alt="Library" data-open-admission-modal style="cursor: pointer;">
+                <img src="images/bus.jpg" alt="College bus fleet" loading="lazy" data-open-admission-modal style="cursor: pointer;">
             </div>
 
             <div class="part2">
                 <button class="red-btn" type="button" data-open-admission-modal>Transport Fees</button>
                 <button class="red-btn" type="button" data-open-admission-modal>Hostel Fees</button>
-                <img src="images/lib.jpg" alt="Library" data-open-admission-modal style="cursor: pointer;">
+                <img src="images/lib.jpg" alt="Central library" loading="lazy" data-open-admission-modal style="cursor: pointer;">
             </div>
 
             <div class="part3">
-                <img src="images/hostel.jpg" alt="Hostel" data-open-admission-modal style="cursor: pointer;">
+                <img src="images/hostel.jpg" alt="Hostel room" loading="lazy" data-open-admission-modal style="cursor: pointer;">
             </div>
         </div>
     </section>
@@ -589,7 +596,7 @@
             <button class="apply-now-btn" type="button" data-open-admission-modal>Apply Now</button>
 
             <div class="footer-info">
-                <img src="images/revised-logo-PNG.png" alt="BLKGNIT Group of Institutions"
+                <img src="images/revised-logo-PNG.png" alt="BLKGNIT Group of Institutions" class="footer-logo"
                     style="height: 60px; margin-bottom: 10px;">
                 <p>BLKGNIT Group Of Institutions<br>Plot No. 6C, Knowledge Park 2, Greater Noida (Delhi NCR), 201310,
                     India</p>
@@ -616,7 +623,7 @@
         </div>
     </div>
 
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js?v=11" defer></script>
 
     <!-- LeadX Form Integration -->
     <script>
