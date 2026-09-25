@@ -38,9 +38,13 @@
 
     html,
     body {
-        overflow-x: hidden;
+        overflow-x: clip;
         width: 100%;
         max-width: 100vw;
+    }
+
+    .hero {
+        margin-top: 46px;
     }
 
     .section {
@@ -143,20 +147,20 @@
         transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease, background 0.2s ease;
     }
 
-    .menu-toggle:checked + .mobile-header-left .hamburger {
+    .menu-toggle:checked+.mobile-header-left .hamburger {
         background: rgba(249, 192, 4, 0.14);
         box-shadow: 0 8px 20px rgba(249, 192, 4, 0.15);
     }
 
-    .menu-toggle:checked + .mobile-header-left .hamburger span:nth-child(1) {
+    .menu-toggle:checked+.mobile-header-left .hamburger span:nth-child(1) {
         transform: translateY(8.5px) rotate(45deg);
     }
 
-    .menu-toggle:checked + .mobile-header-left .hamburger span:nth-child(2) {
+    .menu-toggle:checked+.mobile-header-left .hamburger span:nth-child(2) {
         opacity: 0;
     }
 
-    .menu-toggle:checked + .mobile-header-left .hamburger span:nth-child(3) {
+    .menu-toggle:checked+.mobile-header-left .hamburger span:nth-child(3) {
         transform: translateY(-8.5px) rotate(-45deg);
     }
 
@@ -237,6 +241,14 @@
     .hero-form-container {
         display: none;
     }
+
+    .mobile-hero-form {
+        display: block;
+        padding: 10px 16px 90px;
+        position: relative;
+        z-index: 5;
+    }
+
 
     .hero-form-card {
         padding: 0;
@@ -1186,8 +1198,8 @@
         height: 64px;
         width: auto;
         max-width: 100%;
-        transform: none; /* undo desktop navbar scale(1.5) that overflowed the sidebar */
-        filter: brightness(0) invert(1);
+        transform: none;
+        /* undo desktop navbar scale(1.5) that overflowed the sidebar */
     }
 
     .nav-menu .clg-logo .logo-mark {
@@ -1856,7 +1868,8 @@
         left: 12px;
         right: 12px;
         bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-        z-index: 999; /* below navbar/menu/overlay so the nav sits on top */
+        z-index: 999;
+        /* below navbar/menu/overlay so the nav sits on top */
         display: flex;
         align-items: stretch;
         gap: 10px;
@@ -2077,6 +2090,7 @@
 
 /* ---- 16px inputs prevent iOS Safari focus zoom ---- */
 @media (max-width: 768px) {
+
     .admission-modal-form input,
     .admission-modal-form select,
     .enquiry-form input,

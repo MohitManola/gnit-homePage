@@ -1,4 +1,4 @@
-// Campus gallery
+﻿// Campus gallery
 let currentGallerySlide = 0;
 
 function updateGallerySlides() {
@@ -31,48 +31,22 @@ function moveTestimonial(direction) {
     const grid = document.getElementById('testimonialGrid');
     if (!grid) return;
 
-    if (!grid.dataset.cloned) {
-        const cards = Array.from(grid.querySelectorAll('.test-card'));
-        grid.dataset.realCount = cards.length;
-        cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('clone');
-            clone.setAttribute('aria-hidden', 'true');
-            grid.appendChild(clone);
-        });
-        grid.dataset.cloned = 'true';
-    }
-
-    const realCount = parseInt(grid.dataset.realCount);
     const cards = grid.querySelectorAll('.test-card');
-    
-    if (realCount === 0) return;
+    const isMobile = window.innerWidth <= 768;
+    const visibleCards = isMobile ? 1 : 3;
+    const maxIndex = cards.length - visibleCards;
+
+    currentTestimonialIndex += direction;
+
+    if (currentTestimonialIndex < 0) {
+        currentTestimonialIndex = maxIndex;
+    } else if (currentTestimonialIndex > maxIndex) {
+        currentTestimonialIndex = 0;
+    }
 
     const cardWidth = cards[0].offsetWidth;
     const gap = parseFloat(window.getComputedStyle(grid).gap) || 40;
-    const step = cardWidth + gap;
-
-    if (direction !== undefined) {
-        if (currentTestimonialIndex >= realCount && direction === 1) {
-            grid.style.transition = 'none';
-            grid.style.transform = `translateX(0px)`;
-            grid.offsetHeight;
-            grid.style.transition = '';
-            currentTestimonialIndex = 0;
-        }
-
-        currentTestimonialIndex += direction;
-
-        if (currentTestimonialIndex < 0) {
-            grid.style.transition = 'none';
-            grid.style.transform = `translateX(-${realCount * step}px)`;
-            grid.offsetHeight;
-            grid.style.transition = '';
-            currentTestimonialIndex = realCount - 1;
-        }
-    }
-
-    const offset = currentTestimonialIndex * step;
+    const offset = currentTestimonialIndex * (cardWidth + gap);
     grid.style.transform = `translateX(-${offset}px)`;
 
     renderTestimonialProgress();
@@ -83,11 +57,12 @@ function renderTestimonialProgress() {
     const grid = document.getElementById('testimonialGrid');
     if (!progress || !grid) return;
 
-    const realCount = grid.dataset.realCount ? parseInt(grid.dataset.realCount) : grid.querySelectorAll('.test-card').length;
-    if (realCount === 0) return;
+    const cards = grid.querySelectorAll('.test-card');
+    const isMobile = window.innerWidth <= 768;
+    const visibleCards = isMobile ? 1 : 3;
+    const maxIndex = Math.max(cards.length - visibleCards, 0);
 
-    let displayIndex = currentTestimonialIndex === realCount ? 0 : currentTestimonialIndex;
-    progress.textContent = `${String(displayIndex + 1).padStart(2, '0')} / ${String(realCount).padStart(2, '0')}`;
+    progress.textContent = `${String(currentTestimonialIndex + 1).padStart(2, '0')} / ${String(maxIndex + 1).padStart(2, '0')}`;
 }
 
 if (document.readyState === 'loading') {
@@ -236,22 +211,20 @@ function moveStudentSlider(direction) {
     const track = document.getElementById('studentSliderTrack');
     if (!track) return;
 
-    if (!track.dataset.cloned) {
-        const cards = Array.from(track.querySelectorAll('.student-card'));
-        track.dataset.realCount = cards.length;
-        cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('clone');
-            clone.setAttribute('aria-hidden', 'true');
-            track.appendChild(clone);
-        });
-        track.dataset.cloned = 'true';
+    const cards = track.querySelectorAll('.student-card');
+    if (cards.length === 0) return;
+
+    const totalCards = cards.length;
+
+    if (direction !== undefined) {
+        currentStudentIndex += direction;
     }
 
-    const realCount = parseInt(track.dataset.realCount);
-    const cards = track.querySelectorAll('.student-card');
-    
-    if (realCount === 0) return;
+    if (currentStudentIndex < 0) {
+        currentStudentIndex = totalCards - 1;
+    } else if (currentStudentIndex >= totalCards) {
+        currentStudentIndex = 0;
+    }
 
     const cardWidth = cards[0].offsetWidth;
     const cardStyle = window.getComputedStyle(cards[0]);
@@ -259,35 +232,13 @@ function moveStudentSlider(direction) {
     const rightMargin = parseFloat(cardStyle.marginRight) || 0;
     const gap = parseFloat(window.getComputedStyle(track).gap) || 14;
     const step = cardWidth + leftMargin + rightMargin + gap;
-
-    if (direction !== undefined) {
-        if (currentStudentIndex >= realCount && direction === 1) {
-            track.style.transition = 'none';
-            track.style.transform = `translateX(0px)`;
-            track.offsetHeight;
-            track.style.transition = '';
-            currentStudentIndex = 0;
-        }
-
-        currentStudentIndex += direction;
-
-        if (currentStudentIndex < 0) {
-            track.style.transition = 'none';
-            track.style.transform = `translateX(-${realCount * step}px)`;
-            track.offsetHeight;
-            track.style.transition = '';
-            currentStudentIndex = realCount - 1;
-        }
-    }
-
     const offset = currentStudentIndex * step;
     track.style.transform = `translateX(-${offset}px)`;
 
     // Update progress counter
     const progress = document.getElementById('studentProgress');
     if (progress) {
-        let displayIndex = currentStudentIndex === realCount ? 0 : currentStudentIndex;
-        progress.textContent = `${String(displayIndex + 1).padStart(2, '0')} / ${String(realCount).padStart(2, '0')}`;
+        progress.textContent = `${String(currentStudentIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
     }
 }
 
@@ -297,15 +248,12 @@ function startStudentAutoSlide() {
 
     if (window.innerWidth <= 768) {
         currentStudentIndex = 0;
-        track.style.transition = 'none';
         track.style.transform = `translateX(0px)`;
-        track.offsetHeight;
-        track.style.transition = '';
 
         const progress = document.getElementById('studentProgress');
         if (progress) {
-            const realCount = track.dataset.realCount ? parseInt(track.dataset.realCount) : track.querySelectorAll('.student-card').length;
-            progress.textContent = `01 / ${String(realCount).padStart(2, '0')}`;
+            const total = track.querySelectorAll('.student-card').length;
+            progress.textContent = `01 / ${String(total).padStart(2, '0')}`;
         }
     } else {
         track.style.transform = '';
@@ -321,22 +269,20 @@ function moveCourseSlider(direction) {
     const track = document.getElementById('courseSliderTrack');
     if (!track) return;
 
-    if (!track.dataset.cloned) {
-        const cards = Array.from(track.querySelectorAll('.course-card'));
-        track.dataset.realCount = cards.length;
-        cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('clone');
-            clone.setAttribute('aria-hidden', 'true');
-            track.appendChild(clone);
-        });
-        track.dataset.cloned = 'true';
+    const cards = track.querySelectorAll('.course-card');
+    if (cards.length === 0) return;
+
+    const totalCards = cards.length;
+
+    if (direction !== undefined) {
+        currentCourseIndex += direction;
     }
 
-    const realCount = parseInt(track.dataset.realCount);
-    const cards = track.querySelectorAll('.course-card');
-    
-    if (realCount === 0) return;
+    if (currentCourseIndex < 0) {
+        currentCourseIndex = totalCards - 1;
+    } else if (currentCourseIndex >= totalCards) {
+        currentCourseIndex = 0;
+    }
 
     const cardWidth = cards[0].offsetWidth;
     const cardStyle = window.getComputedStyle(cards[0]);
@@ -344,35 +290,13 @@ function moveCourseSlider(direction) {
     const rightMargin = parseFloat(cardStyle.marginRight) || 0;
     const gap = parseFloat(window.getComputedStyle(track).gap) || 14;
     const step = cardWidth + leftMargin + rightMargin + gap;
-
-    if (direction !== undefined) {
-        if (currentCourseIndex >= realCount && direction === 1) {
-            track.style.transition = 'none';
-            track.style.transform = `translateX(0px)`;
-            track.offsetHeight;
-            track.style.transition = '';
-            currentCourseIndex = 0;
-        }
-
-        currentCourseIndex += direction;
-
-        if (currentCourseIndex < 0) {
-            track.style.transition = 'none';
-            track.style.transform = `translateX(-${realCount * step}px)`;
-            track.offsetHeight;
-            track.style.transition = '';
-            currentCourseIndex = realCount - 1;
-        }
-    }
-
     const offset = currentCourseIndex * step;
     track.style.transform = `translateX(-${offset}px)`;
 
     // Update progress counter
     const progress = document.getElementById('courseProgress');
     if (progress) {
-        let displayIndex = currentCourseIndex === realCount ? 0 : currentCourseIndex;
-        progress.textContent = `${String(displayIndex + 1).padStart(2, '0')} / ${String(realCount).padStart(2, '0')}`;
+        progress.textContent = `${String(currentCourseIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
     }
 }
 
@@ -382,15 +306,12 @@ function startCourseAutoSlide() {
 
     if (window.innerWidth <= 768) {
         currentCourseIndex = 0;
-        track.style.transition = 'none';
         track.style.transform = `translateX(0px)`;
-        track.offsetHeight;
-        track.style.transition = '';
 
         const progress = document.getElementById('courseProgress');
         if (progress) {
-            const realCount = track.dataset.realCount ? parseInt(track.dataset.realCount) : track.querySelectorAll('.course-card').length;
-            progress.textContent = `01 / ${String(realCount).padStart(2, '0')}`;
+            const total = track.querySelectorAll('.course-card').length;
+            progress.textContent = `01 / ${String(total).padStart(2, '0')}`;
         }
     } else {
         track.style.transform = '';
@@ -579,17 +500,12 @@ let currentApprovalIndex = 0;
 function resetApprovalSlider() {
     currentApprovalIndex = 0;
     const track = document.getElementById('approvalSliderTrack');
-    if (track) {
-        track.style.transition = 'none';
-        track.style.transform = `translateX(0px)`;
-        track.offsetHeight;
-        track.style.transition = '';
-    }
+    if (track) track.style.transform = '';
 
     const progress = document.getElementById('approvalProgress');
-    if (progress && track) {
-        const realCount = track.dataset.realCount ? parseInt(track.dataset.realCount) : track.querySelectorAll('.approval-image-box').length;
-        progress.textContent = `01 / ${String(realCount).padStart(2, '0')}`;
+    const cards = track ? track.querySelectorAll('.approval-image-box') : [];
+    if (progress && cards.length) {
+        progress.textContent = `01 / ${String(cards.length).padStart(2, '0')}`;
     }
 }
 
@@ -599,54 +515,26 @@ function moveApprovalSlider(direction) {
     const track = document.getElementById('approvalSliderTrack');
     if (!track) return;
 
-    if (!track.dataset.cloned) {
-        const cards = Array.from(track.querySelectorAll('.approval-image-box'));
-        track.dataset.realCount = cards.length;
-        cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('clone');
-            clone.setAttribute('aria-hidden', 'true');
-            track.appendChild(clone);
-        });
-        track.dataset.cloned = 'true';
-    }
-
-    const realCount = parseInt(track.dataset.realCount);
     const cards = track.querySelectorAll('.approval-image-box');
-    
-    if (realCount === 0) return;
+    if (cards.length === 0) return;
+
+    const totalCards = cards.length;
+    currentApprovalIndex += direction;
+
+    if (currentApprovalIndex < 0) {
+        currentApprovalIndex = totalCards - 1;
+    } else if (currentApprovalIndex >= totalCards) {
+        currentApprovalIndex = 0;
+    }
 
     const cardWidth = cards[0].offsetWidth;
     const gap = parseFloat(window.getComputedStyle(track).gap) || 15;
-    const step = cardWidth + gap;
-
-    if (direction !== undefined) {
-        if (currentApprovalIndex >= realCount && direction === 1) {
-            track.style.transition = 'none';
-            track.style.transform = `translateX(0px)`;
-            track.offsetHeight;
-            track.style.transition = '';
-            currentApprovalIndex = 0;
-        }
-
-        currentApprovalIndex += direction;
-
-        if (currentApprovalIndex < 0) {
-            track.style.transition = 'none';
-            track.style.transform = `translateX(-${realCount * step}px)`;
-            track.offsetHeight;
-            track.style.transition = '';
-            currentApprovalIndex = realCount - 1;
-        }
-    }
-
-    const offset = currentApprovalIndex * step;
+    const offset = currentApprovalIndex * (cardWidth + gap);
     track.style.transform = `translateX(-${offset}px)`;
 
     const progress = document.getElementById('approvalProgress');
     if (progress) {
-        let displayIndex = currentApprovalIndex === realCount ? 0 : currentApprovalIndex;
-        progress.textContent = `${String(displayIndex + 1).padStart(2, '0')} / ${String(realCount).padStart(2, '0')}`;
+        progress.textContent = `${String(currentApprovalIndex + 1).padStart(2, '0')} / ${String(totalCards).padStart(2, '0')}`;
     }
 }
 
@@ -767,7 +655,7 @@ if (document.readyState === 'loading') {
 // ===== Mobile Topbar: same logic as desktop =====
 // The navbar is position: fixed on mobile, which would cover the in-flow topbar.
 // At the top of the page the navbar sits directly below the topbar; as the user
-// scrolls it releases to top: 0 — exactly mirroring desktop sticky behaviour.
+// scrolls it releases to top: 0 â€” exactly mirroring desktop sticky behaviour.
 function initMobileTopbar() {
     const topbar = document.querySelector('.topbar');
     const navbar = document.querySelector('.navbar');
@@ -775,7 +663,7 @@ function initMobileTopbar() {
 
     function updateTopbarOffset() {
         if (window.innerWidth > 768) {
-            // Desktop: navbar is position: sticky — remove any mobile override
+            // Desktop: navbar is position: sticky â€” remove any mobile override
             if (navbar.style.top) navbar.style.top = '';
             return;
         }

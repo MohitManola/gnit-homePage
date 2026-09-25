@@ -384,6 +384,10 @@ img {
     box-shadow: 0 12px 24px rgba(249, 192, 4, 0.25);
 }
 
+.mobile-hero-form {
+    display: none;
+}
+
 .hero-title {
     font-size: clamp(2.8rem, 5vw, 15rem);
     font-weight: 800;
@@ -1924,4 +1928,71 @@ img {
 .appinventiv-logo {
     transform: scale(1.2);
     margin-left: 30px;
+}
+
+/* Microsoft Center of Excellence Text */
+.coe-banner-text-top {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.coe-banner-text-top h2 {
+    font-size: 2.2rem;
+    color: #1f4379;
+    /* Theme dark blue */
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.coe-banner-text-bottom {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.coe-banner-text-bottom h3 {
+    font-size: 1.5rem;
+    color: #b92b27;
+    /* Red/Maroon */
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.mobile-break {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .coe-banner-text-top {
+        top: 8%;
+    }
+
+    .coe-banner-text-top h2 {
+        font-size: 2rem;
+    }
+
+    .coe-banner-text-bottom {
+        bottom: 15%;
+    }
+
+    .coe-banner-text-bottom h3 {
+        font-size: 1.2rem;
+    }
+    
+    .mobile-break {
+        display: inline;
+    }
 }
