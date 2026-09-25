@@ -697,8 +697,8 @@ img {
 }
 
 .highlight-orange {
-    background: linear-gradient(135deg, #f9c004 0%, #f9c004 100%);
-    box-shadow: 0 12px 28px rgba(249, 192, 4, 0.3);
+    background: linear-gradient(135deg, #E65483 0%, #E65483 100%);
+    box-shadow: 0 12px 28px rgba(230, 84, 131, 0.3);
 }
 
 .highlight-navy {
