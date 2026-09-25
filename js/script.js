@@ -10,6 +10,11 @@ function updateGallerySlides() {
             slide.classList.remove('active');
         }
     });
+
+    const progress = document.getElementById('galleryProgress');
+    if (progress && slides.length > 0) {
+        progress.textContent = `${String(currentGallerySlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    }
 }
 
 function nextGallerySlide() {
@@ -21,6 +26,12 @@ function nextGallerySlide() {
 function prevGallerySlide() {
     const slides = document.querySelectorAll('.gallery-slide');
     currentGallerySlide = (currentGallerySlide - 1 + slides.length) % slides.length;
+    updateGallerySlides();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateGallerySlides);
+} else {
     updateGallerySlides();
 }
 
@@ -692,17 +703,40 @@ function initScrollReveal() {
 
     revealTargets.forEach((el) => el.classList.add('reveal'));
 
+    const reveal = (el) => {
+        el.classList.add('revealed');
+        observer.unobserve(el);
+    };
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
+                reveal(entry.target);
             }
         });
     }, { threshold: 0.15 });
 
     revealTargets.forEach((el) => observer.observe(el));
+
+    /* The observer only reports threshold crossings, so a section the viewport
+       skips over — jumping to an anchor, restoring a remembered scroll
+       position, flicking fast — is never reported and stays at opacity 0 while
+       still occupying its full height, which reads as an empty gap between
+       sections. Sweep on every scroll: anything the viewport has reached gets
+       revealed, and the observer keeps handling the normal case. */
+    const sweep = () => {
+        revealTargets.forEach((el) => {
+            if (!el.classList.contains('revealed') && el.getBoundingClientRect().top < window.innerHeight) {
+                reveal(el);
+            }
+        });
+    };
+
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('hashchange', sweep);
+    window.addEventListener('load', sweep);
 }
+
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollReveal);
