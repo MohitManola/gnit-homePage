@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="theme-color" content="#1f4379">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" href="images/final-logo-mark.png">
@@ -13,8 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=11">
-    <link rel="stylesheet" href="css/responsive.css?v=11">
+    <link rel="stylesheet" href="css/styles.css?v=18">
+    <link rel="stylesheet" href="css/responsive.css?v=18">
 </head>
 
 <body>
@@ -116,7 +117,7 @@
             style="box-shadow: 0 10px 30px rgba(0,0,0,0.15); background: var(--white); border-radius: 16px;">
             <div class="leadx-form-wrapper">
                 <iframe id="leadx-mobile-iframe" src=""
-                    style="border:none; width:100%; height:445px; overflow:hidden; display:block; margin:0; padding:0; line-height:0;"
+                    style="border:none; width:100%; overflow:hidden; display:block; margin:0; padding:0; line-height:0;"
                     scrolling="no" allowtransparency="true">
                 </iframe>
             </div>
@@ -516,6 +517,7 @@
 
                 <div class="gallery-controls">
                     <button class="gallery-btn" onclick="prevGallerySlide()">&#10094;</button>
+                    <span class="gallery-progress" id="galleryProgress">01 / 03</span>
                     <button class="gallery-btn" onclick="nextGallerySlide()">&#10095;</button>
                 </div>
             </div>
@@ -614,8 +616,7 @@
             <button class="apply-now-btn" type="button" data-open-admission-modal>Apply Now</button>
 
             <div class="footer-info">
-                <img src="images/Companies%20Logo%20(14).png" alt="BLKGNIT Group of Institutions" class="footer-logo"
-                    style="height: 150px; margin-bottom: 20px;">
+                <img src="images/Companies%20Logo%20(14).png" alt="BLKGNIT Group of Institutions" class="footer-logo">
                 <p>BLKGNIT Group Of Institutions<br>Plot No. 6C, Knowledge Park 2, Greater Noida (Delhi NCR), 201310,
                     India</p>
                 <a href="#" class="privacy-link">Privacy Policy</a>
@@ -641,7 +642,7 @@
         </div>
     </div>
 
-    <script src="js/script.js?v=11" defer></script>
+    <script src="js/script.js?v=18" defer></script>
 
     <!-- LeadX Form Integration -->
     <script>
