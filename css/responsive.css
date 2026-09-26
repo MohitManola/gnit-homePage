@@ -711,9 +711,9 @@
     }
 
     .hero {
-        min-height: 42vh;
-        min-height: 42dvh;
-        padding: 60px 16px 28px;
+        min-height: auto;
+        aspect-ratio: 3 / 2;
+        padding: 60px 16px 0;
     }
 
     .hero-content {
@@ -1411,9 +1411,9 @@
 
     /* ---- Hero ---- */
     .hero {
-        padding: 90px 16px 28px;
-        min-height: 38vh;
-        min-height: 38dvh;
+        padding: 60px 16px 0;
+        min-height: auto;
+        aspect-ratio: 3 / 2;
         gap: 0;
     }
 
@@ -1765,9 +1765,9 @@
 /* Even smaller screens — 360px and below */
 @media (max-width: 360px) {
     .hero {
-        padding: 50px 12px 20px;
-        min-height: 35vh;
-        min-height: 35dvh;
+        padding: 50px 12px 0;
+        min-height: auto;
+        aspect-ratio: 3 / 2;
     }
 
     .hero-form-card {
