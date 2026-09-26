@@ -110,9 +110,9 @@
         transform-origin: left center;
     }
 
-    /* Logo inside sidebar — increased size */
+    /* Hide logo-full on mobile sidebar */
     .nav-menu .clg-logo .logo-full {
-        height: 64px;
+        display: none;
     }
 
     .hamburger {
@@ -212,7 +212,29 @@
         color: var(--white);
     }
 
-    .contact-info a {
+    .contact-info.nav-menu-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .nav-action-btn {
+        flex: 1;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        display: block;
+    }
+
+    .nav-call-btn,
+    .nav-apply-btn {
+        background-color: var(--orange);
         color: var(--white);
     }
 
@@ -1206,6 +1228,10 @@
     }
 
     .nav-menu .clg-logo .logo-full {
+        display: none;
+    }
+
+    .nav-menu .clg-logo .logo-mark {
         display: block;
         width: min(100%, 224px);
         height: 64px;
@@ -1214,11 +1240,6 @@
         object-fit: cover;
         object-position: center;
         transform: none;
-        /* undo desktop navbar scale(1.5) that overflowed the sidebar */
-    }
-
-    .nav-menu .clg-logo .logo-mark {
-        display: none;
     }
 
     .menu-toggle:checked~.nav-menu {
