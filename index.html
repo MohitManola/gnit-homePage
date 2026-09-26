@@ -14,8 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=28">
-    <link rel="stylesheet" href="css/responsive.css?v=28">
+    <link rel="stylesheet" href="css/styles.css?v=29">
+    <link rel="stylesheet" href="css/responsive.css?v=29">
 </head>
 
 <body>
@@ -121,8 +121,6 @@
                 <a href="#top-recruiters" class="nav-close-link">Top Recruiters</a>
             </nav>
             <div class="contact-info nav-menu-actions">
-                <a class="nav-action-btn nav-call-btn" href="tel:9882827474"
-                    aria-label="Call admissions office">Call</a>
                 <button class="nav-action-btn nav-apply-btn nav-close-link" type="button"
                     data-open-admission-modal>Apply Now</button>
             </div>
@@ -415,7 +413,17 @@
             <div class="coe-gallery-overflow">
                 <div class="coe-gallery-track" id="coeGalleryTrack">
                     <div class="coe-gallery-slide">
-                        <img src="dummyImages/5.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                        <!-- The CoE banner exists as a 2.13:1 wide crop and a 4:5 portrait crop.
+                             Keep the wide one on desktop; on phones the wide crop collapses to
+                             ~185px tall and the banner text becomes unreadable, so serve the
+                             portrait crop instead. -->
+                        <picture>
+                            <source media="(max-width: 768px)"
+                                srcset="images/New%20Photos/Microsoft%20Center%20Of%20Excellence.webp">
+                            <img src="dummyImages/5.jpg.jpeg"
+                                alt="Microsoft Center Of Excellence - Industry-Aligned Training &amp; Certification"
+                                loading="lazy">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -635,19 +643,22 @@
         <div class="container">
             <div class="part1">
                 <button class="red-btn" type="button" data-open-admission-modal>Tuition Fee</button>
-                <img src="images/lib.jpg" alt="Campus library" loading="lazy" data-open-admission-modal
+                <img src="images/New%20Photos/Computer%20Lab.webp" alt="Computer lab" loading="lazy"
+                    data-open-admission-modal
                     style="cursor: pointer;">
             </div>
 
             <div class="part2">
                 <button class="red-btn" type="button" data-open-admission-modal>Transport Fees</button>
-                <img src="images/bus.jpg" alt="College bus fleet" loading="lazy" data-open-admission-modal
+                <img src="images/New%20Photos/Bus.webp" alt="College bus fleet" loading="lazy"
+                    data-open-admission-modal
                     style="cursor: pointer;">
             </div>
 
             <div class="part3">
                 <button class="red-btn" type="button" data-open-admission-modal>Hostel Fees</button>
-                <img src="images/hostel.jpg" alt="Hostel room" loading="lazy" data-open-admission-modal
+                <img src="images/New%20Photos/Hostel.webp" alt="Hostel room" loading="lazy"
+                    data-open-admission-modal
                     style="cursor: pointer;">
             </div>
         </div>
@@ -658,6 +669,9 @@
         <div class="footer-content">
             <h3>Schedule your selection/screening process</h3>
             <button class="apply-now-btn" type="button" data-open-admission-modal>Apply Now</button>
+            <button class="download-brochure-btn" type="button" data-open-admission-modal>
+                Download Brochure
+            </button>
 
             <div class="footer-info">
                 <img src="images/Companies%20Logo%20(14).png" alt="BLKGNIT Group of Institutions" class="footer-logo">
@@ -684,7 +698,7 @@
         </div>
     </div>
 
-    <script src="js/script.js?v=28" defer></script>
+    <script src="js/script.js?v=29" defer></script>
 
     <!-- LeadX Form Integration -->
     <script>

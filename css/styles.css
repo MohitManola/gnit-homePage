@@ -332,7 +332,7 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../dummyImages/1st%20banner.jpg.webp');
+    background-image: url('../images/New%20Photos/Admissions%20Open%20Banner%20Desktop.webp');
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -1771,6 +1771,26 @@ img {
     font-weight: 700;
     margin-bottom: 30px;
     cursor: pointer;
+}
+
+@media (min-width: 769px) {
+    .contact-info .nav-apply-btn,
+    .apply-now-btn {
+        background-color: #CC2909;
+        color: var(--white);
+    }
+}
+
+.download-brochure-btn {
+    display: inline-block;
+    background-color: var(--white);
+    color: var(--primary-blue);
+    padding: 10px 30px;
+    border: 1px solid rgba(16, 29, 61, 0.18);
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 0 0 30px 8px;
+    text-decoration: none;
 }
 
 /* The logo asset is a 2000x2000 square whose mark sits in the middle 26%

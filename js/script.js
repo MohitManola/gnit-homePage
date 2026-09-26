@@ -912,13 +912,18 @@ function initSimpleHeroSlider() {
     // Smooth fade effect
     heroBg.style.transition = 'opacity 0.4s ease-in-out';
 
+    // Production banners (images/New Photos/) ship a desktop crop and a
+    // narrower mobile crop of the same two designs: the admissions banner and
+    // the Smart India Hackathon banner. Both lists keep the same order so the
+    // rotation stays in sync across breakpoints, and index 0 matches the
+    // default banner painted by the stylesheets.
     const desktopBanners = [
-        'dummyImages/1st%20banner.jpg.webp',
-        'dummyImages/2nd%20Banner.jpg'
+        'images/New%20Photos/Admissions%20Open%20Banner%20Desktop.webp',
+        'images/New%20Photos/Hackathon%202025%20Desktop.webp'
     ];
     const mobileBanners = [
-        'dummyImages/2nd%20Banner.jpg',
-        'dummyImages/1st%20banner.jpg.webp'
+        'images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp',
+        'images/New%20Photos/Hackathon%202025%20Mobile.webp'
     ];
 
     let currentIndex = 0;

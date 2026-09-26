@@ -246,7 +246,7 @@
     }
 
     .hero-bg {
-        background-image: url('../dummyImages/2nd%20Banner.jpg');
+        background-image: url('../images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp');
         background-position: -10px center;
     }
 
@@ -1418,7 +1418,7 @@
     }
 
     .hero-bg {
-        background-image: url('../dummyImages/2nd%20Banner.jpg');
+        background-image: url('../images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp');
         background-position: -10px center;
         background-size: cover;
     }
@@ -1922,6 +1922,18 @@
         font-size: 15px;
         font-weight: 700;
         letter-spacing: 0.01em;
+    }
+
+    .main-footer .download-brochure-btn {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0 0;
+        min-height: 48px;
+        padding: 14px 18px;
+        border-radius: 12px;
+        font-size: 15px;
+        text-align: center;
     }
 
     .main-footer .apply-now-btn:active {
