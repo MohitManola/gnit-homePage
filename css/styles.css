@@ -97,14 +97,57 @@ img {
 }
 
 .topbar {
-    background: linear-gradient(90deg, #f9c004, #f9c004);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 38px;
+    padding: 7px 20px;
+    background: var(--orange);
     color: var(--primary-blue);
-    text-align: center;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.25;
     box-shadow: inset 0 -1px 0 rgba(16, 29, 61, 0.10);
+}
+
+.topbar-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--primary-blue);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.topbar-status-dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+}
+
+.topbar-affiliation {
+    padding: 1px 18px;
+    border-left: 1px solid rgba(31, 67, 121, 0.24);
+    border-right: 1px solid rgba(31, 67, 121, 0.24);
+}
+
+.topbar-phone {
+    color: var(--primary-blue);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.topbar-phone strong {
+    color: var(--primary-blue);
+    font-weight: 800;
+}
+
+.topbar-phone:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 3px;
 }
 
 /* Navigation */
@@ -1779,6 +1822,38 @@ img {
     color: var(--text-dark);
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
     animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    /* Makes the card a query container so the embedded form's own width — the
+       thing that decides how it wraps — can be tested directly below, instead of
+       inferred from the viewport. */
+    container-type: inline-size;
+}
+
+/* The form the vendor embeds is a navy card with 12px rounded corners sitting on
+   their own white page, and that page shows under it. Measured, their card is
+   449px tall at this width, so a 455px iframe leaves ~6px of white along the
+   bottom — the white bar under the "Already Registered?" row. Ending our wrapper
+   at the form's own bottom edge drops that leftover out of the dialog, so the
+   page behind shows through instead of an opaque strip.
+
+   The wrapper clips rather than resizing the iframe on purpose: shrinking the
+   iframe would re-lay-out a form we cannot inspect, and the embed provides no
+   height to size against. Measured on the embed itself — if the vendor restyles
+   the form, re-measure before adjusting. */
+/* Deliberately not positioned: the desktop card has no top padding, so the
+   wrapper's box starts at the card's top edge where the close button sits, and
+   a positioned wrapper would paint over that button. `overflow: hidden` clips
+   without creating a positioned element. */
+.admission-modal-card .leadx-form-wrapper {
+    overflow: hidden;
+}
+
+/* Below ~345px of form width its consent line wraps an extra time, the card is
+   463px and already reaches the iframe's bottom edge — nothing to clip, and
+   clipping would cut into the row. */
+@container (min-width: 345px) {
+    .admission-modal-card .leadx-form-wrapper {
+        height: 444px;
+    }
 }
 
 .admission-modal-close {
