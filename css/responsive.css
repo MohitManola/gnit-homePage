@@ -651,7 +651,6 @@
         padding: 9px 14px;
         font-size: 11px;
         line-height: 1.4;
-        word-break: break-word;
     }
 
     .navbar {
@@ -1877,18 +1876,15 @@
         font-size: 20px;
     }
 
-    /* ---- Footer: everything was centred, the mark floated in the logo asset's
-       baked-in padding, and "Privacy Policy" hung on its own under the address.
-       Lay it out as a left-aligned document instead: brand, then contact
-       details, then a legal bar. ---- */
+    /* ---- Footer ---- */
     .main-footer {
         /* bottom padding also clears the sticky apply bar */
         padding: 22px 16px calc(96px + env(safe-area-inset-bottom, 0px));
-        text-align: left;
+        text-align: center;
     }
 
     .main-footer .footer-content {
-        text-align: left;
+        text-align: center;
         max-width: none;
     }
 
@@ -1899,6 +1895,8 @@
         line-height: 1.4;
         margin-bottom: 14px;
         max-width: 24ch;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .main-footer .apply-now-btn {
@@ -1924,14 +1922,14 @@
     /* Same crop as the base rule, sized for the phone. */
     .main-footer .footer-logo {
         width: 184px;
-        margin: 0 0 6px;
+        margin: 0 auto 6px;
     }
 
     .main-footer .footer-info {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 12px;
-        text-align: left;
+        text-align: center;
         /* the divider separates the action band from the information band */
         margin-top: 22px;
         border-top: 1px solid rgba(255, 255, 255, 0.16);
@@ -1958,7 +1956,7 @@
         margin-top: 16px;
         padding-top: 14px;
         border-top: 1px solid rgba(255, 255, 255, 0.12);
-        text-align: left;
+        text-align: center;
         font-size: 11.5px;
         letter-spacing: 0.01em;
         color: rgba(255, 255, 255, 0.6);
@@ -2093,13 +2091,29 @@
         letter-spacing: 0.02em;
     }
 
-    /* ---- Topbar: slim the promotional strip (33px -> ~24px) so more of the
-       page sits above the fold. scripts.js reads offsetHeight, so the fixed
-       navbar's top offset follows automatically. ---- */
+    /* Keep the admission message and helpline legible without awkward wrapping. */
     .topbar {
-        padding: 5px 12px;
-        font-size: 11px;
-        line-height: 1.25;
+        flex-wrap: wrap;
+        gap: 5px 12px;
+        padding: 7px 12px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .topbar-status {
+        flex-basis: 100%;
+        justify-content: center;
+    }
+
+    .topbar-affiliation {
+        padding: 0;
+        border: 0;
+        font-size: 9px;
+    }
+
+    .topbar-phone {
+        padding-left: 12px;
+        border-left: 1px solid rgba(31, 67, 121, 0.28);
     }
 
     /* ---- Hero: on phone the hero holds nothing but the banner image (its
@@ -2132,11 +2146,21 @@
         height: 445px;
     }
 
-    /* ---- Admission modal: on a phone a centred 400px dialog reads as a
-       shrunken desktop window stranded mid-screen. Present the form as a bottom
-       sheet instead — full width, flush with the bottom edge, thumb-reachable,
-       and scrollable so the Register button stays reachable when the keyboard
-       eats the viewport.
+    /* The embed's white page also shows as a wedge in each *top* corner of the
+       iframe — the two notches beside the heading. Our wrapper's top corners sit
+       exactly on the embed's own corners, 56px below the card's edge where the
+       card's own radius cannot hide them, so clip the same corners here.
+       Clipping a corner of radius R removes a wedge with legs R, so R is set
+       comfortably above the embed's own 12px radius to cut the wedge whole.
+       The bottom edge is handled in styles.css, where the wrapper is clipped to
+       the form's real height. ---- */
+    .admission-modal-card .leadx-form-wrapper {
+        border-radius: 40px 40px 0 0;
+    }
+
+    /* ---- Admission modal (the form that auto-opens on scroll): centre it on
+       the phone screen rather than pinning it to the bottom edge, so it reads
+       as a dialog belonging to the page instead of a stranded sheet.
 
        The header strip still has to be reserved: the form's own title row sits
        at the top of the cross-origin iframe and the close button was landing on
@@ -2147,25 +2171,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 16px;
+        /* symmetric padding keeps the card optically centred in the viewport */
+        padding: 20px 16px;
     }
 
     .admission-modal-card {
         width: min(100%, 440px);
-        max-height: 90dvh;
-        padding: 40px 0 0 0;
-        border-radius: 24px;
-        overflow: hidden;
-        background: var(--primary-blue);
-    }
-
-    .admission-modal-card::before {
-        display: none;
+        /* 100% of the padded modal box = viewport minus 40px, so the centred
+           card can never overflow on a short screen; it scrolls internally
+           instead and keeps the Register button reachable. */
+        max-height: 100%;
+        /* the 56px band the close button floats in, over the embed's title */
+        padding: 56px 0 0;
+        border-radius: 20px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
     }
 
     .admission-modal-close {
-        top: 12px;
-        right: 12px;
+        top: 8px;
+        right: 10px;
     }
 
     /* ---- Header: hamburger sits on the right, matching the side the drawer
