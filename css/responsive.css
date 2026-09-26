@@ -2214,8 +2214,8 @@
            card can never overflow on a short screen; it scrolls internally
            instead and keeps the Register button reachable. */
         max-height: 100%;
-        /* the 56px band the close button floats in, over the embed's title */
-        padding: 56px 0 0;
+        /* compact title band for the embedded form and close button */
+        padding: 16px 0 0;
         border-radius: 20px;
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -2225,6 +2225,7 @@
     .admission-modal-close {
         top: 8px;
         right: 10px;
+        z-index: 1001;
     }
 
     /* ---- Header: hamburger sits on the right, matching the side the drawer
