@@ -224,7 +224,8 @@
     }
 
     .hero-bg {
-        background-position: left center;
+        background-image: url('../dummyImages/2nd%20Banner.jpg');
+        background-position: -10px center;
     }
 
     .hero::before {
@@ -1409,7 +1410,8 @@
     }
 
     .hero-bg {
-        background-position: left center;
+        background-image: url('../dummyImages/2nd%20Banner.jpg');
+        background-position: -10px center;
         background-size: cover;
     }
 
@@ -2139,8 +2141,13 @@
     }
 
     @keyframes topbarScroll {
-        0%   { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
     }
 
     /* ---- Hero: on phone the hero holds nothing but the banner image (its

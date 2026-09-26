@@ -912,20 +912,30 @@ function initSimpleHeroSlider() {
     // Smooth fade effect
     heroBg.style.transition = 'opacity 0.4s ease-in-out';
 
-    const banners = [
-        'images/hero_bg.png',
-        'images/hackathon.jpeg'
+    const desktopBanners = [
+        'dummyImages/1st%20banner.jpg.webp',
+        'dummyImages/2nd%20Banner.jpg'
     ];
+    const mobileBanners = [
+        'dummyImages/2nd%20Banner.jpg',
+        'dummyImages/1st%20banner.jpg.webp'
+    ];
+
     let currentIndex = 0;
+
+    function getBanners() {
+        return window.innerWidth <= 768 ? mobileBanners : desktopBanners;
+    }
 
     setInterval(() => {
         heroBg.style.opacity = '0'; // fade out
         setTimeout(() => {
+            const banners = getBanners();
             currentIndex = (currentIndex + 1) % banners.length;
             heroBg.style.backgroundImage = `url('${banners[currentIndex]}')`;
             heroBg.style.opacity = '1'; // fade in
-        }, 400); // Wait for fade out to complete before changing image
-    }, 3000);
+        }, 400);
+    }, 5000);
 }
 
 if (document.readyState === 'loading') {
@@ -933,3 +943,125 @@ if (document.readyState === 'loading') {
 } else {
     initSimpleHeroSlider();
 }
+
+// ===== Microsoft CoE Image Gallery Slider =====
+(function initCoeGallerySlider() {
+    const TOTAL = 8;
+    const AUTO_INTERVAL = 3500;
+    let currentIndex = 0;
+    let autoTimer = null;
+    let isPaused = false;
+
+    // Always 1 image at a time (full-width)
+    const visibleCount = () => 1;
+
+    const track = document.getElementById('coeGalleryTrack');
+    const prevBtn = document.getElementById('coeGalleryPrev');
+    const nextBtn = document.getElementById('coeGalleryNext');
+    const pauseBtn = document.getElementById('coeGalleryPause');
+    const pauseIcon = document.getElementById('coeGalleryPauseIcon');
+    const playIcon = document.getElementById('coeGalleryPlayIcon');
+    const progressEl = document.getElementById('coeGalleryProgress');
+    const dotsContainer = document.getElementById('coeGalleryDots');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // Build dot indicators
+    function buildDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < TOTAL; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'coe-gallery-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', `Go to image ${i + 1}`);
+            dot.addEventListener('click', () => { goTo(i); if (!isPaused) { stopAuto(); startAuto(); } });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        dotsContainer.querySelectorAll('.coe-gallery-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function updateProgress() {
+        if (!progressEl) return;
+        progressEl.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
+    }
+
+    function applyTranslate() {
+        const slides = track.querySelectorAll('.coe-gallery-slide');
+        if (!slides.length) return;
+        const slideWidth = slides[0].offsetWidth;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        updateProgress();
+        updateDots();
+    }
+
+    function goTo(index) {
+        currentIndex = Math.max(0, Math.min(TOTAL - 1, index));
+        applyTranslate();
+    }
+
+    function next() {
+        currentIndex = (currentIndex + 1) % TOTAL;
+        applyTranslate();
+    }
+
+    function prev() {
+        currentIndex = (currentIndex - 1 + TOTAL) % TOTAL;
+        applyTranslate();
+    }
+
+    function startAuto() {
+        if (autoTimer) clearInterval(autoTimer);
+        if (isPaused) return;
+        autoTimer = setInterval(next, AUTO_INTERVAL);
+    }
+
+    function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    function togglePause() {
+        isPaused = !isPaused;
+        if (pauseBtn) pauseBtn.classList.toggle('is-paused', isPaused);
+        if (pauseIcon) pauseIcon.style.display = isPaused ? 'none' : '';
+        if (playIcon)  playIcon.style.display  = isPaused ? ''     : 'none';
+        isPaused ? stopAuto() : startAuto();
+    }
+
+    // Button events
+    nextBtn.addEventListener('click', () => { next(); if (!isPaused) { stopAuto(); startAuto(); } });
+    prevBtn.addEventListener('click', () => { prev(); if (!isPaused) { stopAuto(); startAuto(); } });
+    if (pauseBtn) pauseBtn.addEventListener('click', togglePause);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+            diff > 0 ? next() : prev();
+            if (!isPaused) { stopAuto(); startAuto(); }
+        }
+    }, { passive: true });
+
+    // Recalculate on resize (slide widths change)
+    window.addEventListener('resize', applyTranslate);
+
+    // Init
+    function init() {
+        buildDots();
+        applyTranslate();
+        startAuto();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();

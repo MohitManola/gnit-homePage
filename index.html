@@ -72,8 +72,8 @@
 
             <div class="clg-logo">
                 <a href="#home" class="nav-close-link">
-                    <img src="images/Companies%20Logo%20(14).png" alt="BLKGNIT Group of Institutions" class="logo-full">
-                    <img src="images/Companies%20Logo%20(14).png" alt="BLKGNIT Group of Institutions" class="logo-mark">
+                    <img src="images/revised-logo-PNG.png" alt="BLKGNIT Group of Institutions" class="logo-full">
+                    <img src="images/revised-logo-PNG.png" alt="BLKGNIT Group of Institutions" class="logo-mark">
                 </a>
             </div>
 
@@ -447,8 +447,9 @@
     <section class="section center-excellence" id="microsoft-center" style="padding: 0;">
         <div class="coe-banner-container" style="width: 100%; position: relative;">
             <picture>
+                <!-- Mobile banner (≤768px) -->
                 <source media="(max-width: 768px)" srcset="images/Center%20Of%20Excelenece.webp">
-                <!-- Loads desktop banner on larger screens -->
+                <!-- Desktop banner -->
                 <img src="images/micreosft.jpeg" alt="Microsoft Center of Excellence AI@GNGROUP" loading="lazy"
                     style="width: 100%; height: auto; display: block;">
             </picture>
@@ -458,6 +459,57 @@
             <div class="coe-banner-text-bottom">
                 <h3>Industry-Aligned Training &<br class="mobile-break">Certification</h3>
             </div>
+        </div>
+    </section>
+
+
+    <!-- Microsoft CoE Image Gallery Slider -->
+    <section class="section coe-gallery" id="coe-gallery">
+        <div class="coe-gallery-wrapper">
+            <div class="coe-gallery-overflow">
+                <div class="coe-gallery-track" id="coeGalleryTrack">
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/2.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/3.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/4.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/5.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/6.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/7.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/8.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                    <div class="coe-gallery-slide">
+                        <img src="dummyImages/9.jpg.jpeg" alt="Microsoft CoE Activity" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prev / Next arrows overlaid on the image -->
+            <button class="coe-arrow coe-arrow-prev" id="coeGalleryPrev" aria-label="Previous image">&#10094;</button>
+            <button class="coe-arrow coe-arrow-next" id="coeGalleryNext" aria-label="Next image">&#10095;</button>
+
+            <!-- Bottom overlay: dots + pause -->
+            <div class="coe-overlay-bar">
+                <div class="coe-gallery-dots" id="coeGalleryDots"></div>
+                <button class="coe-pause-btn" id="coeGalleryPause" aria-label="Pause slideshow">
+                    <svg id="coeGalleryPauseIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    <svg id="coeGalleryPlayIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><polygon points="5,3 19,12 5,21"/></svg>
+                </button>
+            </div>
+
+            <!-- Progress counter -->
+            <span class="coe-gallery-progress" id="coeGalleryProgress">01 / 08</span>
         </div>
     </section>
 
