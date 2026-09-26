@@ -150,6 +150,11 @@ img {
     outline-offset: 3px;
 }
 
+/* Hidden on desktop — only the mobile ticker uses this element */
+.topbar-ticker {
+    display: none;
+}
+
 /* Navigation */
 .navbar {
     background: var(--white);
