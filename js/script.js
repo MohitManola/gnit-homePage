@@ -935,7 +935,7 @@ function initSimpleHeroSlider() {
             heroBg.style.backgroundImage = `url('${banners[currentIndex]}')`;
             heroBg.style.opacity = '1'; // fade in
         }, 400);
-    }, 5000);
+    }, 8000);
 }
 
 if (document.readyState === 'loading') {

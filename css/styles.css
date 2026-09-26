@@ -99,60 +99,54 @@ img {
 .topbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 18px;
-    min-height: 38px;
-    padding: 7px 20px;
     background: var(--orange);
     color: var(--primary-blue);
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.25;
+    min-height: 38px;
+    padding: 0;
+    overflow: hidden;
     box-shadow: inset 0 -1px 0 rgba(16, 29, 61, 0.10);
 }
 
-.topbar-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: var(--primary-blue);
-    font-weight: 800;
-    white-space: nowrap;
-}
-
-.topbar-status-dot {
-    width: 7px;
-    height: 7px;
-    flex: 0 0 7px;
-    border-radius: 50%;
-    background: var(--primary-blue);
-}
-
-.topbar-affiliation {
-    padding: 1px 18px;
-    border-left: 1px solid rgba(31, 67, 121, 0.24);
-    border-right: 1px solid rgba(31, 67, 121, 0.24);
-}
-
+/* Hide individual static items globally — the ticker replaces them everywhere now */
+.topbar-status,
+.topbar-affiliation,
 .topbar-phone {
-    color: var(--primary-blue);
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.topbar-phone strong {
-    color: var(--primary-blue);
-    font-weight: 800;
-}
-
-.topbar-phone:focus-visible {
-    outline: 2px solid var(--primary-blue);
-    outline-offset: 3px;
-}
-
-/* Hidden on desktop — only the mobile ticker uses this element */
-.topbar-ticker {
     display: none;
+}
+
+/* Ticker wrapper fills the bar */
+.topbar-ticker {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* The track holds 2 copies of the text for seamless looping */
+.topbar-ticker-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: topbarScroll 90s linear infinite;
+}
+
+.topbar-ticker-track span {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+@keyframes topbarScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Navigation */
@@ -290,6 +284,32 @@ img {
     color: var(--text-dark);
     text-decoration: none;
     transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-action-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.contact-info .nav-call-btn,
+.contact-info .nav-apply-btn {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(31, 67, 121, 0.2);
+}
+
+.contact-info .nav-call-btn:hover,
+.contact-info .nav-apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(31, 67, 121, 0.3);
+    color: var(--white);
 }
 
 /* Hero */
@@ -1662,14 +1682,10 @@ img {
 .footer-lead>.container img {
     display: block;
     width: 100%;
-    height: 320px;
+    aspect-ratio: 1 / 1;
+    height: auto;
     object-fit: cover;
     border-radius: 12px;
-}
-
-.footer-lead>.container>.part3 img {
-    height: 430px;
-    padding: 0;
 }
 
 
@@ -2068,9 +2084,19 @@ img {
     background: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
     transition: transform 0.3s ease;
+}
+
+.approval-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+    text-align: center;
 }
 
 .approval-image-box:hover {

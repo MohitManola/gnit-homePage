@@ -232,9 +232,9 @@
         display: block;
     }
 
-    .nav-call-btn,
-    .nav-apply-btn {
-        background-color: var(--orange);
+    .contact-info .nav-call-btn,
+    .contact-info .nav-apply-btn {
+        background-color: var(--primary-blue);
         color: var(--white);
     }
 
@@ -894,17 +894,8 @@
         gap: 8px;
     }
 
-    .footer-lead>.container>.part1,
-    .footer-lead>.container>.part2 {
+    .footer-lead>.container>div {
         grid-column: span 1;
-    }
-
-    .footer-lead>.container>.part3 {
-        grid-column: 1 / -1;
-        padding: 0;
-        background: none;
-        box-shadow: none;
-        border-radius: 0;
     }
 
     .footer-lead>.container>div .red-btn {
@@ -915,14 +906,10 @@
     }
 
     .footer-lead>.container img {
-        height: 130px;
-        border-radius: 10px;
-    }
-
-    .footer-lead>.container>.part3 img {
         width: 100%;
-        height: 180px;
-        border-radius: 12px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        border-radius: 10px;
     }
 
     .red-btn,
@@ -1683,12 +1670,7 @@
     }
 
     .footer-lead>.container img {
-        height: 110px;
         border-radius: 8px;
-    }
-
-    .footer-lead>.container>.part3 img {
-        height: 150px;
     }
 
     /* ---- Footer ---- */
@@ -2116,59 +2098,6 @@
         font-size: 15px;
         font-weight: 800;
         letter-spacing: 0.02em;
-    }
-
-    /* Mobile topbar: single-line seamless scrolling ticker */
-    .topbar {
-        flex-wrap: nowrap;
-        overflow: hidden;
-        padding: 0;
-        font-size: 11px;
-        gap: 0;
-        height: 34px;
-    }
-
-    /* Hide individual desktop items — the ticker replaces them on mobile */
-    .topbar-status,
-    .topbar-affiliation,
-    .topbar-phone {
-        display: none;
-    }
-
-    /* Ticker wrapper fills the bar */
-    .topbar-ticker {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        overflow: hidden;
-        height: 100%;
-    }
-
-    /* The track holds 2 copies of the text for seamless looping */
-    .topbar-ticker-track {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        will-change: transform;
-        animation: topbarScroll 28s linear infinite;
-    }
-
-    .topbar-ticker-track span {
-        display: inline-block;
-        white-space: nowrap;
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--primary-blue);
-    }
-
-    @keyframes topbarScroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
     }
 
     /* ---- Hero: on phone the hero holds nothing but the banner image (its
