@@ -1775,6 +1775,31 @@ img {
     }
 }
 
+/* The mobile sliders in script.js clone their cards so their loop can wrap
+   seamlessly. Those clones only make sense inside the mobile tracks: from 769px
+   up the same containers are grids (courses, placements) or full rows that lay
+   every child out, so a clone left over from a narrower window renders as a
+   duplicate card. Hiding them is the backstop that holds even if the width
+   changed without the cleanup in script.js running. */
+@media (min-width: 769px) {
+    .clone {
+        display: none !important;
+    }
+
+    /* The same four tracks are the only ones that must never be translated on
+       desktop: their mobile sliders clear the translate themselves when the
+       window widens, so if that reset is missed the grid would otherwise sit
+       shifted. Declaring it here makes it independent of the resize handler
+       running. The industry track is deliberately not in this list — it is a
+       slider on desktop too. */
+    #testimonialGrid,
+    #studentSliderTrack,
+    #courseSliderTrack,
+    #approvalSliderTrack {
+        transform: none !important;
+    }
+}
+
 .footer-info {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 20px;
@@ -1801,7 +1826,10 @@ img {
 
 .admission-modal {
     position: fixed;
-    inset: 0;
+    top: var(--modal-viewport-top, 0px);
+    left: var(--modal-viewport-left, 0px);
+    width: var(--modal-viewport-width, 100%);
+    height: var(--modal-viewport-height, 100%);
     z-index: 2000;
     display: grid;
     place-items: center;
@@ -1840,16 +1868,27 @@ img {
 }
 
 /* The form the vendor embeds is a navy card with 12px rounded corners sitting on
-   their own white page, and that page shows under it. Measured, their card is
-   449px tall at this width, so a 455px iframe leaves ~6px of white along the
-   bottom — the white bar under the "Already Registered?" row. Ending our wrapper
-   at the form's own bottom edge drops that leftover out of the dialog, so the
-   page behind shows through instead of an opaque strip.
+   their own white page, and that page shows under it: the 455px iframe is taller
+   than the form, so the leftover page reads as a white bar under the
+   "Already Registered?" row. Ending our wrapper at the form's own bottom edge
+   drops that leftover out of the dialog, so the card behind shows through
+   instead of an opaque strip — the white is cut off rather than painted over,
+   which is why this is a clip and not a coloured band.
+
+   That edge was measured from screenshots taken with the card's background
+   swapped for magenta, so the embed's white page stood out against the card
+   behind it: the rounded form panel ends 445-450px into the 455px iframe — it
+   moves by a couple of pixels because the consent line re-wraps with the form's
+   width — and its links row ends at ~433-437px. A crop at 444px therefore cuts
+   above the panel's edge on every width measured, with a pixel or two in hand
+   for the wrap moving, while still clearing the links row below it. Cropping
+   exactly at the panel's own edge (450px) leaves nothing in hand: one extra
+   wrapped line and the white page is showing again. If the vendor restyles the
+   form, re-measure with the same magenta-card screenshot rather than guessing.
 
    The wrapper clips rather than resizing the iframe on purpose: shrinking the
    iframe would re-lay-out a form we cannot inspect, and the embed provides no
-   height to size against. Measured on the embed itself — if the vendor restyles
-   the form, re-measure before adjusting. */
+   height to size against. */
 /* Deliberately not positioned: the desktop card has no top padding, so the
    wrapper's box starts at the card's top edge where the close button sits, and
    a positioned wrapper would paint over that button. `overflow: hidden` clips
@@ -1858,10 +1897,25 @@ img {
     overflow: hidden;
 }
 
-/* Below ~345px of form width its consent line wraps an extra time, the card is
-   463px and already reaches the iframe's bottom edge — nothing to clip, and
-   clipping would cut into the row. */
-@container (min-width: 345px) {
+.admission-modal-card #leadx-modal-iframe {
+    display: block;
+    width: min(100%, 400px);
+    height: 455px;
+    margin-inline: auto;
+    border: 0;
+    background-color: transparent;
+}
+
+/* The crop is guarded on the form's own width rather than the viewport, because
+   the viewport includes the scrollbar while the container does not — a 390px
+   window actually holds a 341px form.
+
+   The guard sits below the narrowest form measured with a bar showing, because
+   that bar is not there at every width: at ~300px the embed's consent line wraps
+   enough that its card runs past the iframe's bottom edge, so there is no white
+   to crop while the links row is already pressed against that same edge —
+   cropping that case cut the row in half for nothing. */
+@container (min-width: 320px) {
     .admission-modal-card .leadx-form-wrapper {
         height: 444px;
     }

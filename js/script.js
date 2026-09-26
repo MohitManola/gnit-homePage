@@ -39,6 +39,10 @@ if (document.readyState === 'loading') {
 let currentTestimonialIndex = 0;
 
 function moveTestimonial(direction) {
+    // Desktop lays the cards out in full, so there is no loop to advance — and
+    // cloning there would leave the grid with duplicate cards.
+    if (window.innerWidth > 768) return;
+
     const grid = document.getElementById('testimonialGrid');
     if (!grid) return;
 
@@ -120,8 +124,21 @@ function initAdmissionModal() {
     const closeButtons = modal.querySelectorAll('[data-close-admission-modal]');
     const form = modal.querySelector('.admission-modal-form');
     const success = modal.querySelector('.admission-success');
+    const visualViewport = window.visualViewport;
     let lastFocusedElement = null;
     let isAutoOpened = false;
+
+    function syncModalToVisualViewport() {
+        if (!visualViewport) return;
+        modal.style.setProperty('--modal-viewport-top', `${visualViewport.offsetTop}px`);
+        modal.style.setProperty('--modal-viewport-left', `${visualViewport.offsetLeft}px`);
+        modal.style.setProperty('--modal-viewport-width', `${visualViewport.width}px`);
+        modal.style.setProperty('--modal-viewport-height', `${visualViewport.height}px`);
+    }
+
+    syncModalToVisualViewport();
+    visualViewport?.addEventListener('resize', syncModalToVisualViewport);
+    visualViewport?.addEventListener('scroll', syncModalToVisualViewport);
 
     function closeModal() {
         modal.hidden = true;
@@ -523,7 +540,27 @@ if (document.readyState === 'loading') {
     initMobileSliders();
 }
 
+// Every slider that loops on mobile extends its track with clones (marked
+// `.clone`). Widening the window turns those tracks back into grids that show
+// every child, so the copies have to go — otherwise leaving phone view leaves
+// the page displaying duplicated cards. Clearing `dataset.cloned` as well lets
+// the mobile path clone afresh if the window narrows again.
+const CLONED_TRACK_IDS = ['testimonialGrid', 'studentSliderTrack', 'courseSliderTrack', 'approvalSliderTrack'];
+
+function stripSliderClones() {
+    CLONED_TRACK_IDS.forEach(id => {
+        const track = document.getElementById(id);
+        if (!track) return;
+        track.querySelectorAll('.clone').forEach(clone => clone.remove());
+        delete track.dataset.cloned;
+        delete track.dataset.realCount;
+    });
+}
+
 window.addEventListener('resize', () => {
+    // Leaving phone view: drop the loop clones so the desktop grids hold real cards only.
+    if (window.innerWidth > 768) stripSliderClones();
+
     currentTestimonialIndex = 0;
     const grid = document.getElementById('testimonialGrid');
     if (grid) grid.style.transform = 'translateX(0px)';

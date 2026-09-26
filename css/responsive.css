@@ -1084,6 +1084,7 @@
     }
 
     .admission-modal-card {
+        background: var(--primary-blue);
         max-height: 92dvh;
         padding: 30px 18px 20px;
         border-radius: 20px;
@@ -1205,9 +1206,12 @@
 
     .nav-menu .clg-logo .logo-full {
         display: block;
+        width: min(100%, 224px);
         height: 64px;
-        width: auto;
+        aspect-ratio: 3.5 / 1;
         max-width: 100%;
+        object-fit: cover;
+        object-position: center;
         transform: none;
         /* undo desktop navbar scale(1.5) that overflowed the sidebar */
     }
@@ -2179,6 +2183,12 @@
        the form's real height. ---- */
     .admission-modal-card .leadx-form-wrapper {
         border-radius: 40px 40px 0 0;
+    }
+
+    @container (min-width: 320px) {
+        .admission-modal-card .leadx-form-wrapper {
+            height: 438px;
+        }
     }
 
     /* ---- Admission modal (the form that auto-opens on scroll): centre it on
