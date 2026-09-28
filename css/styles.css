@@ -1704,13 +1704,14 @@ img {
 .red-btn {
     display: flex;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     background-color: var(--red);
     color: var(--white);
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -1848,6 +1849,18 @@ img {
 .privacy-link {
     color: #f9c004;
     text-decoration: none;
+}
+
+.footer-phone-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.footer-phone-link:hover {
+    color: #f9c004;
 }
 
 .copyright {

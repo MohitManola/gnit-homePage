@@ -1653,6 +1653,7 @@
     }
 
     .footer-lead>.container {
+        grid-template-columns: 1fr;
         gap: 8px;
         padding: 0;
         margin-top: 10px;
