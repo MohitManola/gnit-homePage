@@ -1823,13 +1823,16 @@ img {
         display: none !important;
     }
 
-    /* The same four tracks are the only ones that must never be translated on
+    #testimonialGrid .clone {
+        display: block !important;
+    }
+
+    /* The same tracks are the only ones that must never be translated on
        desktop: their mobile sliders clear the translate themselves when the
        window widens, so if that reset is missed the grid would otherwise sit
        shifted. Declaring it here makes it independent of the resize handler
-       running. The industry track is deliberately not in this list — it is a
-       slider on desktop too. */
-    #testimonialGrid,
+       running. The industry track and testimonial track are deliberately not in this list — they are
+       sliders on desktop too. */
     #studentSliderTrack,
     #courseSliderTrack,
     #approvalSliderTrack {
