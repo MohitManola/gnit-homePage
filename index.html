@@ -741,14 +741,41 @@
     <link rel="stylesheet" href="http://200.141.14.187:5000/assets/chatbot.css?v=2">
     <script type="module" src="http://200.141.14.187:5000/assets/chatbot.js?v=2"></script>
     <style>
-        /* Override chatbot position on mobile to prevent overlap with sticky buttons */
+        /* Hide mobile sticky CTA bar when chatbot is open */
+        body.chatbot-is-open .mobile-cta-bar {
+            display: none !important;
+        }
+
+        /* Decrease size of chatbot logos */
+        .chatbot-widget-container .header-logo {
+            width: 32px !important;
+            height: 32px !important;
+        }
+        .chatbot-widget-container .toggle-logo {
+            width: 26px !important;
+            height: 26px !important;
+        }
+        .chatbot-widget-container .bot-avatar {
+            width: 18px !important;
+            height: 18px !important;
+        }
+
         @media (max-width: 768px) {
+            /* When closed, float above the sticky bar */
             .chatbot-widget-container {
                 bottom: 95px !important;
+                transition: bottom 0.3s ease;
+            }
+            
+            /* When open, attach to bottom and restore 70vh height */
+            body.chatbot-is-open .chatbot-widget-container {
+                bottom: 0px !important;
             }
             .chatbot-window {
                 height: 70vh !important;
                 max-height: 70vh !important;
+                border-bottom-left-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
             }
         }
         /* Prevent scroll chaining (background moving) when scrolling inside the chatbot */
@@ -784,6 +811,26 @@
         window.addEventListener('wheel', stopScroll, { capture: true, passive: true });
         window.addEventListener('touchstart', stopScroll, { capture: true, passive: true });
         window.addEventListener('touchmove', stopScroll, { capture: true, passive: true });
+
+        // Observer to dynamically add 'chatbot-is-open' class to body
+        // This guarantees the CSS rules apply perfectly on all browsers
+        const chatObserver = new MutationObserver(() => {
+            if (document.querySelector('.chatbot-window')) {
+                document.body.classList.add('chatbot-is-open');
+            } else {
+                document.body.classList.remove('chatbot-is-open');
+            }
+        });
+
+        // Watch the body until #chatbot-root is created, then observe it
+        const rootObserver = new MutationObserver(() => {
+            const rootNode = document.getElementById('chatbot-root');
+            if (rootNode) {
+                chatObserver.observe(rootNode, { childList: true, subtree: true });
+                rootObserver.disconnect();
+            }
+        });
+        rootObserver.observe(document.body, { childList: true });
     </script>
 </body>
 
