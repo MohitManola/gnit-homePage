@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="theme-color" content="#1f4379">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" href="images/final-logo-mark.png">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/responsive.css?v=29">
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
 
     <div class="topbar">
@@ -740,6 +740,23 @@
     <!-- Chatbot Styles and Scripts (Production Build) -->
     <link rel="stylesheet" href="http://200.141.14.187:5000/assets/chatbot.css">
     <script type="module" src="http://200.141.14.187:5000/assets/chatbot.js"></script>
+
+    <!-- Smooth Scrolling (Lenis) -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.5, // Increase duration to make the scroll slower
+            smoothWheel: true,
+            wheelMultiplier: 0.4, // Reduce wheel sensitivity for a slower feel
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
 </body>
 
 </html>
