@@ -39,9 +39,6 @@ if (document.readyState === 'loading') {
 let currentTestimonialIndex = 0;
 
 function moveTestimonial(direction) {
-    // Desktop lays the cards out in full, so there is no loop to advance — and
-    // cloning there would leave the grid with duplicate cards.
-    if (window.innerWidth > 768) return;
 
     const grid = document.getElementById('testimonialGrid');
     if (!grid) return;
@@ -60,7 +57,7 @@ function moveTestimonial(direction) {
 
     const realCount = parseInt(grid.dataset.realCount);
     const cards = grid.querySelectorAll('.test-card');
-    
+
     if (realCount === 0) return;
 
     const cardWidth = cards[0].offsetWidth;
@@ -278,7 +275,7 @@ function moveStudentSlider(direction) {
 
     const realCount = parseInt(track.dataset.realCount);
     const cards = track.querySelectorAll('.student-card');
-    
+
     if (realCount === 0) return;
 
     const cardWidth = cards[0].offsetWidth;
@@ -363,7 +360,7 @@ function moveCourseSlider(direction) {
 
     const realCount = parseInt(track.dataset.realCount);
     const cards = track.querySelectorAll('.course-card');
-    
+
     if (realCount === 0) return;
 
     const cardWidth = cards[0].offsetWidth;
@@ -545,7 +542,7 @@ if (document.readyState === 'loading') {
 // every child, so the copies have to go — otherwise leaving phone view leaves
 // the page displaying duplicated cards. Clearing `dataset.cloned` as well lets
 // the mobile path clone afresh if the window narrows again.
-const CLONED_TRACK_IDS = ['testimonialGrid', 'studentSliderTrack', 'courseSliderTrack', 'approvalSliderTrack'];
+const CLONED_TRACK_IDS = ['studentSliderTrack', 'courseSliderTrack', 'approvalSliderTrack'];
 
 function stripSliderClones() {
     CLONED_TRACK_IDS.forEach(id => {
@@ -561,9 +558,22 @@ window.addEventListener('resize', () => {
     // Leaving phone view: drop the loop clones so the desktop grids hold real cards only.
     if (window.innerWidth > 768) stripSliderClones();
 
-    currentTestimonialIndex = 0;
+    // Re-calculate transform for testimonials if needed, or just let it adjust on next slide.
+    // We can just re-apply the current offset to handle window size changes.
     const grid = document.getElementById('testimonialGrid');
-    if (grid) grid.style.transform = 'translateX(0px)';
+    if (grid && grid.dataset.realCount) {
+        const cards = grid.querySelectorAll('.test-card');
+        if (cards.length > 0) {
+            const cardWidth = cards[0].offsetWidth;
+            const gap = parseFloat(window.getComputedStyle(grid).gap) || 40;
+            const step = cardWidth + gap;
+            const offset = currentTestimonialIndex * step;
+            grid.style.transition = 'none';
+            grid.style.transform = `translateX(-${offset}px)`;
+            grid.offsetHeight;
+            grid.style.transition = '';
+        }
+    }
     renderTestimonialProgress();
 
     // Approval slider: clear the mobile translate so the wrapped desktop row isn't left shifted
@@ -661,7 +671,7 @@ function moveApprovalSlider(direction) {
 
     const realCount = parseInt(track.dataset.realCount);
     const cards = track.querySelectorAll('.approval-image-box');
-    
+
     if (realCount === 0) return;
 
     const cardWidth = cards[0].offsetWidth;
@@ -1034,7 +1044,7 @@ if (document.readyState === 'loading') {
         isPaused = !isPaused;
         if (pauseBtn) pauseBtn.classList.toggle('is-paused', isPaused);
         if (pauseIcon) pauseIcon.style.display = isPaused ? 'none' : '';
-        if (playIcon)  playIcon.style.display  = isPaused ? ''     : 'none';
+        if (playIcon) playIcon.style.display = isPaused ? '' : 'none';
         isPaused ? stopAuto() : startAuto();
     }
 

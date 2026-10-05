@@ -1572,7 +1572,7 @@ img {
 }
 
 .testimonial-controls {
-    display: none;
+    display: flex;
     gap: 16px;
     justify-content: center;
     align-items: center;
