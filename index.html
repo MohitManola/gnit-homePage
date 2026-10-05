@@ -740,6 +740,14 @@
     <!-- Chatbot Styles and Scripts (Production Build) -->
     <link rel="stylesheet" href="http://200.141.14.187:5000/assets/chatbot.css?v=2">
     <script type="module" src="http://200.141.14.187:5000/assets/chatbot.js?v=2"></script>
+    <style>
+        /* Override chatbot position on mobile to prevent overlap with sticky buttons */
+        @media (max-width: 768px) {
+            .chatbot-widget-container {
+                bottom: 95px !important;
+            }
+        }
+    </style>
 
     <!-- Smooth Scrolling (Lenis) -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
