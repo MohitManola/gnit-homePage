@@ -2447,3 +2447,8 @@ img {
         padding: 3px 10px;
     }
 }
+
+/* Allow native scrolling inside the chatbot over Lenis smooth scroll */
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}

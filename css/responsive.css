@@ -2307,3 +2307,16 @@
         transition: none;
     }
 }
+
+/* Fix chatbot overlap with mobile CTA bar */
+@media (max-width: 768px) {
+    .chatbot-widget-container {
+        bottom: 90px !important;
+        z-index: 998 !important; /* Ensure it is behind/above appropriately, the bottom bar is z-index 999 so putting this below is fine, wait no, CTA bar is 999. We can just move it up */
+    }
+    
+    .chatbot-window {
+        height: 70vh !important;
+        max-height: 70vh !important;
+    }
+}
