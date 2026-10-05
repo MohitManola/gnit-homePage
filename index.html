@@ -735,7 +735,7 @@
     </script>
 
     <!-- Chatbot Root Container -->
-    <div id="root" data-lenis-prevent="true"></div>
+    <div id="chatbot-root"></div>
 
     <!-- Chatbot Styles and Scripts (Production Build) -->
     <link rel="stylesheet" href="http://200.141.14.187:5000/assets/chatbot.css?v=2">
@@ -746,6 +746,10 @@
             .chatbot-widget-container {
                 bottom: 95px !important;
             }
+        }
+        /* Prevent scroll chaining (background moving) when scrolling inside the chatbot */
+        #chatbot-root, .chatbot-window, .chatbot-messages {
+            overscroll-behavior: contain !important;
         }
     </style>
 
@@ -765,13 +769,17 @@
 
         requestAnimationFrame(raf);
 
-        // Stop scroll events inside the chatbot from reaching Lenis
-        const rootNode = document.getElementById('root');
-        if (rootNode) {
-            rootNode.addEventListener('wheel', (e) => e.stopPropagation(), { passive: true });
-            rootNode.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
-            rootNode.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
-        }
+        // Stop Lenis from capturing scroll over the chatbot, and stop scroll chaining
+        const stopScroll = (e) => {
+            if (e.target.closest('#chatbot-root')) {
+                // We add data-lenis-prevent dynamically as a fallback to ensure Lenis ignores it
+                e.target.setAttribute('data-lenis-prevent', 'true');
+                e.stopPropagation();
+            }
+        };
+        window.addEventListener('wheel', stopScroll, { capture: true, passive: true });
+        window.addEventListener('touchstart', stopScroll, { capture: true, passive: true });
+        window.addEventListener('touchmove', stopScroll, { capture: true, passive: true });
     </script>
 </body>
 
