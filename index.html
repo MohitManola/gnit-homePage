@@ -765,20 +765,12 @@
 
         requestAnimationFrame(raf);
 
-        // Dynamically add data-lenis-prevent to chatbot scrollable elements
-        const observer = new MutationObserver((mutations) => {
-            const messages = document.querySelector('.chatbot-messages');
-            const windowEl = document.querySelector('.chatbot-window');
-            if (messages && !messages.hasAttribute('data-lenis-prevent')) {
-                messages.setAttribute('data-lenis-prevent', 'true');
-            }
-            if (windowEl && !windowEl.hasAttribute('data-lenis-prevent')) {
-                windowEl.setAttribute('data-lenis-prevent', 'true');
-            }
-        });
+        // Stop scroll events inside the chatbot from reaching Lenis
         const rootNode = document.getElementById('root');
         if (rootNode) {
-            observer.observe(rootNode, { childList: true, subtree: true });
+            rootNode.addEventListener('wheel', (e) => e.stopPropagation(), { passive: true });
+            rootNode.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+            rootNode.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
         }
     </script>
 </body>
