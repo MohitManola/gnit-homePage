@@ -74,7 +74,7 @@
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css?v=29">
-    <link rel="stylesheet" href="css/responsive.css?v=29">
+    <link rel="stylesheet" href="css/responsive.css?v=30">
 </head>
 
 <body oncontextmenu="return false;">
@@ -764,7 +764,7 @@
         </div>
     </div>
 
-    <script src="js/script.js?v=29" defer></script>
+    <script src="js/script.js?v=30" defer></script>
 
     <!-- LeadX Form Integration -->
     <script>
@@ -797,8 +797,8 @@
     <div id="chatbot-root"></div>
 
     <!-- Chatbot Styles and Scripts (Production Build) -->
-    <link rel="stylesheet" href="http://200.141.14.187:5000/assets/chatbot.css?v=2">
-    <script type="module" src="http://200.141.14.187:5000/assets/chatbot.js?v=2"></script>
+    <link rel="stylesheet" href="https://bot.blkgnit.com/assets/chatbot.css?v=2">
+    <script type="module" src="https://bot.blkgnit.com/assets/chatbot.js?v=2"></script>
     <style>
         /* Hide mobile sticky CTA bar when chatbot is open */
         body.chatbot-is-open .mobile-cta-bar {
@@ -854,9 +854,9 @@
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script>
         const lenis = new Lenis({
-            duration: 1.5, // Increase duration to make the scroll slower
+            duration: 0.9, // Responsive & snappy (reduced from 1.5s lag)
             smoothWheel: true,
-            wheelMultiplier: 0.4, // Reduce wheel sensitivity for a slower feel
+            wheelMultiplier: 1.0, // Natural scroll distance (increased from sluggish 0.4)
         });
 
         function raf(time) {

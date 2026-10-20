@@ -143,6 +143,7 @@ img {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -1774,6 +1775,7 @@ img {
 }
 
 @media (min-width: 769px) {
+
     .contact-info .nav-apply-btn,
     .apply-now-btn {
         background-color: #CC2909;
@@ -2404,9 +2406,32 @@ img {
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+    .coe-gallery {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .coe-gallery-wrapper,
+    .coe-gallery-overflow,
+    .coe-gallery-track,
+    .coe-gallery-slide {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .coe-gallery-slide picture {
+        display: block;
+        width: 100%;
+    }
+
     .coe-gallery-slide img {
+        width: 100%;
         height: auto;
-        /* matches the mobile banner: natural height */
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        display: block;
     }
 
     .coe-arrow {

@@ -240,7 +240,6 @@ function startIndustryAutoSlide() {
         industryAutoSlideTimer = undefined;
     }
 
-    if (window.innerWidth <= 768) return; // mobile uses swipe
     if (document.getElementById('industrySliderTrack')) {
         industryAutoSlideTimer = setInterval(moveIndustrySlider, 2000);
     }
@@ -437,7 +436,8 @@ function clearAllAutoTimers() {
     clearInterval(approvalAutoTimer);
     clearInterval(testimonialAutoTimer);
     clearInterval(galleryAutoTimer);
-    studentAutoTimer = courseAutoTimer = approvalAutoTimer = testimonialAutoTimer = galleryAutoTimer = undefined;
+    clearInterval(industryAutoSlideTimer);
+    studentAutoTimer = courseAutoTimer = approvalAutoTimer = testimonialAutoTimer = galleryAutoTimer = industryAutoSlideTimer = undefined;
 }
 
 function startAllAutoSliders() {
@@ -445,6 +445,8 @@ function startAllAutoSliders() {
 
     if (slidersPaused) return; // paused by touch or hidden tab
     if (prefersReducedMotion && prefersReducedMotion.matches) return; // a11y
+
+    startIndustryAutoSlide();
 
     testimonialAutoTimer = setInterval(function () {
         moveTestimonial(1);
@@ -929,11 +931,11 @@ function initSimpleHeroSlider() {
     // default banner painted by the stylesheets.
     const desktopBanners = [
         'images/New%20Photos/Admissions%20Open%20Banner%20Desktop.webp',
-        'images/New%20Photos/Hackathon%202025%20Desktop.webp'
+        'images/Guri%20web%20banner%202nd%20cefef.webp'
     ];
     const mobileBanners = [
-        'images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp',
-        'images/New%20Photos/Hackathon%202025%20Mobile.webp'
+        'images/Guri%20Moblie%20Banner.webp',
+        'images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp'
     ];
 
     let currentIndex = 0;
@@ -943,11 +945,13 @@ function initSimpleHeroSlider() {
     }
 
     setInterval(() => {
+        const banners = getBanners();
+        if (banners.length <= 1) return;
         heroBg.style.opacity = '0'; // fade out
         setTimeout(() => {
-            const banners = getBanners();
-            currentIndex = (currentIndex + 1) % banners.length;
-            heroBg.style.backgroundImage = `url('${banners[currentIndex]}')`;
+            const currentBanners = getBanners();
+            currentIndex = (currentIndex + 1) % currentBanners.length;
+            heroBg.style.backgroundImage = `url('${currentBanners[currentIndex]}')`;
             heroBg.style.opacity = '1'; // fade in
         }, 400);
     }, 8000);

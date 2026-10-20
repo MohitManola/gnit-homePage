@@ -246,8 +246,8 @@
     }
 
     .hero-bg {
-        background-image: url('../images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp');
-        background-position: -10px center;
+        background-image: url('../images/Guri%20Moblie%20Banner.webp');
+        background-position: center center;
     }
 
     .hero::before {
@@ -1418,8 +1418,8 @@
     }
 
     .hero-bg {
-        background-image: url('../images/New%20Photos/Admissions%20Open%20Banner%20Mobile.webp');
-        background-position: -10px center;
+        background-image: url('../images/Guri%20Moblie%20Banner.webp');
+        background-position: center center;
         background-size: cover;
     }
 
@@ -1809,6 +1809,35 @@
        inset its contents instead. ---- */
     .campus-life {
         padding: 0;
+    }
+
+    /* ---- Microsoft Center of Excellence: full width edge-to-edge & 1:1 ratio on mobile ---- */
+    .coe-gallery {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .coe-gallery-wrapper,
+    .coe-gallery-overflow,
+    .coe-gallery-track,
+    .coe-gallery-slide {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .coe-gallery-slide picture {
+        display: block;
+        width: 100%;
+    }
+
+    .coe-gallery-slide img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        display: block;
     }
 
     .campus-container {
@@ -2312,9 +2341,10 @@
 @media (max-width: 768px) {
     .chatbot-widget-container {
         bottom: 90px !important;
-        z-index: 998 !important; /* Ensure it is behind/above appropriately, the bottom bar is z-index 999 so putting this below is fine, wait no, CTA bar is 999. We can just move it up */
+        z-index: 998 !important;
+        /* Ensure it is behind/above appropriately, the bottom bar is z-index 999 so putting this below is fine, wait no, CTA bar is 999. We can just move it up */
     }
-    
+
     .chatbot-window {
         height: 70vh !important;
         max-height: 70vh !important;
